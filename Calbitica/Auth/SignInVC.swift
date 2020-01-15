@@ -1,5 +1,5 @@
 //
-//  AuthController.swift
+//  SignInController.swift
 //  Calbitica
 //
 //  Created by Student on 12/1/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AuthController: UIViewController {
+class SignInVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

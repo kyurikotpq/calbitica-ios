@@ -9,7 +9,7 @@
 import Foundation
 
 class HttpUtil {
-    func makeRequest(url: String, method: String) -> URLRequest {
+    static func makeRequest(url: String, method: String) -> URLRequest {
         // Create URL object
         let urlObj = URL(string: url)!
         
@@ -28,7 +28,7 @@ class HttpUtil {
     static func get(url: String) {
         // Get Session obj and create urlObj
         let session = URLSession.shared
-        var request = self.makeRequest(url, "GET")
+        let request = self.makeRequest(url: url, method: "GET")
         
         let task = session.dataTask(with: request) {
             responseData, response, error in
@@ -61,31 +61,31 @@ class HttpUtil {
         task.resume()
     }
     
-    static func post(url: String, data: Dictionary) {
+    static func post(url: String, data: [String: Any]) {
         let session = URLSession.shared
-        var request = self.makeRequest(url, "POST")
+        let request = self.makeRequest(url: url, method: "POST")
         
         // Turn dictionary into Data object
-        let jsonData
+        let jsonData: Data?
         
         do {
             jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
+            
+            // Make the actual request
+            let task = session.uploadTask(with: request, from: jsonData) {
+                responseData, response, error in
+                // Do something...
+                // Todo: Return data so that Calbitica can use it
+                print(responseData);
+            }
+            
+            task.resume()
         } catch {
             print("JSON error: \(error.localizedDescription)")
         }
-        
-        // Make the actual request
-        let task = session.uploadTask(with: request, from: jsonData) {
-            responseData, response, error in
-            // Do something...
-            // Todo: Return data so that Calbitica can use it
-            print(responseData);
-        }
-        
-        task.resume()
     }
 
-    static func put(url: String, data: Dictionary) {
+    static func put(url: String, data: [String: Any]) {
 
     }
 

@@ -8,11 +8,12 @@
 
 import Foundation
 
-struct Calbit: Codable {
+struct Calbit : Codable {
+    
     var _id: String // MongoDB ID
     var userID: String // MongoDB ID
     var calendarID: String // MongoDB Calendar ID
-    var googleID: String? // Google Event ID, can be null - only exists on Habitica
+    var googleID: String // Google Event ID, can be null - only exists on Habitica [not supported yet]
     
     // var habiticaType: String // Habit, Task, Daily
     var isDump: Bool // true if brain dump or not assigned date time yet
@@ -22,18 +23,13 @@ struct Calbit: Codable {
     var description: String? // description
     var location: String?
     
-    var start = [
-        "date": String?,
-        "dateTime": String?,
-        "timeZone": String?
-    ]
-    var end = [
-        "date": String?,
-        "dateTime": String?,
-        "timeZone": String?
-    ]
-    var completed = [
-        "status": Bool,
-        "date": String?
-    ]
+    var start: [String: String]
+    var end: [String: String]
+    var completed: Completed
+    
+}
+
+struct Completed : Codable {
+    var status: Bool
+    var date: String
 }

@@ -1,20 +1,19 @@
 //
-//  AuthController.swift
+//  AuthNavController.swift
 //  Calbitica
 //
-//  Created by Student on 12/1/20.
+//  Created by Student on 15/1/20.
 //  Copyright © 2020 Calbitica. All rights reserved.
 //
 
 import UIKit
 
-class AuthController: UIViewController {
+class AuthNavController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
         
     }
 

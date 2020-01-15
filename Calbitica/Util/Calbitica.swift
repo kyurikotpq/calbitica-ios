@@ -7,10 +7,9 @@
 //
 
 import Foundation
-import HttpUtil
 
 class Calbitica {
-    let baseURL = "https://app.kyurikotpq.com/calbitica/api/"
+    static let baseURL = "https://app.kyurikotpq.com/calbitica/api/"
     
     /**
     * Exchange auth code obtained locally for Calbitica JWTs
@@ -21,7 +20,7 @@ class Calbitica {
         // HttpUtil.post(url, )
     }
 
-    let calbitBaseURL = baseURL + "calbit/"
+    static let calbitBaseURL = baseURL + "calbit/"
     static func getCalbits() {
         let url = calbitBaseURL
         // HttpUtil.get(url)
@@ -43,7 +42,7 @@ class Calbitica {
         // HttpUtil.delete(url)
     }
 
-    let calendarBaseURL = baseURL + "calendar/"
+    static let calendarBaseURL = baseURL + "calendar/"
     static func getCalendars() {
         let url = calendarBaseURL
         // HttpUtil.get(url)
@@ -53,31 +52,32 @@ class Calbitica {
         // HttpUtil.get(url)
     }
     static func changeCalSync(id: String, sync: Bool) {
-        let url = calendarBaseURL + "sync/" + id + "?sync=" + sync
+        let syncStr = (sync) ? "true" : "false"
+        let url = calendarBaseURL + "sync/" + id + "?sync=" + syncStr
 
         // HttpUtil.get(url)
     }
 
-    let habiticaBaseURL = baseURL + "h/"
+    static let habiticaBaseURL = baseURL + "h/"
     static func getHProfile() {
-        let url = calendarBaseURL + "profile"
+        let url = habiticaBaseURL + "profile"
 
         // HttpUtil.get(url)
     }
     static func respondToQuest(accept: Bool, groupID: String) {
-        let url = calendarBaseURL + "quest"
+        let url = habiticaBaseURL + "quest"
 
         // HttpUtil.post(url)
     }
     static func toggleSleep() {
-        let url = calendarBaseURL + "sleep"
+        let url = habiticaBaseURL + "sleep"
 
         // HttpUtil.get(url)
     }
 
     static func changeHabiticaAPIKey() {
-        let url = calendarBaseURL + "settings/habitica"
+        let url = habiticaBaseURL + "settings/habitica"
 
-        // HttpUtil.post(url)
+//         HttpUtil.post(url)
     }
 }
