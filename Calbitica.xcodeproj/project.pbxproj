@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		028F27BF39C436583950835C /* Pods_Calbitica.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5D5ACB38FA6B6120B7A9B70 /* Pods_Calbitica.framework */; };
 		3F86478A23CF3DD900F262CD /* WeekVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F86478923CF3DD900F262CD /* WeekVC.swift */; };
 		3F86478C23CF452B00F262CD /* Switcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F86478B23CF452B00F262CD /* Switcher.swift */; };
 		3F86478F23CF47C700F262CD /* TabBarTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F86478E23CF47C700F262CD /* TabBarTBC.swift */; };
@@ -29,11 +28,10 @@
 		3FD9270523CF4CEE00046C7D /* AgendaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD9270423CF4CEE00046C7D /* AgendaVC.swift */; };
 		3FD9270823CF4E6700046C7D /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD9270723CF4E6700046C7D /* SettingsVC.swift */; };
 		3FD9270B23CF505A00046C7D /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD9270A23CF505A00046C7D /* ProfileVC.swift */; };
+		4E468781AAC1AD48BE0E0620 /* Pods_Calbitica.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C49268FBFFCDC9FB496DFB1 /* Pods_Calbitica.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0A8C0C604544DA2408417A85 /* Pods-Calbitica.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Calbitica.debug.xcconfig"; path = "Target Support Files/Pods-Calbitica/Pods-Calbitica.debug.xcconfig"; sourceTree = "<group>"; };
-		306BC8252F3A812BDC1BE23B /* Pods-Calbitica.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Calbitica.release.xcconfig"; path = "Target Support Files/Pods-Calbitica/Pods-Calbitica.release.xcconfig"; sourceTree = "<group>"; };
 		3F86478923CF3DD900F262CD /* WeekVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekVC.swift; sourceTree = "<group>"; };
 		3F86478B23CF452B00F262CD /* Switcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Switcher.swift; sourceTree = "<group>"; };
 		3F86478E23CF47C700F262CD /* TabBarTBC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarTBC.swift; sourceTree = "<group>"; };
@@ -57,7 +55,9 @@
 		3FD9270423CF4CEE00046C7D /* AgendaVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaVC.swift; sourceTree = "<group>"; };
 		3FD9270723CF4E6700046C7D /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		3FD9270A23CF505A00046C7D /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
-		E5D5ACB38FA6B6120B7A9B70 /* Pods_Calbitica.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Calbitica.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B266A12D53677A96F37D5DC /* Pods-Calbitica.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Calbitica.release.xcconfig"; path = "Target Support Files/Pods-Calbitica/Pods-Calbitica.release.xcconfig"; sourceTree = "<group>"; };
+		5C49268FBFFCDC9FB496DFB1 /* Pods_Calbitica.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Calbitica.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		80123741D259963D64E6C021 /* Pods-Calbitica.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Calbitica.debug.xcconfig"; path = "Target Support Files/Pods-Calbitica/Pods-Calbitica.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,17 +65,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				028F27BF39C436583950835C /* Pods_Calbitica.framework in Frameworks */,
+				4E468781AAC1AD48BE0E0620 /* Pods_Calbitica.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0BC455D0EB8DA4D76340DD46 /* Frameworks */ = {
+		2B6F3294AD6358717C0B153B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E5D5ACB38FA6B6120B7A9B70 /* Pods_Calbitica.framework */,
+				5C49268FBFFCDC9FB496DFB1 /* Pods_Calbitica.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -94,7 +94,7 @@
 				3FA1F06C23CACE4100450777 /* Calbitica */,
 				3FA1F06B23CACE4100450777 /* Products */,
 				F5FB878FB34D1620867F445E /* Pods */,
-				0BC455D0EB8DA4D76340DD46 /* Frameworks */,
+				2B6F3294AD6358717C0B153B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -194,8 +194,8 @@
 		F5FB878FB34D1620867F445E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				0A8C0C604544DA2408417A85 /* Pods-Calbitica.debug.xcconfig */,
-				306BC8252F3A812BDC1BE23B /* Pods-Calbitica.release.xcconfig */,
+				80123741D259963D64E6C021 /* Pods-Calbitica.debug.xcconfig */,
+				5B266A12D53677A96F37D5DC /* Pods-Calbitica.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -207,12 +207,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3FA1F07F23CACE4200450777 /* Build configuration list for PBXNativeTarget "Calbitica" */;
 			buildPhases = (
-				4D004FA1C97A1BBD3F71DC14 /* [CP] Check Pods Manifest.lock */,
+				446B671393597C4E741632D6 /* [CP] Check Pods Manifest.lock */,
 				3FA1F06623CACE4100450777 /* Sources */,
 				3FA1F06723CACE4100450777 /* Frameworks */,
 				3FA1F06823CACE4100450777 /* Resources */,
-				37C74746DE88F46ABC3B895E /* [CP] Embed Pods Frameworks */,
-				B70CBEECA3B4D09F8A8016B3 /* [CP] Copy Pods Resources */,
+				364DA631207BF0CEDC36BCFF /* [CP] Embed Pods Frameworks */,
+				390A552E287C1FDC5DB0AA69 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -235,6 +235,7 @@
 				TargetAttributes = {
 					3FA1F06923CACE4100450777 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -270,44 +271,60 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		37C74746DE88F46ABC3B895E /* [CP] Embed Pods Frameworks */ = {
+		364DA631207BF0CEDC36BCFF /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Calbitica/Pods-Calbitica-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
 			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Calbitica/Pods-Calbitica-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Calbitica/Pods-Calbitica-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4D004FA1C97A1BBD3F71DC14 /* [CP] Check Pods Manifest.lock */ = {
+		390A552E287C1FDC5DB0AA69 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Calbitica/Pods-Calbitica-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Calbitica/Pods-Calbitica-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Calbitica/Pods-Calbitica-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		446B671393597C4E741632D6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Calbitica-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B70CBEECA3B4D09F8A8016B3 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			name = "[CP] Copy Pods Resources";
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Calbitica/Pods-Calbitica-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -476,7 +493,7 @@
 		};
 		3FA1F08023CACE4200450777 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A8C0C604544DA2408417A85 /* Pods-Calbitica.debug.xcconfig */;
+			baseConfigurationReference = 80123741D259963D64E6C021 /* Pods-Calbitica.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -488,14 +505,14 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.calbitica.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		3FA1F08123CACE4200450777 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 306BC8252F3A812BDC1BE23B /* Pods-Calbitica.release.xcconfig */;
+			baseConfigurationReference = 5B266A12D53677A96F37D5DC /* Pods-Calbitica.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -507,7 +524,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.calbitica.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -7,10 +7,10 @@
 //
 
 import UIKit
-import GoogleSignIn
+//import GoogleSignIn
 
-class SignInVC: UIViewController, GIDSignInUIDelegate {
-    @IBOutlet weak var signInButton: GIDSignInButton!
+class SignInVC: UIViewController {
+    @IBOutlet weak var signInButton: UIButton!
     
     
     override func viewDidLoad() {
@@ -19,6 +19,7 @@ class SignInVC: UIViewController, GIDSignInUIDelegate {
         // Do any additional setup after loading the view.
     }
     
+    /*
     func sign(_ signIn: GIDSignIn!, present viewController: UIViewController!) {
         print("SOMEHOW IM SUPPOSED TO PRESENT SOMETHING?")
     }
@@ -26,6 +27,7 @@ class SignInVC: UIViewController, GIDSignInUIDelegate {
     func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!) {
         print("SOMEHOW IM SUPPOSED TO dismiss SOMETHING?")
     }
+ */
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -35,7 +37,7 @@ class SignInVC: UIViewController, GIDSignInUIDelegate {
     @IBAction func signOutPressed(_ sender: UIButton) {
        
         print("SHOULD SIGN OUT")
-        GIDSignIn.sharedInstance().signOut()
+//        GIDSignIn.sharedInstance().signOut()
     }
     
     /*

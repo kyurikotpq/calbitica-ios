@@ -6,6 +6,7 @@ target 'Calbitica' do
   use_frameworks!
 
   # Pods for Calbitica
-  pod 'GoogleSignIn','~> 4.4.0'
+  pod 'GoogleSignIn'
+  pod 'AppAuth', '~> 1.2.0'
 
 end

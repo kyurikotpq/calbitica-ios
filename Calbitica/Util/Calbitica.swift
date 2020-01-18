@@ -13,6 +13,7 @@ class Calbitica : HttpResponseProtocol {
     
     // What do you do when you receive a response?
     func receivedResponse(data: Data?) {
+//        4/vgEKSSfBbpojCBT_TjYCvEpNKmppXzOGVDThv3JExivTZvWuZESR-_lS0au6bg3M9TMs8113j08q4xu1x-_HVxs
 //        JsonUtil.decode(from: data!, to: HttpUtil)
     }
     
@@ -24,8 +25,7 @@ class Calbitica : HttpResponseProtocol {
         let url = baseURL + "auth/code"
         let data = ["code": code]
         
-        let responseData = HttpUtil.post(url: url, data: data,
-                        delegate: self as! HttpResponseProtocol)
+        HttpUtil.post(url: url, data: data, delegate: self as! HttpResponseProtocol)
         
         print("WE GOT A RESPONSE!")
 //        print(responseData!); // threw error
