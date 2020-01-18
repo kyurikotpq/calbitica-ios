@@ -2,17 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "agenda_outline.png",
-      "scale" : "1x"
-    },
-    {
-      "idiom" : "universal",
-      "filename" : "agenda_outline-1.png",
-      "scale" : "2x"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "3x"
+      "filename" : "agenda_outline-1.png"
     }
   ],
   "info" : {

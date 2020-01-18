@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3F86478823CF3AD800F262CD /* AuthNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F86478723CF3AD800F262CD /* AuthNavController.swift */; };
+		028F27BF39C436583950835C /* Pods_Calbitica.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5D5ACB38FA6B6120B7A9B70 /* Pods_Calbitica.framework */; };
 		3F86478A23CF3DD900F262CD /* WeekVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F86478923CF3DD900F262CD /* WeekVC.swift */; };
 		3F86478C23CF452B00F262CD /* Switcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F86478B23CF452B00F262CD /* Switcher.swift */; };
 		3F86478F23CF47C700F262CD /* TabBarTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F86478E23CF47C700F262CD /* TabBarTBC.swift */; };
@@ -22,16 +22,18 @@
 		3FA1F09023CADA4300450777 /* Calbitica.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA1F08F23CADA4300450777 /* Calbitica.swift */; };
 		3FA1F09223CADCC400450777 /* HttpUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA1F09123CADCC400450777 /* HttpUtil.swift */; };
 		3FA1F09523CB5EB000450777 /* Calbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA1F09423CB5EB000450777 /* Calbit.swift */; };
+		3FC5100A23D1619200FE944C /* CalbiticaResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC5100923D1619200FE944C /* CalbiticaResponse.swift */; };
 		3FC7776123CD0AAE00586A58 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC7775F23CD0AAE00586A58 /* User.swift */; };
 		3FC7776223CD0AAE00586A58 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC7776023CD0AAE00586A58 /* Calendar.swift */; };
-		3FC7776623CD253A00586A58 /* Serializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC7776523CD253A00586A58 /* Serializable.swift */; };
+		3FC7776623CD253A00586A58 /* JsonUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC7776523CD253A00586A58 /* JsonUtil.swift */; };
 		3FD9270523CF4CEE00046C7D /* AgendaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD9270423CF4CEE00046C7D /* AgendaVC.swift */; };
-		3FD9270823CF4E6700046C7D /* PartyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD9270723CF4E6700046C7D /* PartyVC.swift */; };
+		3FD9270823CF4E6700046C7D /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD9270723CF4E6700046C7D /* SettingsVC.swift */; };
 		3FD9270B23CF505A00046C7D /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD9270A23CF505A00046C7D /* ProfileVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3F86478723CF3AD800F262CD /* AuthNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthNavController.swift; sourceTree = "<group>"; };
+		0A8C0C604544DA2408417A85 /* Pods-Calbitica.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Calbitica.debug.xcconfig"; path = "Target Support Files/Pods-Calbitica/Pods-Calbitica.debug.xcconfig"; sourceTree = "<group>"; };
+		306BC8252F3A812BDC1BE23B /* Pods-Calbitica.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Calbitica.release.xcconfig"; path = "Target Support Files/Pods-Calbitica/Pods-Calbitica.release.xcconfig"; sourceTree = "<group>"; };
 		3F86478923CF3DD900F262CD /* WeekVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekVC.swift; sourceTree = "<group>"; };
 		3F86478B23CF452B00F262CD /* Switcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Switcher.swift; sourceTree = "<group>"; };
 		3F86478E23CF47C700F262CD /* TabBarTBC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarTBC.swift; sourceTree = "<group>"; };
@@ -48,12 +50,14 @@
 		3FA1F08F23CADA4300450777 /* Calbitica.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calbitica.swift; sourceTree = "<group>"; };
 		3FA1F09123CADCC400450777 /* HttpUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpUtil.swift; sourceTree = "<group>"; };
 		3FA1F09423CB5EB000450777 /* Calbit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calbit.swift; sourceTree = "<group>"; };
+		3FC5100923D1619200FE944C /* CalbiticaResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalbiticaResponse.swift; sourceTree = "<group>"; };
 		3FC7775F23CD0AAE00586A58 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3FC7776023CD0AAE00586A58 /* Calendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
-		3FC7776523CD253A00586A58 /* Serializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serializable.swift; sourceTree = "<group>"; };
+		3FC7776523CD253A00586A58 /* JsonUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonUtil.swift; sourceTree = "<group>"; };
 		3FD9270423CF4CEE00046C7D /* AgendaVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaVC.swift; sourceTree = "<group>"; };
-		3FD9270723CF4E6700046C7D /* PartyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyVC.swift; sourceTree = "<group>"; };
+		3FD9270723CF4E6700046C7D /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		3FD9270A23CF505A00046C7D /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		E5D5ACB38FA6B6120B7A9B70 /* Pods_Calbitica.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Calbitica.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,12 +65,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				028F27BF39C436583950835C /* Pods_Calbitica.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0BC455D0EB8DA4D76340DD46 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E5D5ACB38FA6B6120B7A9B70 /* Pods_Calbitica.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3F86478D23CF473000F262CD /* Nav */ = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +93,8 @@
 			children = (
 				3FA1F06C23CACE4100450777 /* Calbitica */,
 				3FA1F06B23CACE4100450777 /* Products */,
+				F5FB878FB34D1620867F445E /* Pods */,
+				0BC455D0EB8DA4D76340DD46 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -95,16 +110,16 @@
 			isa = PBXGroup;
 			children = (
 				3FD9270923CF503A00046C7D /* Profile */,
-				3FD9270623CF4E5300046C7D /* Party */,
+				3FD9270623CF4E5300046C7D /* Settings */,
 				3FD9270323CF4CCE00046C7D /* Agenda */,
 				3F86478D23CF473000F262CD /* Nav */,
 				3FC7776723CD290000586A58 /* Week */,
 				3FA1F09323CB5E9F00450777 /* Models */,
 				3FA1F08C23CAD81A00450777 /* Util */,
 				3FA1F08523CAD23300450777 /* Auth */,
-				3FA1F08423CAD17600450777 /* LaunchScreen */,
 				3FA1F06D23CACE4100450777 /* AppDelegate.swift */,
 				3FA1F06F23CACE4100450777 /* ViewController.swift */,
+				3FA1F07923CACE4200450777 /* LaunchScreen.storyboard */,
 				3FA1F07123CACE4100450777 /* Main.storyboard */,
 				3FA1F07723CACE4200450777 /* Assets.xcassets */,
 				3FA1F07C23CACE4200450777 /* Info.plist */,
@@ -114,20 +129,11 @@
 			path = Calbitica;
 			sourceTree = "<group>";
 		};
-		3FA1F08423CAD17600450777 /* LaunchScreen */ = {
-			isa = PBXGroup;
-			children = (
-				3FA1F07923CACE4200450777 /* LaunchScreen.storyboard */,
-			);
-			path = LaunchScreen;
-			sourceTree = "<group>";
-		};
 		3FA1F08523CAD23300450777 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
 				3FA1F08623CAD2A400450777 /* AuthController.swift */,
 				3FA1F08A23CAD3A400450777 /* SignInVC.swift */,
-				3F86478723CF3AD800F262CD /* AuthNavController.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -137,7 +143,7 @@
 			children = (
 				3FA1F08F23CADA4300450777 /* Calbitica.swift */,
 				3FA1F09123CADCC400450777 /* HttpUtil.swift */,
-				3FC7776523CD253A00586A58 /* Serializable.swift */,
+				3FC7776523CD253A00586A58 /* JsonUtil.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -148,6 +154,7 @@
 				3FC7776023CD0AAE00586A58 /* Calendar.swift */,
 				3FC7775F23CD0AAE00586A58 /* User.swift */,
 				3FA1F09423CB5EB000450777 /* Calbit.swift */,
+				3FC5100923D1619200FE944C /* CalbiticaResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -168,12 +175,12 @@
 			path = Agenda;
 			sourceTree = "<group>";
 		};
-		3FD9270623CF4E5300046C7D /* Party */ = {
+		3FD9270623CF4E5300046C7D /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				3FD9270723CF4E6700046C7D /* PartyVC.swift */,
+				3FD9270723CF4E6700046C7D /* SettingsVC.swift */,
 			);
-			path = Party;
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		3FD9270923CF503A00046C7D /* Profile */ = {
@@ -184,6 +191,15 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		F5FB878FB34D1620867F445E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0A8C0C604544DA2408417A85 /* Pods-Calbitica.debug.xcconfig */,
+				306BC8252F3A812BDC1BE23B /* Pods-Calbitica.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -191,9 +207,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3FA1F07F23CACE4200450777 /* Build configuration list for PBXNativeTarget "Calbitica" */;
 			buildPhases = (
+				4D004FA1C97A1BBD3F71DC14 /* [CP] Check Pods Manifest.lock */,
 				3FA1F06623CACE4100450777 /* Sources */,
 				3FA1F06723CACE4100450777 /* Frameworks */,
 				3FA1F06823CACE4100450777 /* Resources */,
+				37C74746DE88F46ABC3B895E /* [CP] Embed Pods Frameworks */,
+				B70CBEECA3B4D09F8A8016B3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -250,6 +269,49 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		37C74746DE88F46ABC3B895E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Calbitica/Pods-Calbitica-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4D004FA1C97A1BBD3F71DC14 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Calbitica-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B70CBEECA3B4D09F8A8016B3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "[CP] Copy Pods Resources";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Calbitica/Pods-Calbitica-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3FA1F06623CACE4100450777 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -258,19 +320,19 @@
 				3FA1F07023CACE4100450777 /* ViewController.swift in Sources */,
 				3F86478A23CF3DD900F262CD /* WeekVC.swift in Sources */,
 				3FA1F09023CADA4300450777 /* Calbitica.swift in Sources */,
+				3FC5100A23D1619200FE944C /* CalbiticaResponse.swift in Sources */,
 				3F86478F23CF47C700F262CD /* TabBarTBC.swift in Sources */,
 				3FA1F08723CAD2A400450777 /* AuthController.swift in Sources */,
-				3FD9270823CF4E6700046C7D /* PartyVC.swift in Sources */,
+				3FD9270823CF4E6700046C7D /* SettingsVC.swift in Sources */,
 				3FD9270523CF4CEE00046C7D /* AgendaVC.swift in Sources */,
 				3F86478C23CF452B00F262CD /* Switcher.swift in Sources */,
 				3FA1F06E23CACE4100450777 /* AppDelegate.swift in Sources */,
 				3FA1F08B23CAD3A400450777 /* SignInVC.swift in Sources */,
 				3FC7776123CD0AAE00586A58 /* User.swift in Sources */,
-				3FC7776623CD253A00586A58 /* Serializable.swift in Sources */,
+				3FC7776623CD253A00586A58 /* JsonUtil.swift in Sources */,
 				3FD9270B23CF505A00046C7D /* ProfileVC.swift in Sources */,
 				3FA1F09223CADCC400450777 /* HttpUtil.swift in Sources */,
 				3FA1F09523CB5EB000450777 /* Calbit.swift in Sources */,
-				3F86478823CF3AD800F262CD /* AuthNavController.swift in Sources */,
 				3FA1F07623CACE4100450777 /* Calbitica.xcdatamodeld in Sources */,
 				3FC7776223CD0AAE00586A58 /* Calendar.swift in Sources */,
 			);
@@ -414,6 +476,7 @@
 		};
 		3FA1F08023CACE4200450777 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A8C0C604544DA2408417A85 /* Pods-Calbitica.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -432,6 +495,7 @@
 		};
 		3FA1F08123CACE4200450777 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 306BC8252F3A812BDC1BE23B /* Pods-Calbitica.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

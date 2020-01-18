@@ -11,8 +11,8 @@ import UIKit
 
 class Switcher {
     // Is the user signed in?
-    static func updateRootVC(){
-        
+    static func updateRootVC() -> Bool {
+        // Get the JWT from UserDefaults
 //        let status = UserDefaults.standard.bool(forKey: "status")
         let status = true
         var rootVC : UIViewController?
@@ -31,6 +31,7 @@ class Switcher {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = rootVC
         
+        return status
     }
     
 }

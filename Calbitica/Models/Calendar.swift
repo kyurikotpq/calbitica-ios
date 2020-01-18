@@ -9,16 +9,21 @@
 import Foundation
 
 struct Calendar : Codable {
-    var _id: String // MongoDB ID
-    var userID: String // MongoDB ID
-    var googleID: String
-    var summary: String
-    var description: String?
-    var defaultReminders: Reminder
-    var sync: Bool
+    struct CalbiticaData : Codable {
+        var _id: String // MongoDB ID
+        var userID: String // MongoDB ID
+        var googleID: String
+        var summary: String
+        var description: String?
+        var sync: Bool
+        
+        struct Reminder : Codable {
+            var method: String
+            var minutes: Int
+        }
+        var reminders: [Reminder]
+
+    }
+    var data: CalbiticaData
 }
 
-struct Reminder : Codable {
-    var method: String
-    var minutes: Int
-}

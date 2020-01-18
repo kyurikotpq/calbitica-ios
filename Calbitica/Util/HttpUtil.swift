@@ -8,7 +8,23 @@
 
 import Foundation
 
+protocol HttpResponseProtocol {
+    func receivedResponse(data: Data?)
+}
+
 class HttpUtil {
+    static let shared = HttpUtil()
+    var delegate: HttpResponseProtocol?
+    var model: Codable?
+    
+    
+    static func setDelegateAndModel(delegate: HttpResponseProtocol,
+                                    model: Codable) {
+        shared.delegate = delegate
+        shared.model = model
+    }
+    
+    
     static func makeRequest(url: String, method: String) -> URLRequest {
         // Create URL object
         let urlObj = URL(string: url)!
@@ -24,11 +40,11 @@ class HttpUtil {
         
         return request;
     }
-
-    static func get(url: String) {
+  
+    static func get(url: String, delegate: HttpResponseProtocol, model: Codable) {
         // Get Session obj and create urlObj
         let session = URLSession.shared
-        let request = self.makeRequest(url: url, method: "GET")
+        let request = makeRequest(url: url, method: "GET")
         
         let task = session.dataTask(with: request) {
             responseData, response, error in
@@ -61,10 +77,11 @@ class HttpUtil {
         task.resume()
     }
     
-    static func post(url: String, data: [String: Any]) {
-        let session = URLSession.shared
-        let request = self.makeRequest(url: url, method: "POST")
+    static func post(url: String, data: [String: Any], delegate: HttpResponseProtocol) {
         
+        let session = URLSession.shared
+        let request = makeRequest(url: url, method: "POST")
+      
         // Turn dictionary into Data object
         let jsonData: Data?
         
@@ -73,10 +90,16 @@ class HttpUtil {
             
             // Make the actual request
             let task = session.uploadTask(with: request, from: jsonData) {
-                responseData, response, error in
+                (responseData, response, error) in
                 // Do something...
                 // Todo: Return data so that Calbitica can use it
-                print(responseData);
+                print(response!);
+                print(error!);
+                print(responseData!);
+               
+                shared.delegate? = delegate
+                shared.delegate?.receivedResponse(data: responseData)
+                
             }
             
             task.resume()

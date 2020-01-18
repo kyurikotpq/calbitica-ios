@@ -1,5 +1,5 @@
 //
-//  AuthNavController.swift
+//  PartyController.swift
 //  Calbitica
 //
 //  Created by Student on 15/1/20.
@@ -8,13 +8,12 @@
 
 import UIKit
 
-class AuthNavController: UINavigationController {
+class SettingsVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
     }
 
     override func didReceiveMemoryWarning() {

@@ -8,17 +8,29 @@
 
 import Foundation
 
-class Calbitica {
+class Calbitica : HttpResponseProtocol {
     static let baseURL = "https://app.kyurikotpq.com/calbitica/api/"
+    
+    // What do you do when you receive a response?
+    func receivedResponse(data: Data?) {
+//        JsonUtil.decode(from: data!, to: HttpUtil)
+    }
+    
     
     /**
     * Exchange auth code obtained locally for Calbitica JWTs
     */
     static func tokensFromAuthCode(_ code: String) {
         let url = baseURL + "auth/code"
-        // let data = ()
-        // HttpUtil.post(url, )
+        let data = ["code": code]
+        
+        let responseData = HttpUtil.post(url: url, data: data,
+                        delegate: self as! HttpResponseProtocol)
+        
+        print("WE GOT A RESPONSE!")
+//        print(responseData!); // threw error
     }
+    
 
     static let calbitBaseURL = baseURL + "calbit/"
     static func getCalbits() {
