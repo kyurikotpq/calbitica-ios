@@ -8,27 +8,27 @@
 
 import Foundation
 
-class Calbitica : HttpResponseProtocol {
+class Calbitica {
     static let baseURL = "https://app.kyurikotpq.com/calbitica/api/"
-    
-    // What do you do when you receive a response?
-    func receivedResponse(data: Data?) {
-//        4/vgEKSSfBbpojCBT_TjYCvEpNKmppXzOGVDThv3JExivTZvWuZESR-_lS0au6bg3M9TMs8113j08q4xu1x-_HVxs
-//        JsonUtil.decode(from: data!, to: HttpUtil)
-    }
-    
     
     /**
     * Exchange auth code obtained locally for Calbitica JWTs
     */
-    static func tokensFromAuthCode(_ code: String) {
+    static func tokensFromAuthCode(_ code: String, closure: @escaping (String) -> Void) {
         let url = baseURL + "auth/code"
         let data = ["code": code]
         
-        HttpUtil.post(url: url, data: data, delegate: self as! HttpResponseProtocol)
+        func httpFinishClosure(response: Data) {
+            do {
+                let decodedUser = try JSONDecoder().decode(User.self, from: response)
+                closure(decodedUser.jwt)
+            } catch {
+//                JSONSerialization.dec
+                print("JSON error: \(error.localizedDescription)")
+            }
+        }
         
-        print("WE GOT A RESPONSE!")
-//        print(responseData!); // threw error
+        HttpUtil.post(url: url, data: data, closure: httpFinishClosure)
     }
     
 

@@ -8,37 +8,32 @@
 
 import UIKit
 import CoreData
-//import GoogleSignIn
+import GoogleSignIn
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-    
-
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     var window: UIWindow?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        
-        if(!Switcher.updateRootVC()) {
+        if(!Switcher.isSignedIn()) {
             // Initialize sign-in
-//            GIDSignIn.sharedInstance().clientID = "464289376160-gjc9oi5bk1s7e99tl7jqf440i442g00f.apps.googleusercontent.com"
-//            GIDSignIn.sharedInstance().serverClientID = "464289376160-6in84jb9816ui0eea7uietultj9u9shl.apps.googleusercontent.com"
-//            GIDSignIn.sharedInstance().scopes = [
-//                "profile",
-//                "https://www.googleapis.com/auth/calendar.readonly",
-//                "https://www.googleapis.com/auth/calendar.events"
-//            ]
-//            GIDSignIn.sharedInstance().delegate = self
-//            GIDSignIn.sharedInstance().uiDelegate = self.window?.rootViewController as! GIDSignInUIDelegate?
+            GIDSignIn.sharedInstance().clientID = "464289376160-gjc9oi5bk1s7e99tl7jqf440i442g00f.apps.googleusercontent.com"
+            GIDSignIn.sharedInstance().serverClientID = "464289376160-6in84jb9816ui0eea7uietultj9u9shl.apps.googleusercontent.com"
+            GIDSignIn.sharedInstance().scopes = [
+                "profile",
+                "https://www.googleapis.com/auth/calendar.readonly",
+                "https://www.googleapis.com/auth/calendar.events"
+            ]
+            GIDSignIn.sharedInstance().delegate = self
         }
         
         return true
     }
     
     // If the user UNsuccessfully/successfully signs in
-    /*
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!,
               withError error: Error!) {
         if let error = error {
@@ -49,11 +44,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             return
         }
+        
         // Perform any operations on signed in user here.
         print(user.serverAuthCode)
         print(user.profile.name)
         // BUGGY
-        Calbitica.tokensFromAuthCode(user.serverAuthCode)
+        AuthController.handleSignIn(code: user.serverAuthCode, user: user)
+        
         //        let userId = user.userID                  // For client-side use only!
         //        let idToken = user.authentication.idToken // Safe to send to the server
         //        let fullName = user.profile.name
@@ -71,21 +68,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // This handles the opening of the browser to the correct OAuthURL
     // kind of like generateAuthUrl in NodeJS
-    @available(iOS 9.0, *)
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
-//        return GIDSignIn.sharedInstance().handle(url, sourceApplication: "", annotation: "")
-        return true
-    }
-    
-    func application(_ application: UIApplication,
-                     open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        print(annotation)
-        print(sourceApplication!)
-        return true
-//        return GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplication, annotation: annotation)
-    }
-    
-    */
+     @available(iOS 9.0, *)
+     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
+        return GIDSignIn.sharedInstance().handle(url)
+     }
     
 
     func applicationWillResignActive(_ application: UIApplication) {

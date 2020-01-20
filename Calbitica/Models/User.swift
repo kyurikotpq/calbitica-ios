@@ -3,10 +3,6 @@
 import Foundation
 
 struct User: Codable {
-    struct CalbiticaData : Codable {
-        var jwt: String
-        var displayName: String
-        var thumbnail: String
-    }
-    var data: CalbiticaData
+    var message: String
+    var jwt: String
 }

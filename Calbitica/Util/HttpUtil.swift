@@ -8,23 +8,7 @@
 
 import Foundation
 
-protocol HttpResponseProtocol {
-    func receivedResponse(data: Data?)
-}
-
 class HttpUtil {
-    static let shared = HttpUtil()
-    var delegate: HttpResponseProtocol?
-    var model: Codable?
-    
-    
-    static func setDelegateAndModel(delegate: HttpResponseProtocol,
-                                    model: Codable) {
-        shared.delegate = delegate
-        shared.model = model
-    }
-    
-    
     static func makeRequest(url: String, method: String) -> URLRequest {
         // Create URL object
         let urlObj = URL(string: url)!
@@ -34,14 +18,18 @@ class HttpUtil {
         request.httpMethod = method
         
         // Set Headers
+        // TODO: don't allow sending if not logged in
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue("Bearer ", forHTTPHeaderField: "Authorization")
+        
+        let jwt = UserDefaults.standard.string(forKey: "jwt")
+        if(jwt != nil) {
+            request.setValue("Bearer \(jwt!)", forHTTPHeaderField: "Authorization")
+        }
         
         return request;
     }
   
-    static func get(url: String, delegate: HttpResponseProtocol, model: Codable) {
+    static func get(url: String, closure: @escaping (Data) -> Void) {
         // Get Session obj and create urlObj
         let session = URLSession.shared
         let request = makeRequest(url: url, method: "GET")
@@ -51,24 +39,31 @@ class HttpUtil {
             
             if error != nil || responseData == nil {
                 print("Client error!")
+                // TODO: global handler
                 return
             }
             
             guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
                 print("Server error!")
+                // TODO: global handler
                 return
             }
             
             guard let mime = response.mimeType, mime == "application/json" else {
                 print("Wrong MIME type!")
+                // TODO: global handler
                 return
             }
             
             do {
                 let json = try JSONSerialization.jsonObject(with: responseData!, options: [])
 
-                // Todo: Return data so that Calbitica can use it
-                print(json)
+                if(responseData != nil) {
+//                    let json = String(data: responseData!, encoding: String.Encoding.utf8)
+                    
+                    print(json);
+                    closure(responseData!) // return data to the callback (closure)
+                }
             } catch {
                 print("JSON error: \(error.localizedDescription)")
             }
@@ -77,7 +72,7 @@ class HttpUtil {
         task.resume()
     }
     
-    static func post(url: String, data: [String: Any], delegate: HttpResponseProtocol) {
+    static func post(url: String, data: [String: Any], closure: @escaping (Data) -> Void) {
         
         let session = URLSession.shared
         let request = makeRequest(url: url, method: "POST")
@@ -91,17 +86,21 @@ class HttpUtil {
             // Make the actual request
             let task = session.uploadTask(with: request, from: jsonData) {
                 (responseData, response, error) in
-                // Do something...
-                // Todo: Return data so that Calbitica can use it
-                print(response!);
-                print(error!);
-                print(responseData!);
-               
-                shared.delegate? = delegate
-                shared.delegate?.receivedResponse(data: responseData)
                 
+                if error != nil || responseData == nil {
+                    print("Client error!")
+                    // TODO: Global client handler
+                    return
+                }
+                
+                if(responseData != nil) {
+                    let json = String(data: responseData!, encoding: String.Encoding.utf8)
+                    
+                    print(jsonData);
+                    closure(responseData!) // return data to the callback (closure)
+                } 
             }
-            
+            // send the request
             task.resume()
         } catch {
             print("JSON error: \(error.localizedDescription)")

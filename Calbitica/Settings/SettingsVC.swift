@@ -9,11 +9,30 @@
 import UIKit
 
 class SettingsVC: UIViewController {
-
+    @IBOutlet var profileImg: UIImageView!
+    @IBOutlet var displayNameLbl: UILabel!
+    
+    
+    var profileImgURL: URL? = nil, displayName: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        profileImgURL = UserDefaults.standard.url(forKey: "thumbnail")!
+        displayName = UserDefaults.standard.string(forKey:  "displayName")!
+        
+        displayNameLbl.text = displayName
+        
+        if(profileImgURL != nil) {
+            let data = try? Data(contentsOf: profileImgURL!)
+            
+            if let imageData = data {
+                let image = UIImage(data: imageData)
+                profileImg.image = image
+            }
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {

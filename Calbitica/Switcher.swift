@@ -11,16 +11,16 @@ import UIKit
 
 class Switcher {
     // Is the user signed in?
-    static func updateRootVC() -> Bool {
+    static func isSignedIn() -> Bool {
         // Get the JWT from UserDefaults
-//        let status = UserDefaults.standard.bool(forKey: "status")
-        let status = true
+        let jwt = UserDefaults.standard.string(forKey: "jwt")
+        let isSignedIn = jwt != nil
+        
         var rootVC : UIViewController?
         
-        print(status)
+        print(jwt)
         
-        
-        if (status) {
+        if (isSignedIn) {
             // Yes -> Navigate to Dashboard
             rootVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabbarTBC") as! TabBarTBC
         } else {
@@ -31,7 +31,7 @@ class Switcher {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = rootVC
         
-        return status
+        return isSignedIn
     }
     
 }

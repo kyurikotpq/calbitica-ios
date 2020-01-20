@@ -7,31 +7,23 @@
 //
 
 import UIKit
+import GoogleSignIn
 
-class AuthController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+class AuthController {
+    static func handleSignIn(code: String, user: GIDGoogleUser) {
+        // Store JWT inside user preferences
+        func handleJWTClosure(jwt: String) {
+            UserDefaults.standard.set(jwt, forKey: "jwt")
+        }
+        Calbitica.tokensFromAuthCode(code, closure: handleJWTClosure)
         
+        // Store profile stuff inside user preferences
+        UserDefaults.standard.set(user.profile.name, forKey: "displayName")
         
+        if(user.profile.hasImage) {
+            // returns the URL (URL object) of the user's profile image
+            let pic = user.profile.imageURL(withDimension: UInt(150))
+            UserDefaults.standard.set(pic, forKey: "thumbnail")
+        }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
