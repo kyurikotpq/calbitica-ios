@@ -11,6 +11,7 @@ import UIKit
 class SettingsVC: UIViewController {
     @IBOutlet var profileImg: UIImageView!
     @IBOutlet var displayNameLbl: UILabel!
+    @IBOutlet var habiticaSettings: UIButton!
     
     
     var profileImgURL: URL? = nil, displayName: String = ""
@@ -32,7 +33,6 @@ class SettingsVC: UIViewController {
                 profileImg.image = image
             }
         }
-        
     }
 
     override func didReceiveMemoryWarning() {

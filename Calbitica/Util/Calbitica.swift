@@ -16,8 +16,10 @@ class Calbitica {
     */
     static func tokensFromAuthCode(_ code: String, closure: @escaping (String) -> Void) {
         let url = baseURL + "auth/code"
-        let data = ["code": code]
+        let data = ["code": code] // data to pass in POST
         
+        // When the response from API is returned,
+        // run this function
         func httpFinishClosure(response: Data) {
             do {
                 let decodedUser = try JSONDecoder().decode(User.self, from: response)
@@ -28,6 +30,7 @@ class Calbitica {
             }
         }
         
+        // Make the HTTP Request
         HttpUtil.post(url: url, data: data, closure: httpFinishClosure)
     }
     
@@ -81,14 +84,25 @@ class Calbitica {
 
         // HttpUtil.post(url)
     }
-    static func toggleSleep() {
-        let url = habiticaBaseURL + "sleep"
-
-        // HttpUtil.get(url)
-    }
+//    static func toggleSleep(closure: @escaping (String) -> Void) -> Bool {
+//        let url = habiticaBaseURL + "sleep"
+//
+//        func httpFinishClosure(response: Data) {
+//            do {
+//                // Decode message
+//                let decodedMessage = try JSONDecoder().decode(Message.self, from: response)
+//                closure(decodedMessage)
+//            } catch {
+//                //                JSONSerialization.dec
+//                print("JSON error: \(error.localizedDescription)")
+//            }
+//        }
+//        
+//        HttpUtil.get(url: url, closure: httpFinishClosure)
+//    }
 
     static func changeHabiticaAPIKey() {
-        let url = habiticaBaseURL + "settings/habitica"
+        let url = baseURL + "settings/habitica"
 
 //         HttpUtil.post(url)
     }
