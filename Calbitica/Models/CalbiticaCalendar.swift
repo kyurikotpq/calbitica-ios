@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Calendar : Codable {
+struct CalbiticaCalendar : Codable {
     struct CalbiticaData : Codable {
         var _id: String // MongoDB ID
         var userID: String // MongoDB ID

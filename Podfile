@@ -8,4 +8,5 @@ target 'Calbitica' do
   # Pods for Calbitica
   pod 'GoogleSignIn'
   pod 'AppAuth', '~> 1.2.0'
+  pod 'JZCalendarWeekView'
 end

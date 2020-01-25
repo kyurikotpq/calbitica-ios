@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YBe-4u-oQU">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Week Nav Controller-->
+        <scene sceneID="XlM-BO-ldk">
+            <objects>
+                <navigationController storyboardIdentifier="UINavigationController-YBe-4u-oQU" title="Week Nav Controller" id="YBe-4u-oQU" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Week" image="week_outline" selectedImage="week" id="rnt-c8-2yv">
+                        <color key="badgeColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </tabBarItem>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="ObZ-pT-KIL">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="YaM-5X-XD4" kind="relationship" relationship="rootViewController" id="fJO-I1-4d1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ooa-kG-F3f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-839" y="889"/>
+        </scene>
+        <!--12 - 17 Jan-->
+        <scene sceneID="otk-J6-ORd">
+            <objects>
+                <viewController storyboardIdentifier="weekVC" id="YaM-5X-XD4" customClass="WeekVC" customModule="Calbitica" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" opaque="NO" contentMode="scaleToFill" id="fx4-zL-gtV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vsb-MD-kB4" userLabel="Calendar View" customClass="JZBaseWeekView" customModule="JZCalendarWeekView">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Vsb-MD-kB4" firstAttribute="leading" secondItem="fx4-zL-gtV" secondAttribute="leading" id="HOh-cu-Vhk"/>
+                            <constraint firstItem="Vsb-MD-kB4" firstAttribute="top" secondItem="aJN-TQ-Zif" secondAttribute="top" id="ZbY-1i-rn4"/>
+                            <constraint firstAttribute="trailing" secondItem="Vsb-MD-kB4" secondAttribute="trailing" id="gyf-x2-jOd"/>
+                            <constraint firstItem="Vsb-MD-kB4" firstAttribute="bottom" secondItem="aJN-TQ-Zif" secondAttribute="bottom" id="jZu-SK-Jc0"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="aJN-TQ-Zif"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Week" image="week_outline" selectedImage="week" id="9ac-BL-jPq">
+                        <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBarItem>
+                    <navigationItem key="navigationItem" title="12 - 17 Jan" id="jvP-Aw-z4N" userLabel="Week Title">
+                        <barButtonItem key="leftBarButtonItem" title="Today" style="plain" id="PY3-4H-Os5" userLabel="Today">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="todayBtnPressed:" destination="YaM-5X-XD4" id="Hqk-Wx-SZ6"/>
+                            </connections>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem style="plain" systemItem="add" id="YwB-pb-NTv">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <segue destination="cEe-PS-miv" kind="show" identifier="addCalbitSegue" id="ch4-bh-daU"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem style="plain" systemItem="refresh" id="uXw-U0-C7Q">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="refreshBtnPressed:" destination="YaM-5X-XD4" id="qWM-6D-XdD"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="calendarWeekView" destination="Vsb-MD-kB4" id="4NN-Ds-fGq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AAH-Pb-gxQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="115.94202898550725" y="888.61607142857144"/>
+        </scene>
+        <!--Save Calbit Controller-->
+        <scene sceneID="KAU-Rl-BCm">
+            <objects>
+                <viewController id="cEe-PS-miv" userLabel="Save Calbit Controller" customClass="SaveCalbitVC" customModule="Calbitica" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7zH-oM-sGK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="dfE-B1-PYP"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XK3-hK-DxL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1083" y="889"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="week" width="36" height="36"/>
+        <image name="week_outline" width="36" height="36"/>
+    </resources>
+</document>
