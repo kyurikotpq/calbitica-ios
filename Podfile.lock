@@ -24,7 +24,7 @@ DEPENDENCIES:
   - JZCalendarWeekView
 
 SPEC REPOS:
-  trunk:
+  https://github.com/cocoapods/specs.git:
     - AppAuth
     - GoogleSignIn
     - GTMAppAuth
@@ -40,4 +40,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 961a42b813eb631c4f3b0ae5be8179af07b07e64
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.7.5
