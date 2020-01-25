@@ -22,7 +22,7 @@ DEPENDENCIES:
   - GoogleSignIn
 
 SPEC REPOS:
-  trunk:
+  https://github.com/cocoapods/specs.git:
     - AppAuth
     - GoogleSignIn
     - GTMAppAuth
@@ -36,4 +36,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 09050b3511e3e24217e1c37b03eb78438268b2d0
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.7.5
