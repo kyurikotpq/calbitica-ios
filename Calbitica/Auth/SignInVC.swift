@@ -16,32 +16,21 @@ class SignInVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Initialize sign-in
+        GIDSignIn.sharedInstance().clientID = "464289376160-gjc9oi5bk1s7e99tl7jqf440i442g00f.apps.googleusercontent.com"
+        GIDSignIn.sharedInstance().serverClientID = "464289376160-6in84jb9816ui0eea7uietultj9u9shl.apps.googleusercontent.com"
+        GIDSignIn.sharedInstance().scopes = [
+            "profile",
+            "https://www.googleapis.com/auth/calendar.readonly",
+            "https://www.googleapis.com/auth/calendar.events"
+        ]
         GIDSignIn.sharedInstance()?.presentingViewController = self
     }
-    
-    
-    func sign(_ signIn: GIDSignIn!, present viewController: UIViewController!) {
-        print("SOMEHOW IM SUPPOSED TO PRESENT SOMETHING?")
         
-        // Switch to the week view
-        _ = Switcher.isSignedIn()
-    }
-    
-    func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!) {
-        print("SOMEHOW IM SUPPOSED TO dismiss SOMETHING?")
-    }
- 
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-//    @IBAction func signOutPressed(_ sender: UIButton) {
-//       
-//        print("SHOULD SIGN OUT")
-//        GIDSignIn.sharedInstance().signOut()
-//    }
     
     /*
     // MARK: - Navigation

@@ -29,6 +29,7 @@
 		3FD9270523CF4CEE00046C7D /* AgendaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD9270423CF4CEE00046C7D /* AgendaVC.swift */; };
 		3FD9270823CF4E6700046C7D /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD9270723CF4E6700046C7D /* SettingsVC.swift */; };
 		3FD9270B23CF505A00046C7D /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD9270A23CF505A00046C7D /* ProfileVC.swift */; };
+		3FE0D3A023DBF00F004B4FC8 /* SpinnerAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE0D39F23DBF00F004B4FC8 /* SpinnerAlert.swift */; };
 		4E468781AAC1AD48BE0E0620 /* Pods_Calbitica.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C49268FBFFCDC9FB496DFB1 /* Pods_Calbitica.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,7 @@
 		3FD9270423CF4CEE00046C7D /* AgendaVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaVC.swift; sourceTree = "<group>"; };
 		3FD9270723CF4E6700046C7D /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		3FD9270A23CF505A00046C7D /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		3FE0D39F23DBF00F004B4FC8 /* SpinnerAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerAlert.swift; sourceTree = "<group>"; };
 		5B266A12D53677A96F37D5DC /* Pods-Calbitica.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Calbitica.release.xcconfig"; path = "Target Support Files/Pods-Calbitica/Pods-Calbitica.release.xcconfig"; sourceTree = "<group>"; };
 		5C49268FBFFCDC9FB496DFB1 /* Pods_Calbitica.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Calbitica.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		80123741D259963D64E6C021 /* Pods-Calbitica.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Calbitica.debug.xcconfig"; path = "Target Support Files/Pods-Calbitica/Pods-Calbitica.debug.xcconfig"; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				3FA1F08F23CADA4300450777 /* Calbitica.swift */,
 				3FA1F09123CADCC400450777 /* HttpUtil.swift */,
 				3FC7776523CD253A00586A58 /* JsonUtil.swift */,
+				3FE0D39F23DBF00F004B4FC8 /* SpinnerAlert.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				3F86478C23CF452B00F262CD /* Switcher.swift in Sources */,
 				3FA1F06E23CACE4100450777 /* AppDelegate.swift in Sources */,
 				3FA1F08B23CAD3A400450777 /* SignInVC.swift in Sources */,
+				3FE0D3A023DBF00F004B4FC8 /* SpinnerAlert.swift in Sources */,
 				3FC7776123CD0AAE00586A58 /* User.swift in Sources */,
 				3FC7776623CD253A00586A58 /* JsonUtil.swift in Sources */,
 				3FD9270B23CF505A00046C7D /* ProfileVC.swift in Sources */,

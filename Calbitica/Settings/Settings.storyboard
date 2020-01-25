@@ -101,7 +101,12 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iym-im-zqx">
                                         <rect key="frame" x="0.0" y="76" width="48" height="30"/>
-                                        <state key="normal" title="Logout"/>
+                                        <state key="normal" title="Logout">
+                                            <color key="titleColor" red="0.80000000000000004" green="0.20000000000000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="logoutPressed:" destination="kOU-Ib-JDT" eventType="touchUpInside" id="4oc-2a-Ow7"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -180,7 +185,6 @@
         <!--About-->
         <scene sceneID="1l1-dY-xEm">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="P3D-dO-RoJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="About" id="Tu7-3P-rSk" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="D5T-z5-rQu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
@@ -235,6 +239,7 @@
                     </view>
                     <size key="freeformSize" width="375" height="1000"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P3D-dO-RoJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2044" y="-415.59220389805103"/>
         </scene>

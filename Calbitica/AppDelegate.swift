@@ -18,15 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        if(!Switcher.isSignedIn()) {
-            // Initialize sign-in
-            GIDSignIn.sharedInstance().clientID = "464289376160-gjc9oi5bk1s7e99tl7jqf440i442g00f.apps.googleusercontent.com"
-            GIDSignIn.sharedInstance().serverClientID = "464289376160-6in84jb9816ui0eea7uietultj9u9shl.apps.googleusercontent.com"
-            GIDSignIn.sharedInstance().scopes = [
-                "profile",
-                "https://www.googleapis.com/auth/calendar.readonly",
-                "https://www.googleapis.com/auth/calendar.events"
-            ]
+        if(!Switcher.isSignedIn(false)) {
             GIDSignIn.sharedInstance().delegate = self
         }
         
@@ -45,19 +37,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             return
         }
         
+//        print("successfully signed in")
+        
         // Perform any operations on signed in user here.
-        print(user.serverAuthCode)
-        print(user.profile.name)
-        // BUGGY
         AuthController.handleSignIn(code: user.serverAuthCode, user: user)
-        
-        //        let userId = user.userID                  // For client-side use only!
-        //        let idToken = user.authentication.idToken // Safe to send to the server
-        //        let fullName = user.profile.name
-        //        let givenName = user.profile.givenName
-        //        let familyName = user.profile.familyName
-        //        let email = user.profile.email
-        
+        // Switch to the week view
+        _ = Switcher.isSignedIn(true)
     }
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!,

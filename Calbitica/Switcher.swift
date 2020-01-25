@@ -11,10 +11,10 @@ import UIKit
 
 class Switcher {
     // Is the user signed in?
-    static func isSignedIn() -> Bool {
+    static func isSignedIn(_ forceSignIn: Bool) -> Bool {
         // Get the JWT from UserDefaults
         let jwt = UserDefaults.standard.string(forKey: "jwt")
-        let isSignedIn = jwt != nil
+        let isSignedIn = forceSignIn || jwt != nil
         
         var rootVC : UIViewController?
         
