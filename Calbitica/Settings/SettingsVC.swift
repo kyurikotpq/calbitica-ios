@@ -72,7 +72,7 @@ class SettingsVC: UIViewController {
             
             // go back to sign in page
             let signInVC: UIViewController?
-            signInVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "signinVC") as! SignInVC
+            signInVC = UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController()
             
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.window?.rootViewController = signInVC

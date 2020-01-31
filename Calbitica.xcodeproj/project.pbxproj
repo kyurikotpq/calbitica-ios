@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3F14091B23DC0C0F00651B35 /* SaveCalbitVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F14091A23DC0C0F00651B35 /* SaveCalbitVC.swift */; };
+		3F1E356023E3F49A00198D90 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FE565F823E3F14B001D5813 /* Login.storyboard */; };
 		3F229CF023D542EE00B1BA5C /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F229CEF23D542EE00B1BA5C /* Settings.storyboard */; };
 		3F5E9D5A23E3BE340012252C /* Calbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E9D5923E3BE330012252C /* Calbit.swift */; };
 		3F5ED37923E2A867004FC6C0 /* CalbitDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5ED37823E2A867004FC6C0 /* CalbitDetailVC.swift */; };
@@ -90,6 +91,7 @@
 		3FE0D3A223DBF932004B4FC8 /* Week.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Week.storyboard; sourceTree = "<group>"; };
 		3FE1E2DF23E19D5000645F13 /* HabiticaSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabiticaSettingsVC.swift; sourceTree = "<group>"; };
 		3FE1E2E123E1B77C00645F13 /* OkAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OkAlert.swift; sourceTree = "<group>"; };
+		3FE565F823E3F14B001D5813 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Login.storyboard; path = "/Users/student/Desktop/calbitica-ios/Calbitica/Auth/Login.storyboard"; sourceTree = "<absolute>"; };
 		3FF144B523E1E9FE004F1046 /* DarkTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkTextField.swift; sourceTree = "<group>"; };
 		5B266A12D53677A96F37D5DC /* Pods-Calbitica.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Calbitica.release.xcconfig"; path = "Target Support Files/Pods-Calbitica/Pods-Calbitica.release.xcconfig"; sourceTree = "<group>"; };
 		5C49268FBFFCDC9FB496DFB1 /* Pods_Calbitica.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Calbitica.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -173,6 +175,7 @@
 		3FA1F08523CAD23300450777 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				3FE565F823E3F14B001D5813 /* Login.storyboard */,
 				3FA1F08623CAD2A400450777 /* AuthController.swift */,
 				3FA1F08A23CAD3A400450777 /* SignInVC.swift */,
 			);
@@ -334,6 +337,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F1E356023E3F49A00198D90 /* Login.storyboard in Resources */,
 				3FA1F07B23CACE4200450777 /* LaunchScreen.storyboard in Resources */,
 				3FA1F07823CACE4200450777 /* Assets.xcassets in Resources */,
 				3FA1F07323CACE4100450777 /* Main.storyboard in Resources */,

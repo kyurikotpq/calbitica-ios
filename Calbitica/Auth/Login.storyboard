@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BPN-mT-YiN">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Sign InVC-->
+        <scene sceneID="o7m-Fr-HnN">
+            <objects>
+                <viewController storyboardIdentifier="signinVC" id="BPN-mT-YiN" customClass="SignInVC" customModule="Calbitica" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5hn-V6-aaf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="lEH-T5-wQX" userLabel="Sign In Stack View">
+                                <rect key="frame" x="20" y="384" width="374" height="138"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="white_logo" translatesAutoresizingMaskIntoConstraints="NO" id="9oK-p9-PHP" userLabel="Calbitica Logo">
+                                        <rect key="frame" x="39.5" y="0.0" width="295" height="68"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="9oK-p9-PHP" secondAttribute="height" multiplier="295:68" id="GIo-KC-fn7"/>
+                                        </constraints>
+                                    </imageView>
+                                    <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="Icf-On-Xu6" customClass="GIDSignInButton">
+                                        <rect key="frame" x="112" y="88" width="150" height="50"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="awZ-xa-C8b"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="138" id="lV8-F7-qAN"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="lEH-T5-wQX" firstAttribute="leading" secondItem="WTS-Uu-CU7" secondAttribute="leading" constant="20" id="2IZ-jH-aYw"/>
+                            <constraint firstItem="lEH-T5-wQX" firstAttribute="centerX" secondItem="WTS-Uu-CU7" secondAttribute="centerX" id="4WS-pm-JHc"/>
+                            <constraint firstItem="lEH-T5-wQX" firstAttribute="centerY" secondItem="WTS-Uu-CU7" secondAttribute="centerY" id="FIQ-3B-jjw"/>
+                            <constraint firstItem="WTS-Uu-CU7" firstAttribute="trailing" secondItem="lEH-T5-wQX" secondAttribute="trailing" constant="20" id="Ske-9c-nGJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="WTS-Uu-CU7"/>
+                    </view>
+                    <connections>
+                        <outlet property="signInButton" destination="Icf-On-Xu6" id="ecP-AU-28n"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mMp-Xv-11o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1642.4000000000001" y="-478.11094452773619"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="white_logo" width="500" height="115"/>
+    </resources>
+</document>

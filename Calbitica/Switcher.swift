@@ -21,12 +21,11 @@ class Switcher {
         
         if (isSignedIn) {
             // Yes -> Navigate to Dashboard
-            rootVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabbarTBC") as! TabBarTBC
-            
+            rootVC = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
             appDelegate.window?.rootViewController?.dismiss(animated: true, completion: nil)
         } else {
             // No -> Show Google Sign-In button
-            rootVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "signinVC") as! SignInVC
+            rootVC = UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController()
         }
         
         // Go to new destination controller
