@@ -36,13 +36,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             }
             return
         }
-        
-//        print("successfully signed in")
-        
+                
         // Perform any operations on signed in user here.
         AuthController.handleSignIn(code: user.serverAuthCode, user: user)
-        // Switch to the week view
-        _ = Switcher.isSignedIn(true)
     }
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!,

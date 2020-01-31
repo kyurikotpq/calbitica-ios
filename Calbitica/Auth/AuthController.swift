@@ -25,5 +25,8 @@ class AuthController {
             let pic = user.profile.imageURL(withDimension: UInt(150))
             UserDefaults.standard.set(pic, forKey: "thumbnail")
         }
+        
+        // Switch to the week view
+        _ = Switcher.isSignedIn(true)
     }
 }

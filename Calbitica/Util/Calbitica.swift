@@ -57,20 +57,31 @@ class Calbitica {
         // HttpUtil.delete(url)
     }
 
-    static let calendarBaseURL = baseURL + "calendar/"
-    static func getCalendars() {
+    static let calendarBaseURL = baseURL + "cal/"
+    static func getCalendars(closure: @escaping (CalbiticaCalendars) -> Void) {
         let url = calendarBaseURL
-        // HttpUtil.get(url)
+        
+        func httpFinishClosure(response: Data) {
+            do {
+                let calendars = try JSONDecoder().decode(CalbiticaCalendars.self, from: response)
+                closure(calendars)
+            } catch {
+                // JSONSerialization.dec
+                print("JSON error: \(error.localizedDescription)")
+            }
+        }
+        HttpUtil.get(url: url, closure: httpFinishClosure)
     }
     static func importEvents() {
         let url = calendarBaseURL + "import"
         // HttpUtil.get(url)
     }
-    static func changeCalSync(id: String, sync: Bool) {
+    static func changeCalSync(id: String, sync: Bool, closure: @escaping (Data) -> Void) {
         let syncStr = (sync) ? "true" : "false"
         let url = calendarBaseURL + "sync/" + id + "?sync=" + syncStr
 
-        // HttpUtil.get(url)
+        // Make the HTTP Request
+        HttpUtil.get(url: url, closure: closure)
     }
 
     static let habiticaBaseURL = baseURL + "h/"
@@ -101,9 +112,21 @@ class Calbitica {
 //        HttpUtil.get(url: url, closure: httpFinishClosure)
 //    }
 
-    static func changeHabiticaAPIKey() {
+    static func changeHabiticaAPIKey(data: [String: String], closure: @escaping (String) -> Void) {
         let url = baseURL + "settings/habitica"
 
-//         HttpUtil.post(url)
+        // When the response from API is returned,
+        // run this function
+        func httpFinishClosure(response: Data) {
+            do {
+                let decodedUser = try JSONDecoder().decode(User.self, from: response)
+                closure(decodedUser.jwt)
+            } catch {
+                print("JSON error: \(error.localizedDescription)")
+            }
+        }
+        
+        // Make the HTTP Request
+        HttpUtil.post(url: url, data: data, closure: httpFinishClosure)
     }
 }

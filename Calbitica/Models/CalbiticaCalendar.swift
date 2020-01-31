@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct CalbiticaCalendar : Codable {
-    struct CalbiticaData : Codable {
+struct CalbiticaCalendars : Codable {
+    struct CalbiticaCalendar : Codable {
         var _id: String // MongoDB ID
         var userID: String // MongoDB ID
         var googleID: String
@@ -21,9 +21,9 @@ struct CalbiticaCalendar : Codable {
             var method: String
             var minutes: Int
         }
-        var reminders: [Reminder]
+        var defaultReminders: [Reminder]
 
     }
-    var data: CalbiticaData
+    var data: [CalbiticaCalendar?]
 }
 

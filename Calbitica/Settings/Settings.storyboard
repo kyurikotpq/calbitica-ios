@@ -17,9 +17,13 @@
                     <tabBarItem key="tabBarItem" title="Settings" image="settings_outline" selectedImage="settings" id="Gde-Oq-8l2">
                         <color key="badgeColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </tabBarItem>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="eMh-eU-3fa">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="eMh-eU-3fa">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="kOU-Ib-JDT" kind="relationship" relationship="rootViewController" id="Va1-bD-3uD"/>
@@ -34,11 +38,11 @@
             <objects>
                 <viewController id="kOU-Ib-JDT" customClass="SettingsVC" customModule="Calbitica" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aXp-Wm-FhK">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="401-fb-8AQ" userLabel="Google Profile Summary">
-                                <rect key="frame" x="20" y="84" width="112" height="50"/>
+                                <rect key="frame" x="20" y="20" width="114.5" height="50"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xeY-hj-RBZ" userLabel="profileImg">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -49,89 +53,67 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xIv-KV-vHX" userLabel="displayNameLbl">
-                                        <rect key="frame" x="70" y="0.0" width="42" height="50"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <rect key="frame" x="70" y="0.0" width="44.5" height="50"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="mMl-ZI-4QK">
-                                <rect key="frame" x="20" y="174" width="123" height="144"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="mMl-ZI-4QK">
+                                <rect key="frame" x="20" y="110" width="355" height="156"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LgE-g9-sqP" userLabel="Calendar Settings">
-                                        <rect key="frame" x="0.0" y="0.0" width="123" height="30"/>
-                                        <state key="normal" title="Calendar Settings"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LgE-g9-sqP" userLabel="Calendar Settings">
+                                        <rect key="frame" x="0.0" y="0.0" width="355" height="33"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="Synced Calendars">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
-                                            <segue destination="k5g-Pw-bX0" kind="show" id="Gd5-G1-27b"/>
+                                            <segue destination="k5g-Pw-bX0" kind="show" identifier="calendarSettingsSegue" id="Gd5-G1-27b"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6AB-ls-rg5">
-                                        <rect key="frame" x="0.0" y="38" width="117" height="30"/>
-                                        <state key="normal" title="Habitica Settings"/>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6AB-ls-rg5">
+                                        <rect key="frame" x="0.0" y="41" width="355" height="33"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="Habitica Settings">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <segue destination="beZ-Gc-MX4" kind="show" id="D1m-cp-rp6"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kAh-Cb-mgL">
-                                        <rect key="frame" x="0.0" y="76" width="42" height="30"/>
-                                        <state key="normal" title="About"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kAh-Cb-mgL">
+                                        <rect key="frame" x="0.0" y="82" width="355" height="33"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="About">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <segue destination="1I5-xe-TnP" kind="show" id="a50-mb-f8T"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iym-im-zqx">
-                                        <rect key="frame" x="0.0" y="114" width="48" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iym-im-zqx">
+                                        <rect key="frame" x="0.0" y="123" width="355" height="33"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="Logout">
-                                            <color key="titleColor" red="0.80000000000000004" green="0.20000000000000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="1" green="0.49761346090000003" blue="0.52296863999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="logoutPressed:" destination="kOU-Ib-JDT" eventType="touchUpInside" id="4oc-2a-Ow7"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="Iym-im-zqx" firstAttribute="top" secondItem="kAh-Cb-mgL" secondAttribute="bottom" constant="20" id="DzC-kU-RW1"/>
-                                    <constraint firstItem="kAh-Cb-mgL" firstAttribute="top" secondItem="6AB-ls-rg5" secondAttribute="bottom" constant="20" id="WIX-mh-EuB"/>
-                                </constraints>
                             </stackView>
-                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1Ja-ac-LHc" userLabel="Settings Table View">
-                                <rect key="frame" x="0.0" y="348" width="375" height="513"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="2ro-kw-WrJ" userLabel="Settings">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="50"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2ro-kw-WrJ" id="tCG-uW-hlw">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UKU-Dy-5Zt" userLabel="settingNameLbl">
-                                                    <rect key="frame" x="20" y="14.5" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="UKU-Dy-5Zt" firstAttribute="leading" secondItem="tCG-uW-hlw" secondAttribute="leading" constant="20" id="Ls2-kb-shd"/>
-                                                <constraint firstItem="UKU-Dy-5Zt" firstAttribute="centerY" secondItem="tCG-uW-hlw" secondAttribute="centerY" id="MfI-ls-IGh"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="401-fb-8AQ" firstAttribute="leading" secondItem="KAC-Q8-EqP" secondAttribute="leading" constant="20" id="2Ac-3b-yLA"/>
-                            <constraint firstItem="KAC-Q8-EqP" firstAttribute="bottom" secondItem="1Ja-ac-LHc" secondAttribute="bottom" id="6Mc-F5-wjF"/>
                             <constraint firstItem="mMl-ZI-4QK" firstAttribute="leading" secondItem="KAC-Q8-EqP" secondAttribute="leading" constant="20" id="7WE-K8-b07"/>
                             <constraint firstItem="401-fb-8AQ" firstAttribute="top" secondItem="KAC-Q8-EqP" secondAttribute="top" constant="20" id="97s-zE-Nk6"/>
-                            <constraint firstAttribute="trailing" secondItem="1Ja-ac-LHc" secondAttribute="trailing" id="VMa-Xg-sEk"/>
-                            <constraint firstItem="1Ja-ac-LHc" firstAttribute="leading" secondItem="aXp-Wm-FhK" secondAttribute="leading" id="dsf-QO-ll3"/>
+                            <constraint firstItem="KAC-Q8-EqP" firstAttribute="trailing" secondItem="mMl-ZI-4QK" secondAttribute="trailing" id="GjQ-6z-Z7D"/>
                             <constraint firstItem="mMl-ZI-4QK" firstAttribute="top" secondItem="401-fb-8AQ" secondAttribute="bottom" constant="40" id="oeg-AB-RgK"/>
-                            <constraint firstItem="1Ja-ac-LHc" firstAttribute="top" secondItem="401-fb-8AQ" secondAttribute="bottom" constant="20" id="qgf-J0-qmW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KAC-Q8-EqP"/>
                     </view>
@@ -148,42 +130,53 @@
         <!--Habitica Settings-->
         <scene sceneID="1dq-w4-0QJ">
             <objects>
-                <viewController title="Habitica Settings" id="beZ-Gc-MX4" sceneMemberID="viewController">
+                <viewController title="Habitica Settings" id="beZ-Gc-MX4" customClass="HabiticaSettingsVC" customModule="Calbitica" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tZR-bG-Fcw">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Your Habitica User ID " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VXD-bq-IzP" userLabel="Habitica User Id">
-                                <rect key="frame" x="57" y="117" width="261" height="30"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Your Habitica API Key" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DTm-Qi-49D" userLabel="Habitica API Key">
-                                <rect key="frame" x="57" y="190" width="261" height="30"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wkZ-oA-Wdw">
-                                <rect key="frame" x="110" y="270" width="154" height="30"/>
-                                <state key="normal" title="Save Habitica Settings"/>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="FYU-8g-9Z4">
+                                <rect key="frame" x="20" y="40" width="335" height="90"/>
+                                <subviews>
+                                    <textField contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Your Habitica User ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VXD-bq-IzP" userLabel="Habitica User Id" customClass="DarkTextField" customModule="Calbitica" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="30"/>
+                                        <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Your Habitica API Key" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DTm-Qi-49D" userLabel="Habitica API Key" customClass="DarkTextField" customModule="Calbitica" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="60" width="335" height="30"/>
+                                        <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="wkZ-oA-Wdw" firstAttribute="top" secondItem="DTm-Qi-49D" secondAttribute="bottom" constant="20" id="2kK-gW-PMN"/>
-                            <constraint firstItem="etU-Tu-Fyu" firstAttribute="trailing" secondItem="VXD-bq-IzP" secondAttribute="trailing" constant="57" id="Ms7-uc-OnT"/>
-                            <constraint firstItem="VXD-bq-IzP" firstAttribute="leading" secondItem="etU-Tu-Fyu" secondAttribute="leading" constant="57" id="NdP-4d-fqS"/>
-                            <constraint firstItem="DTm-Qi-49D" firstAttribute="top" secondItem="VXD-bq-IzP" secondAttribute="bottom" constant="20" id="RUX-f3-bfe"/>
-                            <constraint firstItem="VXD-bq-IzP" firstAttribute="top" secondItem="etU-Tu-Fyu" secondAttribute="top" constant="53" id="dP8-AG-cyP"/>
-                            <constraint firstItem="etU-Tu-Fyu" firstAttribute="trailing" secondItem="DTm-Qi-49D" secondAttribute="trailing" constant="57" id="dY7-UE-yCv"/>
-                            <constraint firstItem="wkZ-oA-Wdw" firstAttribute="leading" secondItem="etU-Tu-Fyu" secondAttribute="leading" constant="110" id="e5g-Ac-Z7q"/>
-                            <constraint firstItem="DTm-Qi-49D" firstAttribute="leading" secondItem="etU-Tu-Fyu" secondAttribute="leading" constant="57" id="u2h-J7-Fvu"/>
-                            <constraint firstItem="etU-Tu-Fyu" firstAttribute="trailing" secondItem="wkZ-oA-Wdw" secondAttribute="trailing" constant="111" id="wm1-qR-ts6"/>
+                            <constraint firstItem="FYU-8g-9Z4" firstAttribute="top" secondItem="etU-Tu-Fyu" secondAttribute="top" constant="40" id="BCs-g8-6fq"/>
+                            <constraint firstItem="FYU-8g-9Z4" firstAttribute="leading" secondItem="etU-Tu-Fyu" secondAttribute="leading" constant="20" id="M9O-Yj-k21"/>
+                            <constraint firstItem="etU-Tu-Fyu" firstAttribute="trailing" secondItem="FYU-8g-9Z4" secondAttribute="trailing" constant="20" id="Y34-6n-OXy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="etU-Tu-Fyu"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Habitica Settings" id="qZW-De-mO4">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="M40-kM-SaY">
+                            <color key="tintColor" red="0.2666666667" green="0.82745098039999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="saveBtnClick:" destination="beZ-Gc-MX4" id="OZK-5G-Wim"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="apiKeyTF" destination="DTm-Qi-49D" id="g77-Hf-km6"/>
+                        <outlet property="userIDTF" destination="VXD-bq-IzP" id="71X-ge-HVA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VHG-n1-J6O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -194,11 +187,11 @@
             <objects>
                 <viewController title="About" id="1I5-xe-TnP" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kcp-DJ-aMQ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1350"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1286"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qZF-Yi-RTB">
-                                <rect key="frame" x="0.0" y="64" width="375" height="1286"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="1286"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LEY-al-ijb">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1286"/>
@@ -206,14 +199,15 @@
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="CALBITICA COMPANY" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="a8B-yi-llU" userLabel="Calbitica Company">
                                                 <rect key="frame" x="67" y="30" width="240" height="42"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" red="1" green="0.49761346090000003" blue="0.52296863999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PaG-IF-s4d" userLabel="Company Info">
                                                 <rect key="frame" x="28" y="80" width="318" height="204"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <attributedString key="attributedText">
                                                     <fragment>
                                                         <string key="content">A to-do list helps you keep track of what needs to be done, but not WHEN to do it
@@ -221,8 +215,9 @@
 A calendar helps you keep track of WHEN to do
 things, but not WHETHER you've done it or not</string>
                                                         <attributes>
-                                                            <font key="NSFont" size="14" name=".AppleSystemUIFontEmphasized"/>
-                                                            <font key="NSOriginalFont" size="14" name=".AppleSystemUIFontEmphasized"/>
+                                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <font key="NSFont" metaFont="systemBold" size="14"/>
+                                                            <font key="NSOriginalFont" metaFont="systemBold" size="14"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
                                                     </fragment>
@@ -231,15 +226,17 @@ things, but not WHETHER you've done it or not</string>
 Cgo
 </string>
                                                         <attributes>
-                                                            <font key="NSFont" size="14" name=".AppleSystemUIFont"/>
+                                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <font key="NSFont" metaFont="menu" size="14"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
                                                     </fragment>
                                                     <fragment>
                                                         <string key="content">if you leave your time to randomness, you are stealing from your greatness. - (Brendon Burchard, World's #1 High Performance Coach)</string>
                                                         <attributes>
-                                                            <font key="NSFont" size="14" name=".AppleSystemUIFontItalic"/>
-                                                            <font key="NSOriginalFont" size="14" name=".AppleSystemUIFontItalic"/>
+                                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <font key="NSFont" metaFont="menu" size="14"/>
+                                                            <font key="NSOriginalFont" metaFont="menu" size="14"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
                                                     </fragment>
@@ -249,18 +246,20 @@ Cgo
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="APPLICATION" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="1mg-jb-K7w" userLabel="Application">
                                                 <rect key="frame" x="67" y="325" width="240" height="42"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" red="1" green="0.49761346090000003" blue="0.52296863999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9g9-3C-b5c" userLabel="Application Header">
                                                 <rect key="frame" x="28" y="375" width="318" height="57"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <attributedString key="attributedText">
                                                     <fragment content="To allow anyone to have fun while practising healthy habits and being insanely productive.">
                                                         <attributes>
-                                                            <font key="NSFont" size="14" name=".AppleSystemUIFontEmphasized"/>
+                                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <font key="NSFont" metaFont="systemBold" size="14"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
                                                     </fragment>
@@ -270,7 +269,7 @@ Cgo
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aA9-Vg-Zwv" userLabel="Application Body 1">
                                                 <rect key="frame" x="28" y="440" width="318" height="234"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <attributedString key="attributedText">
                                                     <fragment>
                                                         <string key="content">BE AUTHENTICATED
@@ -281,8 +280,8 @@ IMPORT GOOGLE CALENDARS' EVENTS INTO HABITICA
 
 VIEW HABITICA ITEMS IN CALENDAR FORMAT  CREATE HABITICA ITEMS IN SPECIFIC TIME SLOTS</string>
                                                         <attributes>
-                                                            <color key="NSColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <font key="NSFont" size="14" name=".AppleSystemUIFontEmphasized"/>
+                                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <font key="NSFont" metaFont="systemBold" size="14"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
                                                     </fragment>
@@ -292,15 +291,15 @@ VIEW HABITICA ITEMS IN CALENDAR FORMAT  CREATE HABITICA ITEMS IN SPECIFIC TI
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fFt-zf-5Ik" userLabel="Application Body 2">
                                                 <rect key="frame" x="28" y="682" width="318" height="71"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <attributedString key="attributedText">
                                                     <fragment>
                                                         <string key="content">MODIFY AND DELETE HABITICA ITEMS
 
 VIEW HABITICA STATS</string>
                                                         <attributes>
-                                                            <color key="NSColor" red="1" green="0.58393488260041737" blue="0.046511053584103124" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <font key="NSFont" size="14" name=".AppleSystemUIFontEmphasized"/>
+                                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <font key="NSFont" metaFont="systemBold" size="14"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
                                                     </fragment>
@@ -310,12 +309,12 @@ VIEW HABITICA STATS</string>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G8h-rj-YQz" userLabel="Application Body 3">
                                                 <rect key="frame" x="28" y="761" width="318" height="105"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <attributedString key="attributedText">
                                                     <fragment content="MODIFY CALBITICA SETTINGS  BE NOTIFIED WHEN THEY WANT TO  BE ABLE TO TAKE PART IN QUESTS">
                                                         <attributes>
-                                                            <color key="NSColor" red="0.0" green="0.30601200507309745" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <font key="NSFont" size="14" name=".AppleSystemUIFontEmphasized"/>
+                                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <font key="NSFont" metaFont="systemBold" size="14"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
                                                     </fragment>
@@ -325,14 +324,16 @@ VIEW HABITICA STATS</string>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="DEVELOPER" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="E1k-Z2-Xt3" userLabel="Developer">
                                                 <rect key="frame" x="67" y="910" width="240" height="42"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" red="1" green="0.49761346090000003" blue="0.52296863999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Lee Poh Heng (174160P)  60% - Frontend, 40% - Backend  xerokail@gmail.com" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="790-mn-VTS" userLabel="Developer(PH)">
                                                 <rect key="frame" x="8" y="969" width="150" height="107"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
@@ -344,31 +345,36 @@ VIEW HABITICA STATS</string>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Tea Pei Qi (170239G)  40% - Frontend, 60% - Backend  moneysdew@gmail.com" translatesAutoresizingMaskIntoConstraints="NO" id="7Xe-2W-5SR" userLabel="Developer(PQ)">
                                                 <rect key="frame" x="216" y="969" width="151" height="107"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="CONTACT US" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="hJj-mp-d6E" userLabel="Contact Us">
                                                 <rect key="frame" x="67" y="1136" width="240" height="42"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" red="1" green="0.49761346090000003" blue="0.52296863999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Calbitica Support Hotline: 61157894  Calbitica Supprt Site: calbitica@support.com" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Umh-VE-zsi" userLabel="Contact Us Info">
                                                 <rect key="frame" x="37" y="1186" width="301" height="77"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1000" id="SgV-n6-7sg"/>
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="LEY-al-ijb" firstAttribute="centerX" secondItem="qZF-Yi-RTB" secondAttribute="centerX" constant="-190" id="dCl-p1-oHW"/>
                                     <constraint firstAttribute="bottom" secondItem="LEY-al-ijb" secondAttribute="bottom" constant="286" id="hvE-mJ-Zrc"/>
@@ -376,7 +382,8 @@ VIEW HABITICA STATS</string>
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="qZF-Yi-RTB" firstAttribute="top" secondItem="1al-Sp-Scm" secondAttribute="top" id="7oZ-zp-Fvu"/>
                             <constraint firstItem="qZF-Yi-RTB" firstAttribute="trailing" secondItem="1al-Sp-Scm" secondAttribute="trailing" id="hzW-rr-Oer"/>
@@ -394,17 +401,59 @@ VIEW HABITICA STATS</string>
         <!--Calendar Settings-->
         <scene sceneID="zWs-od-eaD">
             <objects>
-                <viewController title="Calendar Settings" id="k5g-Pw-bX0" userLabel="Calendar Settings" sceneMemberID="viewController">
+                <viewController title="Synced Calendars" id="k5g-Pw-bX0" userLabel="Calendar Settings" customClass="CalendarTVC" customModule="Calbitica" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FTU-Ce-tAH">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ILO-gn-Ny4" userLabel="Calendar List Table View">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexColor" red="1" green="0.49761346090000003" blue="0.52296863999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="esw-XG-TpC" style="IBUITableViewCellStyleDefault" id="uWx-uv-ncQ">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uWx-uv-ncQ" id="isu-DI-0H4">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="esw-XG-TpC">
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" red="0.2666666667" green="0.82745098039999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="k5g-Pw-bX0" id="SEL-7j-9T3"/>
+                                    <outlet property="delegate" destination="k5g-Pw-bX0" id="xoT-Ak-vyc"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="rGm-Tl-pks" firstAttribute="trailing" secondItem="ILO-gn-Ny4" secondAttribute="trailing" id="8Zg-hE-NSx"/>
+                            <constraint firstItem="ILO-gn-Ny4" firstAttribute="top" secondItem="rGm-Tl-pks" secondAttribute="top" id="LJ2-0d-5qJ"/>
+                            <constraint firstItem="ILO-gn-Ny4" firstAttribute="leading" secondItem="rGm-Tl-pks" secondAttribute="leading" id="NfS-M9-oZS"/>
+                            <constraint firstItem="ILO-gn-Ny4" firstAttribute="bottom" secondItem="rGm-Tl-pks" secondAttribute="bottom" id="Qqn-8u-4sy"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="rGm-Tl-pks"/>
                     </view>
+                    <connections>
+                        <outlet property="calListTV" destination="ILO-gn-Ny4" id="Cyu-vJ-Ion"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bii-sb-Hhi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1990" y="-1106"/>
+            <point key="canvasLocation" x="1989.5999999999999" y="-1106.8965517241379"/>
         </scene>
     </scenes>
     <resources>

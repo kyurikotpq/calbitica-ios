@@ -20,10 +20,13 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="ObZ-pT-KIL">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
                     </navigationBar>
                     <connections>
@@ -42,7 +45,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vsb-MD-kB4" userLabel="Calendar View" customClass="JZBaseWeekView" customModule="JZCalendarWeekView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vsb-MD-kB4" userLabel="Calendar View" customClass="CCView" customModule="Calbitica" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -61,20 +64,20 @@
                         <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" title="12 - 17 Jan" id="jvP-Aw-z4N" userLabel="Week Title">
-                        <barButtonItem key="leftBarButtonItem" title="Today" style="plain" id="PY3-4H-Os5" userLabel="Today">
+                        <barButtonItem key="leftBarButtonItem" title="Today" id="PY3-4H-Os5" userLabel="Today">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="todayBtnPressed:" destination="YaM-5X-XD4" id="Hqk-Wx-SZ6"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem style="plain" systemItem="add" id="YwB-pb-NTv">
+                            <barButtonItem systemItem="add" id="YwB-pb-NTv">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
-                                    <segue destination="cEe-PS-miv" kind="show" identifier="addCalbitSegue" id="ch4-bh-daU"/>
+                                    <segue destination="cEe-PS-miv" kind="showDetail" identifier="addCalbitSegue" id="ch4-bh-daU"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem style="plain" systemItem="refresh" id="uXw-U0-C7Q">
+                            <barButtonItem systemItem="refresh" id="uXw-U0-C7Q">
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <action selector="refreshBtnPressed:" destination="YaM-5X-XD4" id="qWM-6D-XdD"/>
@@ -88,7 +91,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AAH-Pb-gxQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="115.94202898550725" y="888.61607142857144"/>
+            <point key="canvasLocation" x="38" y="889"/>
         </scene>
         <!--Save Calbit Controller-->
         <scene sceneID="KAU-Rl-BCm">
@@ -97,13 +100,124 @@
                     <view key="view" contentMode="scaleToFill" id="7zH-oM-sGK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXn-1Y-QDi">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Add New Event" id="XKL-g9-39Y">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="3Y5-ep-gDA">
+                                            <color key="tintColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="cancelBtnPressed:" destination="cEe-PS-miv" id="UwH-UH-Hvc"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Save" style="done" id="ebb-gQ-Goi">
+                                            <color key="tintColor" red="0.2666666667" green="0.82745098039999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <action selector="saveBtnPressed:" destination="cEe-PS-miv" id="qZ8-oB-Jye"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Event Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F1V-XA-xst" userLabel="Event Title" customClass="DarkTextField" customModule="Calbitica" customModuleProvider="target">
+                                <rect key="frame" x="34" y="147" width="347" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mUX-by-kCl" userLabel="Location" customClass="DarkTextField" customModule="Calbitica" customModuleProvider="target">
+                                <rect key="frame" x="34" y="350" width="347" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="wXn-1Y-QDi" secondAttribute="trailing" id="1bh-vx-YGR"/>
+                            <constraint firstItem="wXn-1Y-QDi" firstAttribute="leading" secondItem="7zH-oM-sGK" secondAttribute="leading" id="NnY-En-BfX"/>
+                            <constraint firstItem="dfE-B1-PYP" firstAttribute="top" secondItem="wXn-1Y-QDi" secondAttribute="top" id="c6F-id-qRo"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="dfE-B1-PYP"/>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Add New Event" id="N1i-Wi-XlP">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="fUC-j5-KtP">
+                            <color key="tintColor" red="0.2666666667" green="0.82745098039999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <nil key="simulatedTopBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XK3-hK-DxL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1083" y="889"/>
+            <point key="canvasLocation" x="893" y="889"/>
+        </scene>
+        <!--Calbit Detail Controller-->
+        <scene sceneID="5F6-iE-god">
+            <objects>
+                <viewController id="yrh-MA-qs4" userLabel="Calbit Detail Controller" customClass="CalbitDetailVC" customModule="Calbitica" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wYC-Q4-dQm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="alT-lz-ZZC">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Calbit Title" id="21g-9g-XXZ">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="ZiS-3d-2Mf">
+                                            <color key="tintColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="cancelBtnPressed:" destination="yrh-MA-qs4" id="3R0-bP-WUF"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="edit" id="hbG-Sj-Xdg">
+                                            <color key="tintColor" red="0.2666666667" green="0.82745098039999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <action selector="saveBtnPressed:" destination="yrh-MA-qs4" id="cVV-8O-HcU"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="center" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8W8-OG-tcz">
+                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Ja4-CQ-7wR"/>
+                                    <barButtonItem title="Delete" style="done" id="wjz-Cj-Uig">
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="e0u-Kw-fax"/>
+                                </items>
+                                <color key="barTintColor" red="1" green="0.49761346090000003" blue="0.52296863999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="8W8-OG-tcz" firstAttribute="centerX" secondItem="wYC-Q4-dQm" secondAttribute="centerX" id="74W-dq-W3F"/>
+                            <constraint firstAttribute="trailing" secondItem="alT-lz-ZZC" secondAttribute="trailing" id="CZK-e7-Wga"/>
+                            <constraint firstItem="8W8-OG-tcz" firstAttribute="leading" secondItem="VLN-84-X4z" secondAttribute="leading" id="Wl4-tG-iC0"/>
+                            <constraint firstItem="8W8-OG-tcz" firstAttribute="bottom" secondItem="VLN-84-X4z" secondAttribute="bottom" id="qUM-a8-f7A"/>
+                            <constraint firstItem="VLN-84-X4z" firstAttribute="top" secondItem="alT-lz-ZZC" secondAttribute="top" id="sxa-tt-SHD"/>
+                            <constraint firstItem="alT-lz-ZZC" firstAttribute="leading" secondItem="wYC-Q4-dQm" secondAttribute="leading" id="uUb-yP-9j1"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="VLN-84-X4z"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Add New Event" id="yMs-S3-KTi">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="cCJ-mU-gCR">
+                            <color key="tintColor" red="0.2666666667" green="0.82745098039999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <nil key="simulatedTopBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pkq-0Z-Cub" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="893" y="1668"/>
         </scene>
     </scenes>
     <resources>

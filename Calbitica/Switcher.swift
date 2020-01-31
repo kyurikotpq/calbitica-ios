@@ -15,20 +15,21 @@ class Switcher {
         // Get the JWT from UserDefaults
         let jwt = UserDefaults.standard.string(forKey: "jwt")
         let isSignedIn = forceSignIn || jwt != nil
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         var rootVC : UIViewController?
-        
-        print(jwt)
         
         if (isSignedIn) {
             // Yes -> Navigate to Dashboard
             rootVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabbarTBC") as! TabBarTBC
+            
+            appDelegate.window?.rootViewController?.dismiss(animated: true, completion: nil)
         } else {
             // No -> Show Google Sign-In button
             rootVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "signinVC") as! SignInVC
         }
         
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        // Go to new destination controller
         appDelegate.window?.rootViewController = rootVC
         
         return isSignedIn

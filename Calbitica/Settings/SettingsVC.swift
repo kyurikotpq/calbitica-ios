@@ -22,7 +22,7 @@ class SettingsVC: UIViewController {
 
         // Do any additional setup after loading the view.
         // Google Profile
-        profileImgURL = UserDefaults.standard.url(forKey: "thumbnail")!
+        profileImgURL = UserDefaults.standard.url(forKey: "thumbnail")
         displayName = UserDefaults.standard.string(forKey:  "displayName")!
         
         displayNameLbl.text = displayName
@@ -36,6 +36,10 @@ class SettingsVC: UIViewController {
                 profileImg.image = image
             }
         }
+        
+        // Change Back button ("settings") color
+        //self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Settings", style: .done, target: nil, action: nil)
+        //self.navigationItem.backBarButtonItem?.tintColor = UIColor.darkGray
     }
 
     override func didReceiveMemoryWarning() {
@@ -83,14 +87,25 @@ class SettingsVC: UIViewController {
         
     }
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
+        if(segue.identifier == "calendarSettingsSegue") {
+            let destinationController = segue.destination as! CalendarTVC
+            
+            // Get calendars from the server
+            func handleCalList(calendars: CalbiticaCalendars) {
+                destinationController.calendars = calendars
+                DispatchQueue.main.async {
+                    destinationController.calListTV.reloadData()
+                }
+            }
+            Calbitica.getCalendars(closure: handleCalList);
+        }
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
 }

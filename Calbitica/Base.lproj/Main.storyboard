@@ -85,7 +85,9 @@
         <scene sceneID="Ckc-X4-Q9S">
             <objects>
                 <viewControllerPlaceholder storyboardName="Week" id="C06-WZ-qNc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Week" image="week_outline" selectedImage="week" id="5H0-EV-EtD"/>
+                    <tabBarItem key="tabBarItem" title="Week" image="week_outline" selectedImage="week" id="5H0-EV-EtD">
+                        <color key="badgeColor" red="0.2666666667" green="0.82745098039999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b8m-JL-Peo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -121,7 +123,7 @@
             <objects>
                 <navigationController title="Agenda Nav Controller" id="GPg-wv-gOs" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Agenda" image="agenda_outline" selectedImage="agenda" id="5vj-cq-NeF">
-                        <color key="badgeColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="badgeColor" red="0.2666666667" green="0.82745098039999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="LqT-cI-HgG">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -140,7 +142,7 @@
             <objects>
                 <navigationController title="Profile Nav Controller" id="6s5-UJ-bYb" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" image="profile_outline" selectedImage="profile" id="wzf-O4-IZg">
-                        <color key="badgeColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="badgeColor" red="0.2666666667" green="0.82745098039999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WT4-ma-rzH">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -159,7 +161,7 @@
             <objects>
                 <viewControllerPlaceholder storyboardName="Settings" id="XLQ-e7-Ron" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Settings" image="settings_outline" selectedImage="settings" id="pI1-WF-cWO">
-                        <color key="badgeColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="badgeColor" red="0.2666666667" green="0.82745098039999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBarItem>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KOF-2C-n6I" userLabel="First Responder" sceneMemberID="firstResponder"/>
