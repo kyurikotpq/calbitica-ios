@@ -12,7 +12,6 @@
 		3F229CF023D542EE00B1BA5C /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F229CEF23D542EE00B1BA5C /* Settings.storyboard */; };
 		3F5E9D5A23E3BE340012252C /* Calbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E9D5923E3BE330012252C /* Calbit.swift */; };
 		3F5ED37923E2A867004FC6C0 /* CalbitDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5ED37823E2A867004FC6C0 /* CalbitDetailVC.swift */; };
-		3F6B416723E3716400711A36 /* CalbitForJZ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6B416623E3716400711A36 /* CalbitForJZ.swift */; };
 		3F86478A23CF3DD900F262CD /* WeekVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F86478923CF3DD900F262CD /* WeekVC.swift */; };
 		3F86478C23CF452B00F262CD /* Switcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F86478B23CF452B00F262CD /* Switcher.swift */; };
 		3F86478F23CF47C700F262CD /* TabBarTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F86478E23CF47C700F262CD /* TabBarTBC.swift */; };
@@ -53,7 +52,6 @@
 		3F229CEF23D542EE00B1BA5C /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		3F5E9D5923E3BE330012252C /* Calbit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Calbit.swift; sourceTree = "<group>"; };
 		3F5ED37823E2A867004FC6C0 /* CalbitDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalbitDetailVC.swift; sourceTree = "<group>"; };
-		3F6B416623E3716400711A36 /* CalbitForJZ.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalbitForJZ.swift; sourceTree = "<group>"; };
 		3F86478923CF3DD900F262CD /* WeekVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekVC.swift; sourceTree = "<group>"; };
 		3F86478B23CF452B00F262CD /* Switcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Switcher.swift; sourceTree = "<group>"; };
 		3F86478E23CF47C700F262CD /* TabBarTBC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarTBC.swift; sourceTree = "<group>"; };
@@ -204,7 +202,6 @@
 				3FC7775F23CD0AAE00586A58 /* User.swift */,
 				3FA1F09423CB5EB000450777 /* CalbiticaCalbits.swift */,
 				3FC5100923D1619200FE944C /* CalbiticaResponse.swift */,
-				3F6B416623E3716400711A36 /* CalbitForJZ.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -419,7 +416,6 @@
 				3FA1F09023CADA4300450777 /* Calbitica.swift in Sources */,
 				3FC5100A23D1619200FE944C /* CalbiticaResponse.swift in Sources */,
 				3F86478F23CF47C700F262CD /* TabBarTBC.swift in Sources */,
-				3F6B416723E3716400711A36 /* CalbitForJZ.swift in Sources */,
 				3FA1F08723CAD2A400450777 /* AuthController.swift in Sources */,
 				3F96746823DC7D5500168915 /* DateUtil.swift in Sources */,
 				3FD9270823CF4E6700046C7D /* SettingsVC.swift in Sources */,
