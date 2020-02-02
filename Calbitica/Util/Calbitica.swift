@@ -106,10 +106,24 @@ class Calbitica {
     }
 
     static let habiticaBaseURL = baseURL + "h/"
-    static func getHProfile() {
+    static func getHProfile(closure: @escaping (Profile) -> Void) {
         let url = habiticaBaseURL + "profile"
-
-        // HttpUtil.get(url)
+        
+        // When the response from API is returned,
+        // run this function
+        func httpFinishClosure(response: Data) {
+            do {
+                let decodedProfile = try JSONDecoder().decode(ProfileResponse.self, from: response)
+                // handle jwt
+                closure(decodedProfile.data)
+            } catch {
+                //                JSONSerialization.dec
+                print("JSON error: \(error.localizedDescription)")
+            }
+        }
+        
+        // Make the HTTP Request
+        HttpUtil.get(url: url, closure: httpFinishClosure)
     }
     static func respondToQuest(accept: Bool, groupID: String) {
         let url = habiticaBaseURL + "quest"

@@ -22,6 +22,7 @@ class HttpUtil {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let jwt = UserDefaults.standard.string(forKey: "jwt")
+        print(jwt)
         if(jwt != nil) {
             request.setValue("Bearer \(jwt!)", forHTTPHeaderField: "Authorization")
         }
@@ -43,7 +44,12 @@ class HttpUtil {
                 return
             }
             
+<<<<<<< HEAD
 //            print(response)
+=======
+            print(response)
+            
+>>>>>>> dev-0.1
             guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
                 print("Server error!")
                 // TODO: global handler

@@ -19,7 +19,7 @@ class SettingsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         // Google Profile
         profileImgURL = UserDefaults.standard.url(forKey: "thumbnail")
@@ -41,7 +41,7 @@ class SettingsVC: UIViewController {
         //self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Settings", style: .done, target: nil, action: nil)
         //self.navigationItem.backBarButtonItem?.tintColor = UIColor.darkGray
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
