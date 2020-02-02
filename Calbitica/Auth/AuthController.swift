@@ -10,15 +10,18 @@ import UIKit
 import GoogleSignIn
 
 class AuthController {
+    // Store JWT inside user preferences
+    static func handleJWTClosure(jwt: String) {
+        print(jwt)
+        UserDefaults.standard.set(jwt, forKey: "jwt")
+    }
+    
     static func handleSignIn(code: String, user: GIDGoogleUser) {
-        // Store JWT inside user preferences
-        func handleJWTClosure(jwt: String) {
-            UserDefaults.standard.set(jwt, forKey: "jwt")
-        }
         Calbitica.tokensFromAuthCode(code, closure: handleJWTClosure)
         
         // Store profile stuff inside user preferences
         UserDefaults.standard.set(user.profile.name, forKey: "displayName")
+        UserDefaults.standard.set(user.profile.email, forKey: "email")
         
         if(user.profile.hasImage) {
             // returns the URL (URL object) of the user's profile image

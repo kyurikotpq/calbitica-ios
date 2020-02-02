@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AgendaVC: UIViewController {
+class AgendaVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,14 +22,39 @@ class AgendaVC: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if(segue.identifier == "addCalbitSegue") {
+            // Adding new event
+            let navController = segue.destination as! UINavigationController
+            
+            // We only have one VC for this navigation controller, so this works I guess...
+            let destinationController = navController.topViewController as! SaveCalbitVC
+            destinationController.isNewCalbit = true
+//            destinationController.pressedDates = self.pressedDates
+        } else if(segue.identifier == "detailCalbitSegue") {
+            // viewing details of event
+            /*
+            self.pressedDates = DateUtil.calculate30Mins(date: Date(), round: true)
+            let calbit = self.selectedEvent
+            
+            let destinationController = segue.destination as! CalbitDetailVC
+            destinationController.calbit = calbit
+            destinationController.delegate = self
+            
+            // Setup navbar (custom back button) & tabbar (hide)
+            let startDateComponents = DateUtil.components(calbit.startDate)
+            self.navigationItem.backBarButtonItem = UIBarButtonItem()
+            self.navigationItem.backBarButtonItem?.title =
+            "\(startDateComponents.day!) \(calbit.startDate.formatMMM())"
+            
+            destinationController.hidesBottomBarWhenPushed = true
+            */
+        }
     }
-    */
+
 
 }

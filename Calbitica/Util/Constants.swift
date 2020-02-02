@@ -10,7 +10,13 @@ import UIKit
 
 //#44D3FF
 class CalbiticaColors {
-    static let blue = UIColor(displayP3Red: 68.0/255.0, green: 211.0/255.0, blue: 255.0/255.0,
-                              alpha: 1.0)
-    static let darkGray = UIColor(displayP3Red: 0.15, green: 0.15, blue: 0.15, alpha: 1.0)
+    static let blue = { (alpha: CGFloat) -> UIColor in
+        return UIColor(displayP3Red: 68.0/255.0, green: 211.0/255.0, blue: 255.0/255.0, alpha: alpha)
+    }
+    static let darkBlue = { (alpha: CGFloat) -> UIColor in
+        return UIColor(displayP3Red: 0/255.0, green: 103.0/255.0, blue: 174.0/255.0, alpha: alpha)
+    }
+    static let darkGray = { (alpha: CGFloat) -> UIColor in
+        return UIColor(displayP3Red: 0.15, green: 0.15, blue: 0.15, alpha: alpha)
+    }
 }

@@ -10,6 +10,8 @@
 		3F14091B23DC0C0F00651B35 /* SaveCalbitVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F14091A23DC0C0F00651B35 /* SaveCalbitVC.swift */; };
 		3F1E356023E3F49A00198D90 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FE565F823E3F14B001D5813 /* Login.storyboard */; };
 		3F229CF023D542EE00B1BA5C /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F229CEF23D542EE00B1BA5C /* Settings.storyboard */; };
+		3F5B389F23E56F3500B407EC /* CalbitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5B389D23E56F3500B407EC /* CalbitCell.swift */; };
+		3F5B38A023E56F3500B407EC /* CalbitCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F5B389E23E56F3500B407EC /* CalbitCell.xib */; };
 		3F5E9D5A23E3BE340012252C /* Calbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5E9D5923E3BE330012252C /* Calbit.swift */; };
 		3F5ED37923E2A867004FC6C0 /* CalbitDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5ED37823E2A867004FC6C0 /* CalbitDetailVC.swift */; };
 		3F86478A23CF3DD900F262CD /* WeekVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F86478923CF3DD900F262CD /* WeekVC.swift */; };
@@ -29,12 +31,14 @@
 		3FA1F09023CADA4300450777 /* Calbitica.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA1F08F23CADA4300450777 /* Calbitica.swift */; };
 		3FA1F09223CADCC400450777 /* HttpUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA1F09123CADCC400450777 /* HttpUtil.swift */; };
 		3FA1F09523CB5EB000450777 /* CalbiticaCalbits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA1F09423CB5EB000450777 /* CalbiticaCalbits.swift */; };
+		3FA594F823E6D26200EF1CCF /* DarkCCViewAllDayHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA594F723E6D26200EF1CCF /* DarkCCViewAllDayHeader.swift */; };
+		3FA594FA23E6D28300EF1CCF /* DarkCCViewCornerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA594F923E6D28300EF1CCF /* DarkCCViewCornerCell.swift */; };
 		3FB1B36C23DC9F4000E96A54 /* CCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB1B36B23DC9F4000E96A54 /* CCView.swift */; };
 		3FB1B37A23DCAE9200E96A54 /* DarkCCViewColHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB1B37923DCAE9200E96A54 /* DarkCCViewColHeader.swift */; };
 		3FB1B37C23DCAEBB00E96A54 /* DarkCCViewRowHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB1B37B23DCAEBB00E96A54 /* DarkCCViewRowHeader.swift */; };
 		3FC5100A23D1619200FE944C /* CalbiticaResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC5100923D1619200FE944C /* CalbiticaResponse.swift */; };
 		3FC7776123CD0AAE00586A58 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC7775F23CD0AAE00586A58 /* User.swift */; };
-		3FC7776223CD0AAE00586A58 /* CalbiticaCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC7776023CD0AAE00586A58 /* CalbiticaCalendar.swift */; };
+		3FC7776223CD0AAE00586A58 /* CalbiticaCalendars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC7776023CD0AAE00586A58 /* CalbiticaCalendars.swift */; };
 		3FC7776623CD253A00586A58 /* JsonUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC7776523CD253A00586A58 /* JsonUtil.swift */; };
 		3FD9270523CF4CEE00046C7D /* AgendaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD9270423CF4CEE00046C7D /* AgendaVC.swift */; };
 		3FD9270823CF4E6700046C7D /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD9270723CF4E6700046C7D /* SettingsVC.swift */; };
@@ -50,6 +54,8 @@
 /* Begin PBXFileReference section */
 		3F14091A23DC0C0F00651B35 /* SaveCalbitVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveCalbitVC.swift; sourceTree = "<group>"; };
 		3F229CEF23D542EE00B1BA5C /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		3F5B389D23E56F3500B407EC /* CalbitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalbitCell.swift; sourceTree = "<group>"; };
+		3F5B389E23E56F3500B407EC /* CalbitCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalbitCell.xib; sourceTree = "<group>"; };
 		3F5E9D5923E3BE330012252C /* Calbit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Calbit.swift; sourceTree = "<group>"; };
 		3F5ED37823E2A867004FC6C0 /* CalbitDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalbitDetailVC.swift; sourceTree = "<group>"; };
 		3F86478923CF3DD900F262CD /* WeekVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekVC.swift; sourceTree = "<group>"; };
@@ -71,6 +77,8 @@
 		3FA1F08F23CADA4300450777 /* Calbitica.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calbitica.swift; sourceTree = "<group>"; };
 		3FA1F09123CADCC400450777 /* HttpUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpUtil.swift; sourceTree = "<group>"; };
 		3FA1F09423CB5EB000450777 /* CalbiticaCalbits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalbiticaCalbits.swift; sourceTree = "<group>"; };
+		3FA594F723E6D26200EF1CCF /* DarkCCViewAllDayHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkCCViewAllDayHeader.swift; sourceTree = "<group>"; };
+		3FA594F923E6D28300EF1CCF /* DarkCCViewCornerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkCCViewCornerCell.swift; sourceTree = "<group>"; };
 		3FB1B36B23DC9F4000E96A54 /* CCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCView.swift; sourceTree = "<group>"; };
 		3FB1B37023DCAD2100E96A54 /* AppAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AppAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FB1B37223DCAD2700E96A54 /* GTMAppAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GTMAppAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,7 +88,7 @@
 		3FB1B37B23DCAEBB00E96A54 /* DarkCCViewRowHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkCCViewRowHeader.swift; sourceTree = "<group>"; };
 		3FC5100923D1619200FE944C /* CalbiticaResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalbiticaResponse.swift; sourceTree = "<group>"; };
 		3FC7775F23CD0AAE00586A58 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		3FC7776023CD0AAE00586A58 /* CalbiticaCalendar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalbiticaCalendar.swift; sourceTree = "<group>"; };
+		3FC7776023CD0AAE00586A58 /* CalbiticaCalendars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalbiticaCalendars.swift; sourceTree = "<group>"; };
 		3FC7776523CD253A00586A58 /* JsonUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonUtil.swift; sourceTree = "<group>"; };
 		3FD9270423CF4CEE00046C7D /* AgendaVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgendaVC.swift; sourceTree = "<group>"; };
 		3FD9270723CF4E6700046C7D /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
@@ -198,7 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				3F5E9D5923E3BE330012252C /* Calbit.swift */,
-				3FC7776023CD0AAE00586A58 /* CalbiticaCalendar.swift */,
+				3FC7776023CD0AAE00586A58 /* CalbiticaCalendars.swift */,
 				3FC7775F23CD0AAE00586A58 /* User.swift */,
 				3FA1F09423CB5EB000450777 /* CalbiticaCalbits.swift */,
 				3FC5100923D1619200FE944C /* CalbiticaResponse.swift */,
@@ -212,6 +220,10 @@
 				3FB1B36B23DC9F4000E96A54 /* CCView.swift */,
 				3FB1B37923DCAE9200E96A54 /* DarkCCViewColHeader.swift */,
 				3FB1B37B23DCAEBB00E96A54 /* DarkCCViewRowHeader.swift */,
+				3F5B389D23E56F3500B407EC /* CalbitCell.swift */,
+				3F5B389E23E56F3500B407EC /* CalbitCell.xib */,
+				3FA594F723E6D26200EF1CCF /* DarkCCViewAllDayHeader.swift */,
+				3FA594F923E6D28300EF1CCF /* DarkCCViewCornerCell.swift */,
 			);
 			path = CustomWV;
 			sourceTree = "<group>";
@@ -340,6 +352,7 @@
 				3FA1F07323CACE4100450777 /* Main.storyboard in Resources */,
 				3FE0D3A323DBF933004B4FC8 /* Week.storyboard in Resources */,
 				3F229CF023D542EE00B1BA5C /* Settings.storyboard in Resources */,
+				3F5B38A023E56F3500B407EC /* CalbitCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,14 +445,17 @@
 				3FC7776623CD253A00586A58 /* JsonUtil.swift in Sources */,
 				3F5E9D5A23E3BE340012252C /* Calbit.swift in Sources */,
 				3FB1B37A23DCAE9200E96A54 /* DarkCCViewColHeader.swift in Sources */,
+				3FA594F823E6D26200EF1CCF /* DarkCCViewAllDayHeader.swift in Sources */,
 				3F5ED37923E2A867004FC6C0 /* CalbitDetailVC.swift in Sources */,
+				3FA594FA23E6D28300EF1CCF /* DarkCCViewCornerCell.swift in Sources */,
 				3FD9270B23CF505A00046C7D /* ProfileVC.swift in Sources */,
 				3FE1E2E023E19D5000645F13 /* HabiticaSettingsVC.swift in Sources */,
+				3F5B389F23E56F3500B407EC /* CalbitCell.swift in Sources */,
 				3F14091B23DC0C0F00651B35 /* SaveCalbitVC.swift in Sources */,
 				3FA1F09223CADCC400450777 /* HttpUtil.swift in Sources */,
 				3FA1F09523CB5EB000450777 /* CalbiticaCalbits.swift in Sources */,
 				3FA1F07623CACE4100450777 /* Calbitica.xcdatamodeld in Sources */,
-				3FC7776223CD0AAE00586A58 /* CalbiticaCalendar.swift in Sources */,
+				3FC7776223CD0AAE00586A58 /* CalbiticaCalendars.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,25 +10,86 @@ import Foundation
 
 class DateUtil {
     static let instance = DateUtil()
+    static let currentYear = instance.calendar.dateComponents(in: .current, from: Date()).year!
     let dateFormatter = DateFormatter()
     let calendar = Calendar(identifier: .gregorian)
     
     private init() {
         dateFormatter.dateStyle = .medium
-        dateFormatter.dateFormat = "LLL"
+    }
+    
+    static func components(_ date: Date) -> DateComponents {
+        return instance.calendar.dateComponents(in: .current, from: date)
+    }
+    
+    // Return a date object from an ISO string
+    static func toDate(str: String) -> Date? {
+        let formatter = DateUtil.instance.dateFormatter
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:sss.sssZ"
+        let date = formatter.date(from: str)
+        
+        return date
+    }
+    
+    static func roundTo30Mins(date: Date) -> DateComponents {
+        var dateComponents = components(date)
+        let roundToHalfMark = (dateComponents.minute! > 15 && dateComponents.minute! < 55)
+        
+        if(!roundToHalfMark && dateComponents.minute! >= 55) {
+            dateComponents.hour = dateComponents.hour! + 1
+        }
+        dateComponents.minute = roundToHalfMark ? 30 : 0
+        
+        print(date)
+        print(dateComponents.minute!)
+        return dateComponents
+    }
+    static func calculate30Mins(date: Date, round: Bool) -> (Date, Date) {
+        let startDateComponents = round ? DateUtil.roundTo30Mins(date: date)
+        : components(date)
+        
+        var endDateComponents = round ? DateUtil.roundTo30Mins(date: date)
+        : components(date)
+        endDateComponents.minute = endDateComponents.minute! + 30
+        
+        return (startDateComponents.date!, endDateComponents.date!)
+    }
+    
+    // Build a to-from string for event detail screen
+    static func buildToFromString(startDate: Date, endDate: Date) -> (String, String) {
+        let startDateComponents = components(startDate)
+        let endDateComponents = components(endDate)
+        
+        var startString = "", endString = ""
+        
+        // check if it's happening across days
+        // if so, format the string accordingly
+        if(startDateComponents.day != endDateComponents.day) {
+            print(startDateComponents.day)
+            startString = "from \(startDateComponents.hour!):\(startDateComponents.minute!) on "
+            + startDate.ddMMMYYYY()
+            endString = "to \(endDateComponents.hour!):\(endDateComponents.minute!) on "
+            + endDate.ddMMMYYYY()
+        } else {
+            // else just make it "Saturday, 01 Jan 2020" / "from 01:00 to 02:00"
+            print(startDateComponents.weekday)
+            startString = "\(startDate.getDayOfWeek()), " + startDate.ddMMMYYYY()
+            endString = "from \(startDateComponents.hour!):\(startDateComponents.minute!) "
+            + "to \(endDateComponents.hour!):\(endDateComponents.minute!)"
+        }
+        
+        return (startString, endString)
     }
     
     // format a string for the navigation bar (month only)
     static func buildNavbarTitle(firstDate: Date, lastDate: Date) -> String {
         var title = ""
+        instance.dateFormatter.dateFormat = "LLL"
         
-        let firstDateComponents = instance.calendar.dateComponents(in: .current, from: firstDate)
-        let lastDateComponents = instance.calendar.dateComponents(in: .current, from: lastDate)
+        let firstDateComponents = components(firstDate)
+        let lastDateComponents = components(lastDate)
         
-        let currentYear = instance.calendar.dateComponents(in: .current, from: Date()).year!
         let isSameYear = (firstDateComponents.year == lastDateComponents.year)
-        let isCurrentYear = (currentYear == firstDateComponents.year)
-            && (currentYear == lastDateComponents.year)
         
         // If week is in the same month and year, just do a MMM YYYY
         if((firstDateComponents.month == lastDateComponents.month)
@@ -58,50 +119,30 @@ class DateUtil {
         
         return title
     }
-    
-    // format a string for the navigation bar (date and month)
-    static func buildNavbarTitleWithDate(firstDate: Date, lastDate: Date) -> String {
-        var title = ""
-        
-        let firstDateComponents = instance.calendar.dateComponents(in: .current, from: firstDate)
-        let lastDateComponents = instance.calendar.dateComponents(in: .current, from: lastDate)
-        
-        let currentYear = instance.calendar.dateComponents(in: .current, from: Date()).year!
-        let isSameYear = (firstDateComponents.year == lastDateComponents.year)
-        let isCurrentYear = (currentYear == firstDateComponents.year)
-                        && (currentYear == lastDateComponents.year)
-        
-        // If week is in the same month and year, just do a DD - DD MMM
-        if((firstDateComponents.month == lastDateComponents.month)
-            && isSameYear) {
-            title = "\(firstDateComponents.day!) - \(lastDateComponents.day!)"
-            title += " \(instance.dateFormatter.string(for: lastDate)!)"
-            
-            // add the year at the back if it's NOT the current year
-            if(!isCurrentYear) {
-                let yearString = instance.calendar.dateComponents(in: .current, from: firstDate).year!
-                title += " \(yearString)"
-            }
-        } else if((firstDateComponents.month != lastDateComponents.month)) {
-            // If week is different months but same year, just do a DD MMM - DD MMM
-            var firstDDMMM = "\(firstDateComponents.day!) \(instance.dateFormatter.string(for: firstDate)!)"
-            var lastDDMMM = "\(lastDateComponents.day!) \(instance.dateFormatter.string(for: lastDate)!)"
-            
-            if(!isSameYear) {
-                firstDDMMM += " \(firstDateComponents.year!)"
-                lastDDMMM += " \(lastDateComponents.year!)"
-                
-                title = "\(firstDDMMM) - \(lastDDMMM)"
-            } else {
-                // add the year at the back if it's NOT the current year
-                title = "\(firstDDMMM) - \(lastDDMMM)"
-                if(!isCurrentYear) {
-                    let yearString = instance.calendar.dateComponents(in: .current, from: firstDate).year!
-                    title += " \(yearString)"
-                }
-            }
-        }
-        
-        return title
+}
+
+// Extensions
+extension Date {
+    // Build a "01 Jan 2020" kind of string
+    func ddMMMYYYY() -> String {
+        let formatter = DateUtil.instance.dateFormatter
+        formatter.dateFormat = "dd LLL yyyy"
+        return formatter.string(from: self)
     }
+    
+    func formatMMM() -> String {
+        let formatter = DateUtil.instance.dateFormatter
+        formatter.dateFormat = "LLL"
+        return formatter.string(from: self)
+    }
+    
+    func getDayOfWeek() -> DayOfWeek {
+        let weekDayNum = Calendar.current.component(.weekday, from: self)
+        let weekDay = DayOfWeek(rawValue: weekDayNum)!
+        return weekDay
+    }
+}
+
+public enum DayOfWeek: Int {
+    case Sunday = 1, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday
 }

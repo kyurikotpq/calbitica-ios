@@ -13,7 +13,7 @@ class DarkCCViewColHeader : JZColumnHeader {
     static let className = "DarkCCViewColHeader"
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = CalbiticaColors.darkGray
+        backgroundColor = CalbiticaColors.darkGray(1.0)
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -25,15 +25,23 @@ class DarkTextField: UITextField {
         self.layer.backgroundColor = UIColor.darkGray.cgColor
         self.layer.borderColor = UIColor.darkGray.cgColor
         
+        // Change text size
+        self.font = self.font?.withSize(17.0)
+        
         // Change text color and cursor color
         self.textColor = UIColor.white
         self.tintColor = UIColor.white
         
-        let xPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.frame.height + 10))
+        // Add some padding
+        let xPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.frame.height + 20))
         self.leftView = xPaddingView
         self.leftViewMode = UITextField.ViewMode.always
         self.rightView = xPaddingView
         self.rightViewMode = UITextField.ViewMode.always
     }
 
+    // Change placeholder color
+    func setPlaceholderAndColor(string: String, color: UIColor) {
+        self.attributedPlaceholder = NSAttributedString(string: string, attributes: [NSAttributedString.Key.foregroundColor: color])
+    }
 }

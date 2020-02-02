@@ -43,6 +43,7 @@ class HttpUtil {
                 return
             }
             
+//            print(response)
             guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
                 print("Server error!")
                 // TODO: global handler
@@ -61,7 +62,7 @@ class HttpUtil {
                 if(responseData != nil) {
 //                    let json = String(data: responseData!, encoding: String.Encoding.utf8)
                     
-                    print(json);
+//                    print(json);
                     closure(responseData!) // return data to the callback (closure)
                 }
             } catch {
@@ -73,7 +74,6 @@ class HttpUtil {
     }
     
     static func post(url: String, data: [String: Any], closure: @escaping (Data) -> Void) {
-        
         let session = URLSession.shared
         let request = makeRequest(url: url, method: "POST")
       
@@ -107,11 +107,73 @@ class HttpUtil {
         }
     }
 
-    static func put(url: String, data: [String: Any]) {
-
+    static func put(url: String, data: [String: Any], closure: @escaping (Data) -> Void) {
+        let session = URLSession.shared
+        let request = makeRequest(url: url, method: "PUT")
+        
+        // Turn dictionary into Data object
+        let jsonData: Data?
+        
+        do {
+            jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
+            
+            // Make the actual request
+            let task = session.uploadTask(with: request, from: jsonData) {
+                (responseData, response, error) in
+                
+                if error != nil || responseData == nil {
+                    print("Client error!")
+                    // TODO: Global client handler
+                    return
+                }
+                
+                if(responseData != nil) {
+                    let json = String(data: responseData!, encoding: String.Encoding.utf8)
+                    
+                    print(jsonData);
+                    closure(responseData!) // return data to the callback (closure)
+                }
+            }
+            // send the request
+            task.resume()
+        } catch {
+            print("JSON error: \(error.localizedDescription)")
+        }
     }
 
-    static func delete(url: String) {
-
+    // May need to change the method signature in future if
+    // We want to make use of the success messages
+    static func delete(url: String, closure: @escaping () -> Void) {
+        // Get Session obj and create urlObj
+        let session = URLSession.shared
+        let request = makeRequest(url: url, method: "DELETE")
+        
+        let task = session.dataTask(with: request) {
+            responseData, response, error in
+            
+            if error != nil || responseData == nil {
+                print("Client error!")
+                // TODO: global handler
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                print("Server error!")
+                // TODO: global handler
+                return
+            }
+            
+            guard let mime = response.mimeType, mime == "application/json" else {
+                print("Wrong MIME type!")
+                // TODO: global handler
+                return
+            }
+            
+            if(closure != nil) {
+                closure() // run the callback (closure)
+            }
+        }
+        
+        task.resume()
     }
 }

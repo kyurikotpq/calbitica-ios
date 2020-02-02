@@ -9,8 +9,8 @@
 import UIKit
 
 class HabiticaSettingsVC: UIViewController {
-    @IBOutlet weak var userIDTF: UITextField!
-    @IBOutlet weak var apiKeyTF: UITextField!
+    @IBOutlet weak var userIDTF: DarkTextField!
+    @IBOutlet weak var apiKeyTF: DarkTextField!
     
     
     override func viewDidLoad() {
@@ -19,10 +19,8 @@ class HabiticaSettingsVC: UIViewController {
         // Do any additional setup after loading the view.
         
         // Set placeholder values
-        userIDTF.attributedPlaceholder = NSAttributedString(string: "Enter Your Habitica User ID", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
-        userIDTF.layer.borderColor = UIColor.white.cgColor
-        apiKeyTF.attributedPlaceholder = NSAttributedString(string: "Enter Your Habitica API Key", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
-        
+        userIDTF.setPlaceholderAndColor(string: "Enter Your Habitica User ID", color: UIColor.gray)
+        apiKeyTF.setPlaceholderAndColor(string: "Enter Your Habitica API Key", color: UIColor.gray)
     }
     
     @IBAction func saveBtnClick(_ sender: UIBarButtonItem) {
@@ -45,10 +43,9 @@ class HabiticaSettingsVC: UIViewController {
         } else {
             // Closure: What to do when there's a successful response?
             func handleJWTClosure(jwt: String) {
-                // Save the JWT
-                UserDefaults.standard.set(jwt, forKey: "jwt")
+                AuthController.handleJWTClosure(jwt: jwt)
                 
-                // Add check mark to the non-empty TF(s)
+                // TODO: Add check mark to the non-empty TF(s)
                 // Temp: Alert
                 DispatchQueue.main.async {
                     self.present(OkAlert.getAlert("Settings saved successfully."),

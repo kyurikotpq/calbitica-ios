@@ -11,19 +11,28 @@
 import UIKit
 import JZCalendarWeekView
 
+// Contains the configurations for the custom week view
+// All actions are handled by the delegate, aka WeekVC!
 class CCView: JZBaseWeekView {
+    // Registration of components' classes
     override func registerViewClasses() {
         super.registerViewClasses()
         
+        // Register Row and Col header
         self.collectionView.register(DarkCCViewRowHeader.self, forSupplementaryViewOfKind: JZSupplementaryViewKinds.rowHeader, withReuseIdentifier: DarkCCViewRowHeader.className)
         
         self.collectionView.register(DarkCCViewColHeader.self, forSupplementaryViewOfKind: JZSupplementaryViewKinds.columnHeader, withReuseIdentifier: DarkCCViewColHeader.className)
         
+        // Register our custom cell
+        self.collectionView.register(UINib(nibName: "CalbitCell", bundle: nil), forCellWithReuseIdentifier: "CalbitCell")
     }
+    
+    // Adding the supplementary views (anything that is not a cell)
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == JZSupplementaryViewKinds.rowHeader {
             if let rowHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DarkCCViewRowHeader.className, for: indexPath) as? DarkCCViewRowHeader {
                 rowHeader.updateView(date: flowLayout.timeForRowHeader(at: indexPath))
+                // disable time markings from being touched and selected
                 return rowHeader
                 
             }
@@ -31,52 +40,42 @@ class CCView: JZBaseWeekView {
         } else if kind == JZSupplementaryViewKinds.columnHeader {
             if let colHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DarkCCViewColHeader.className, for: indexPath) as? DarkCCViewColHeader {
                 colHeader.updateView(date: flowLayout.dateForColumnHeader(at: indexPath))
+                // day column chould create new all-day events
                 return colHeader
             }
         }
         
         return super.collectionView(collectionView, viewForSupplementaryElementOfKind: kind, at: indexPath)
     }
-}
-
-/*
-class CCViewHelper : JZWeekViewHelper {
-    func getIntraEventsByDate<CalbitForJZ: JZBaseEvent>(originalEvents: [Calbit]) -> [Date: [CalbitForJZ]] {
-        var resultEvents = [Date: [CalbitForJZ]]()
+    
+    // Configuring a single cell
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cellID = "CalbitCell"
         
-        for event in originalEvents {
-            let startDateStartDay = event.allDay ? event.start["date"] : event.start["dateTime"]
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as? CalbitCell,
+            let event = getCurrentEvent(with: indexPath) as? CalbitForJZ {
             
-            // get days from both startOfDay, otherwise 22:00 - 01:00 case will get 0 daysBetween result
-            let daysBetween = Date.daysBetween(start: startDateStartDay, end: event.endDate, ignoreHours: true)
-            if daysBetween == 0 {
-                if resultEvents[startDateStartDay] == nil {
-                    resultEvents[startDateStartDay] = [CalbitForJZ]()
-                }
-                if let copiedEvent = event.copy() as? CalbitForJZ {
-                    resultEvents[startDateStartDay]?.append(copiedEvent)
-                }
-            } else {
-                // Cross days
-                for day in 0...daysBetween {
-                    let currentStartDate = startDateStartDay.add(component: .day, value: day)
-                    if resultEvents[currentStartDate] == nil {
-                        resultEvents[currentStartDate] = [CalbitForJZ]()
-                    }
-                    guard let newEvent = event.copy() as? CalbitForJZ else { return resultEvents }
-                    if day == 0 {
-                        newEvent.intraEndDate = startDateStartDay.endOfDay
-                    } else if day == daysBetween {
-                        newEvent.intraStartDate = currentStartDate
-                    } else {
-                        newEvent.intraStartDate = currentStartDate.startOfDay
-                        newEvent.intraEndDate = currentStartDate.endOfDay
-                    }
-                    resultEvents[currentStartDate]?.append(newEvent)
-                }
-            }
+            cell.configureCell(event: event)
+            return cell
         }
-        return resultEvents
+        preconditionFailure("EventCell and DefaultEvent should be casted")
     }
+    
+    // MARK: - Interactions
+    // When the event is tapped, show the detailed view...
+    
+    /*
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("WE selected something")
+        if let selectedEvent = getCurrentEvent(with: indexPath) as? CalbitForJZ {
+            self.selectedEvent = selectedEvent
+            
+            let weekVC = self.baseDelegate as! WeekVC
+            weekVC.performSegue(withIdentifier: "detailCalbitSegue", sender: self)
+        }
+    }
+ */
+    
+    
+    
 }
-*/

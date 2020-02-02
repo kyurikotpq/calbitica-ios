@@ -9,7 +9,7 @@
 import Foundation
 
 struct CalbiticaCalbits : Codable {
-    var jwt: String
+    var jwt: String?
     var data: [Calbit?]
 }
 

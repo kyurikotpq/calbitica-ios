@@ -16,7 +16,7 @@ class DarkCCViewRowHeader : JZRowHeader {
     override func setupBasic() {
         // Change color
         super.setupBasic()
-        backgroundColor = CalbiticaColors.darkGray
+        backgroundColor = CalbiticaColors.darkGray(1.0)
     }
     
 }

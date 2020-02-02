@@ -25,7 +25,6 @@ class Calbitica {
                 let decodedUser = try JSONDecoder().decode(User.self, from: response)
                 closure(decodedUser.jwt)
             } catch {
-//                JSONSerialization.dec
                 print("JSON error: \(error.localizedDescription)")
             }
         }
@@ -36,25 +35,43 @@ class Calbitica {
     
 
     static let calbitBaseURL = baseURL + "calbit/"
-    static func getCalbits() {
+    static func getCalbits(closure: @escaping (CalbiticaCalbits) -> Void) {
         let url = calbitBaseURL
-        // HttpUtil.get(url)
+        
+        // When the response from API is returned,
+        // run this function
+        func httpFinishClosure(response: Data) {
+            do {
+                let calbits = try JSONDecoder().decode(CalbiticaCalbits.self, from: response)
+                
+                if let jwt = calbits.jwt {
+                    AuthController.handleJWTClosure(jwt: jwt)
+                }
+                closure(calbits)
+            } catch {
+                print("JSON error: \(error.localizedDescription)")
+            }
+        }
+        // Make the HTTP Request
+        HttpUtil.get(url: url, closure: httpFinishClosure)
     }
     static func createCalbit() {
         let url = calbitBaseURL
         // HttpUtil.post(url)
     }
-    static func completeCalbit(_ id: String) {
+    static func completeCalbit(_ id: String, status: Bool) {
         let url = calbitBaseURL + id + "/complete"
-        // HttpUtil.put(url)
+        let data = ["status": status]
+        HttpUtil.put(url: url, data: data, closure: { _ in })
     }
     static func updateCalbit(_ id: String) {
+        // pass the entire calbit over later!
         let url = calbitBaseURL + id
         // HttpUtil.put(url)
     }
     static func deleteCalbit(_ id: String) {
         let url = calbitBaseURL + id
-        // HttpUtil.delete(url)
+        HttpUtil.delete(url: url, closure: { })
     }
 
     static let calendarBaseURL = baseURL + "cal/"
@@ -64,6 +81,10 @@ class Calbitica {
         func httpFinishClosure(response: Data) {
             do {
                 let calendars = try JSONDecoder().decode(CalbiticaCalendars.self, from: response)
+                
+                if let jwt = calendars.jwt {
+                    AuthController.handleJWTClosure(jwt: jwt)
+                }
                 closure(calendars)
             } catch {
                 // JSONSerialization.dec

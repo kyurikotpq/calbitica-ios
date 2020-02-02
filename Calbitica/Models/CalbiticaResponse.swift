@@ -8,6 +8,7 @@
 
 import Foundation
 
+// TBC / TBRemoved
 struct CalbiticaResponse : Decodable {
     var jwt: String
     var data: [String: String]
