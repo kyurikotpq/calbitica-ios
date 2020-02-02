@@ -24,6 +24,7 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.googleusercontent.apps.464289376160-gjc9oi5bk1s7e99tl7jqf440i442g00f</string>
+				<string>tel</string>
 			</array>
 		</dict>
 	</array>

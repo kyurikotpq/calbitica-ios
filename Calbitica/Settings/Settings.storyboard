@@ -185,16 +185,16 @@
         <!--About-->
         <scene sceneID="JEY-My-cMW">
             <objects>
-                <viewController title="About" id="1I5-xe-TnP" sceneMemberID="viewController">
+                <viewController title="About" automaticallyAdjustsScrollViewInsets="NO" id="1I5-xe-TnP" customClass="AboutVC" customModule="Calbitica" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kcp-DJ-aMQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1286"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qZF-Yi-RTB">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" delaysContentTouches="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZF-Yi-RTB">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="1286"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LEY-al-ijb">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1286"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LEY-al-ijb">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="CALBITICA COMPANY" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="a8B-yi-llU" userLabel="Calbitica Company">
                                                 <rect key="frame" x="67" y="30" width="240" height="42"/>
@@ -358,10 +358,18 @@ VIEW HABITICA STATS</string>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Calbitica Support Hotline: 61157894  Calbitica Supprt Site: calbitica@support.com" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Umh-VE-zsi" userLabel="Contact Us Info">
-                                                <rect key="frame" x="37" y="1186" width="301" height="77"/>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Calbitica Support Hotline: " translatesAutoresizingMaskIntoConstraints="NO" id="Umh-VE-zsi" userLabel="Contact Us Hotline">
+                                                <rect key="frame" x="65" y="1184" width="180" height="37"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Calbitica Supprt Site: " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xbb-rf-hFw" userLabel="Contact Us Site">
+                                                <rect key="frame" x="40" y="1226" width="148" height="33"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -373,6 +381,26 @@ VIEW HABITICA STATS</string>
                                             <constraint firstAttribute="height" constant="1000" id="SgV-n6-7sg"/>
                                         </constraints>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Em0-Iv-CL0" userLabel="Contact Us Hotline Info">
+                                        <rect key="frame" x="259" y="1185" width="69" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="61157894">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="hotlineInfo:" destination="1I5-xe-TnP" eventType="touchUpInside" id="YPB-Dw-Cz5"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lYv-qZ-YRs" userLabel="Contact Us Site Info">
+                                        <rect key="frame" x="203" y="1226" width="158" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="calbitica@support.com">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="siteInfo:" destination="1I5-xe-TnP" eventType="touchUpInside" id="ZSe-D7-BuW"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -386,6 +414,8 @@ VIEW HABITICA STATS</string>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="qZF-Yi-RTB" firstAttribute="top" secondItem="1al-Sp-Scm" secondAttribute="top" id="7oZ-zp-Fvu"/>
+                            <constraint firstItem="qZF-Yi-RTB" firstAttribute="height" secondItem="kcp-DJ-aMQ" secondAttribute="height" id="RRC-C7-OYp"/>
+                            <constraint firstItem="qZF-Yi-RTB" firstAttribute="width" secondItem="kcp-DJ-aMQ" secondAttribute="width" id="fAv-jZ-8HX"/>
                             <constraint firstItem="qZF-Yi-RTB" firstAttribute="trailing" secondItem="1al-Sp-Scm" secondAttribute="trailing" id="hzW-rr-Oer"/>
                             <constraint firstItem="qZF-Yi-RTB" firstAttribute="leading" secondItem="1al-Sp-Scm" secondAttribute="leading" id="i3k-0f-omF"/>
                             <constraint firstItem="qZF-Yi-RTB" firstAttribute="bottom" secondItem="1al-Sp-Scm" secondAttribute="bottom" id="tpp-RA-mvx"/>
@@ -396,7 +426,7 @@ VIEW HABITICA STATS</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RzW-dQ-LYW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2798" y="-800"/>
+            <point key="canvasLocation" x="2797.5999999999999" y="-800.59970014992507"/>
         </scene>
         <!--Calendar Settings-->
         <scene sceneID="zWs-od-eaD">

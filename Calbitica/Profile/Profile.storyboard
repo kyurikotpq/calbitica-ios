@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6s5-UJ-bYb">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Profile Nav Controller-->
+        <scene sceneID="5JH-Rh-wWl">
+            <objects>
+                <navigationController title="Profile Nav Controller" id="6s5-UJ-bYb" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" image="profile_outline" selectedImage="profile" id="wzf-O4-IZg">
+                        <color key="badgeColor" red="0.2666666667" green="0.82745098039999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WT4-ma-rzH">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="fqM-p8-cXW" kind="relationship" relationship="rootViewController" id="vky-Dh-aWe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3kz-cf-ugf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="206" y="-1484"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="5Hv-IR-0e6">
+            <objects>
+                <viewController id="fqM-p8-cXW" customClass="ProfileVC" customModule="Calbitica" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="P5X-3Y-WcZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="f2g-xt-60T" userLabel="Profile Stack View">
+                                <rect key="frame" x="0.0" y="125" width="414" height="55.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ETK-Mm-G76">
+                                        <rect key="frame" x="130.5" y="0.0" width="153.5" height="33.5"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  ProfileLevelType" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SAV-3f-Qqm">
+                                        <rect key="frame" x="146.5" y="37.5" width="121" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="health" translatesAutoresizingMaskIntoConstraints="NO" id="ZOM-ym-60F" userLabel="Health">
+                                <rect key="frame" x="15" y="188" width="58" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="2Sc-3a-9Ef" userLabel="Health Bar">
+                                <rect key="frame" x="105" y="204" width="164" height="2"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Profile HP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cIe-n9-9zT">
+                                <rect key="frame" x="312" y="181" width="91" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="exp" translatesAutoresizingMaskIntoConstraints="NO" id="09m-j7-0gD" userLabel="Exp">
+                                <rect key="frame" x="5" y="239" width="78" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xMx-0b-EW3" userLabel="Exp Bar">
+                                <rect key="frame" x="105" y="258" width="164" height="2"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Profile Exp" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KTy-1H-lu5">
+                                <rect key="frame" x="312" y="239" width="91" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="mana" translatesAutoresizingMaskIntoConstraints="NO" id="4Hc-TG-d1D" userLabel="Mana">
+                                <rect key="frame" x="5" y="293" width="78" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LC4-En-FES" userLabel="Mana Bar">
+                                <rect key="frame" x="105" y="312" width="164" height="2"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Profile Mana" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="snn-7H-k8o">
+                                <rect key="frame" x="312" y="293" width="91" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="f2g-xt-60T" firstAttribute="leading" secondItem="p9B-0B-hbo" secondAttribute="leading" id="aOQ-Ar-KXB"/>
+                            <constraint firstItem="f2g-xt-60T" firstAttribute="top" secondItem="p9B-0B-hbo" secondAttribute="top" constant="37" id="fSm-a8-VwS"/>
+                            <constraint firstItem="f2g-xt-60T" firstAttribute="width" secondItem="P5X-3Y-WcZ" secondAttribute="width" id="jNd-TA-Pbk"/>
+                            <constraint firstItem="p9B-0B-hbo" firstAttribute="trailing" secondItem="f2g-xt-60T" secondAttribute="trailing" id="mbL-6u-4Bh"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="p9B-0B-hbo"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Profile" id="ezC-oK-WSP"/>
+                    <connections>
+                        <outlet property="expBar" destination="xMx-0b-EW3" id="Ut6-mr-vuM"/>
+                        <outlet property="healthBar" destination="2Sc-3a-9Ef" id="clv-3F-j5x"/>
+                        <outlet property="manaBar" destination="LC4-En-FES" id="Vgv-JZ-2DB"/>
+                        <outlet property="profileExp" destination="KTy-1H-lu5" id="CHs-BA-ls1"/>
+                        <outlet property="profileHP" destination="cIe-n9-9zT" id="GQS-OP-5I8"/>
+                        <outlet property="profileLevelType" destination="SAV-3f-Qqm" id="OX7-G1-FoD"/>
+                        <outlet property="profileMana" destination="snn-7H-k8o" id="LgG-b9-ASd"/>
+                        <outlet property="profileName" destination="ETK-Mm-G76" id="TOL-aK-Bjz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7en-Tc-TFQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1069.5652173913045" y="-1484.5982142857142"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="exp" width="69" height="69"/>
+        <image name="health" width="69" height="64"/>
+        <image name="mana" width="69" height="69"/>
+        <image name="profile" width="36" height="36"/>
+        <image name="profile_outline" width="36" height="36"/>
+    </resources>
+</document>
