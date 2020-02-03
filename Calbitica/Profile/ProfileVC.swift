@@ -27,8 +27,16 @@ class ProfileVC: UIViewController {
     // To pass the partyID to the groupID
     var groupID: String!
     
+    @IBOutlet weak var innStatus: UIButton!
+    var sleepTrigger: Bool!
+    var sleepMessage: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Setting the Damage border width and color
+        innStatus.layer.borderWidth = 3
+        innStatus.layer.borderColor = UIColor(red: 0/255, green: 0/255, blue: 139/225, alpha: 1).cgColor
         
         // Set all the bar rounded, width and height
         healthBar.transform = CGAffineTransform(scaleX: 1.5, y: 10)
@@ -43,9 +51,8 @@ class ProfileVC: UIViewController {
         manaBar.layer.cornerRadius = 15.0
         manaBar.clipsToBounds = true
         
-        // Store JWT inside user preferences
+        // Get Profile Data from database
         func handleProfileClosure(data: Profile) {
-            
             DispatchQueue.main.async {
                 self.profileName.text = data.profile["name"]
                 
@@ -89,23 +96,74 @@ class ProfileVC: UIViewController {
         }
         
         Calbitica.getHProfile(closure: handleProfileClosure)
-
-        // Do any additional setup after loading the view.
+        
+        // Get Inn Data from database
+        func handleInnClosure(data: InnInfo) {
+            DispatchQueue.main.async {
+                if (data.sleep == true) {
+                    self.innStatus.setTitle("Pause Damage", for: .normal)
+                    self.innStatus.setTitleColor(UIColor.black, for: .normal)
+                    self.innStatus.layer.backgroundColor = UIColor(red: 68/255, green: 211/255, blue: 255/225, alpha: 1).cgColor
+                    
+                    self.sleepTrigger = true
+                    self.sleepMessage = data.message
+                } else {
+                    self.innStatus.setTitle("Resume Damage", for: .normal)
+                    self.innStatus.setTitleColor(UIColor.white, for: .normal)
+                    self.innStatus.layer.backgroundColor = UIColor(red: 240/255, green: 92/255, blue: 97/225, alpha: 1).cgColor
+         
+                    self.sleepTrigger = false
+                    self.sleepMessage = data.message
+                }
+            }
+        }
+        
+        Calbitica.toggleSleep(closure: handleInnClosure)
     }
     
     func handleQuestClosure(data: QuestInfo) {
-        questAccept.isHidden = true
-        questReject.isHidden = true
-        
         print(data)
     }
     
     @IBAction func acceptBtn(_ sender: UIButton) {
+        questAccept.isHidden = true
+        questReject.isHidden = true
+        questStatus.text = "You have accepted the quest invitation."
+        
         Calbitica.respondToQuest(accept: true, groupID: groupID, closure: handleQuestClosure)
     }
     
     @IBAction func rejectBtn(_ sender: UIButton) {
+        questAccept.isHidden = true
+        questReject.isHidden = true
+        questStatus.text = "You have rejected the quest invitation."
+        
         Calbitica.respondToQuest(accept: false, groupID: groupID, closure: handleQuestClosure)
+    }
+    
+    @IBAction func innDamage(_ sender: UIButton) {
+        if(sleepTrigger != nil) {
+            if(sleepTrigger == false) {
+                innStatus.setTitle("Pause Damage", for: .normal)
+                innStatus.setTitleColor(UIColor.black, for: .normal)
+                innStatus.layer.backgroundColor = UIColor(red: 68/255, green: 211/255, blue: 255/225, alpha: 1).cgColor
+                
+                present(OkAlert.getAlert(sleepMessage),
+                        animated: true, completion: nil)
+                sleepTrigger = true
+            } else {
+                innStatus.setTitle("Resume Damage", for: .normal)
+                innStatus.setTitleColor(UIColor.white, for: .normal)
+                innStatus.layer.backgroundColor = UIColor(red: 240/255, green: 92/255, blue: 97/225, alpha: 1).cgColor
+                
+                present(OkAlert.getAlert(sleepMessage),
+                        animated: true, completion: nil)
+                sleepTrigger = false
+            }
+        } else {
+            present(OkAlert.getAlert("Ops you are not connected to database"),
+                    animated: true, completion: nil)
+        }
     }
     
     override func didReceiveMemoryWarning() {
