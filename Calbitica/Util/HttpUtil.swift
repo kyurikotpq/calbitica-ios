@@ -99,7 +99,7 @@ class HttpUtil {
                 if(responseData != nil) {
                     let json = String(data: responseData!, encoding: String.Encoding.utf8)
                     
-                    print(jsonData);
+                    print(json);
                     closure(responseData!) // return data to the callback (closure)
                 } 
             }

@@ -20,6 +20,13 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var expBar: UIProgressView!
     @IBOutlet weak var manaBar: UIProgressView!
     
+    @IBOutlet weak var questStatus: UILabel!
+    @IBOutlet weak var questAccept: UIButton!
+    @IBOutlet weak var questReject: UIButton!
+    
+    // To pass the partyID to the groupID
+    var groupID: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -61,6 +68,23 @@ class ProfileVC: UIViewController {
                 self.profileExp.text = String(Exp) + " / " + String(nextExp)
                 self.profileMana.text = String(Mana) + " / " + String(maxMana)
                 
+                self.groupID = data.party._id
+                
+                if (data.party.quest.RSVPNeeded) {
+                    self.questStatus.text = "You have not responded to the quest."
+                    
+                    self.questAccept.isHidden = false
+                    self.questReject.isHidden = false
+                } else {
+                    self.questAccept.isHidden = true
+                    self.questReject.isHidden = true
+                    
+                    if (data.party.quest.key != nil) {
+                        self.questStatus.text = "You have accepted the quest invitation."
+                    } else {
+                        self.questStatus.text = "You have rejected the quest invitation."
+                    }
+                }
             }
         }
         
@@ -68,7 +92,22 @@ class ProfileVC: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-
+    
+    func handleQuestClosure(data: QuestInfo) {
+        questAccept.isHidden = true
+        questReject.isHidden = true
+        
+        print(data)
+    }
+    
+    @IBAction func acceptBtn(_ sender: UIButton) {
+        Calbitica.respondToQuest(accept: true, groupID: groupID, closure: handleQuestClosure)
+    }
+    
+    @IBAction func rejectBtn(_ sender: UIButton) {
+        Calbitica.respondToQuest(accept: false, groupID: groupID, closure: handleQuestClosure)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

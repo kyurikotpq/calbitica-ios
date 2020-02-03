@@ -104,11 +104,26 @@ class Calbitica {
         // Make the HTTP Request
         HttpUtil.get(url: url, closure: httpFinishClosure)
     }
-    static func respondToQuest(accept: Bool, groupID: String) {
+    
+    static func respondToQuest(accept: Bool, groupID: String, closure: @escaping (QuestInfo) -> Void) {
         let url = habiticaBaseURL + "quest"
+        let data = ["accept" : accept, "groupID" : groupID] as [String : Any] // data to pass in POST
+        
+        // When the response from API is returned,
+        // run this function
+        func httpFinishClosure(response: Data) {
+            do {
+                let decodedQuest = try JSONDecoder().decode(QuestResponse.self, from: response)
+                closure(decodedQuest.data)
+            } catch {
+                //                JSONSerialization.dec
+                print("JSON error: \(error.localizedDescription)")
+            }
+        }
 
-        // HttpUtil.post(url)
+        HttpUtil.post(url: url, data: data, closure: httpFinishClosure)
     }
+    
 //    static func toggleSleep(closure: @escaping (String) -> Void) -> Bool {
 //        let url = habiticaBaseURL + "sleep"
 //
@@ -122,7 +137,7 @@ class Calbitica {
 //                print("JSON error: \(error.localizedDescription)")
 //            }
 //        }
-//        
+//
 //        HttpUtil.get(url: url, closure: httpFinishClosure)
 //    }
 
