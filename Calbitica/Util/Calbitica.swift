@@ -117,7 +117,7 @@ class Calbitica {
                 closure(decodedQuest.data)
             } catch {
                 //                JSONSerialization.dec
-                print("JSON error: \(error.localizedDescription)")
+//                 print("JSON error: \(error.localizedDescription)")
             }
         }
 
