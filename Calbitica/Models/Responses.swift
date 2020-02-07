@@ -26,3 +26,14 @@ struct ProfileResponse: Codable {
     var jwt: String?
 }
 
+// For handling Quest responses
+struct QuestResponse: Codable {
+    var data: QuestInfo
+    var jwt: String?
+}
+
+// For handling Inn resopnses
+struct InnResponse: Codable {
+    var data: InnInfo
+    var jwt: String?
+}

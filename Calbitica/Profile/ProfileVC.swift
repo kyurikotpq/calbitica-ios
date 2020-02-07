@@ -20,8 +20,23 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var expBar: UIProgressView!
     @IBOutlet weak var manaBar: UIProgressView!
     
+    @IBOutlet weak var questStatus: UILabel!
+    @IBOutlet weak var questAccept: UIButton!
+    @IBOutlet weak var questReject: UIButton!
+    
+    // To pass the partyID to the groupID
+    var groupID: String!
+    
+    @IBOutlet weak var innStatus: UIButton!
+    var sleepTrigger: Bool!
+    
+    // Only Run Once
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Setting the Damage border width and color
+        innStatus.layer.borderWidth = 3
+        innStatus.layer.borderColor = UIColor(red: 0/255, green: 0/255, blue: 139/225, alpha: 1).cgColor
         
         // Set all the bar rounded, width and height
         healthBar.transform = CGAffineTransform(scaleX: 1.5, y: 10)
@@ -35,10 +50,12 @@ class ProfileVC: UIViewController {
         manaBar.transform = CGAffineTransform(scaleX: 1.5, y: 10)
         manaBar.layer.cornerRadius = 15.0
         manaBar.clipsToBounds = true
-        
-        // Store JWT inside user preferences
+    }
+    
+    // Will re-run this function when clicked back to this page
+    override func viewWillAppear(_ animated: Bool) {
+        // Get Profile Data from database
         func handleProfileClosure(data: Profile) {
-            
             DispatchQueue.main.async {
                 self.profileName.text = data.profile["name"]
                 
@@ -61,14 +78,92 @@ class ProfileVC: UIViewController {
                 self.profileExp.text = String(Exp) + " / " + String(nextExp)
                 self.profileMana.text = String(Mana) + " / " + String(maxMana)
                 
+                self.groupID = data.party._id
+                
+                if (data.party.quest.RSVPNeeded) {
+                    self.questStatus.text = "You have not responded to the quest."
+                    
+                    self.questAccept.isHidden = false
+                    self.questReject.isHidden = false
+                } else {
+                    self.questAccept.isHidden = true
+                    self.questReject.isHidden = true
+                    
+                    if (data.party.quest.key != nil) {
+                        self.questStatus.text = "You have accepted the quest invitation."
+                    } else {
+                        self.questStatus.text = "You have rejected the quest invitation."
+                    }
+                }
+                
+                if(data.preferences.sleep == true) {
+                    self.innStatus.setTitle("Resume Damage", for: .normal)
+                    self.innStatus.setTitleColor(UIColor.white, for: .normal)
+                    self.innStatus.layer.backgroundColor = UIColor(red: 240/255, green: 92/255, blue: 97/225, alpha: 1).cgColor
+                    
+                    self.sleepTrigger = data.preferences.sleep
+                } else {
+                    self.innStatus.setTitle("Pause Damage", for: .normal)
+                    self.innStatus.setTitleColor(UIColor.black, for: .normal)
+                    self.innStatus.layer.backgroundColor = UIColor(red: 68/255, green: 211/255, blue: 255/225, alpha: 1).cgColor
+                    
+                    self.sleepTrigger = data.preferences.sleep
+                }
             }
         }
         
         Calbitica.getHProfile(closure: handleProfileClosure)
-
-        // Do any additional setup after loading the view.
     }
-
+    
+    func handleQuestClosure(data: QuestInfo) {
+        print(data)
+    }
+    
+    @IBAction func acceptBtn(_ sender: UIButton) {
+        self.questAccept.isHidden = true
+        self.questReject.isHidden = true
+        questStatus.text = "You have accepted the quest invitation."
+        
+        Calbitica.respondToQuest(accept: true, groupID: groupID, closure: handleQuestClosure)
+    }
+    
+    @IBAction func rejectBtn(_ sender: UIButton) {
+        self.questAccept.isHidden = true
+        self.questReject.isHidden = true
+        questStatus.text = "You have rejected the quest invitation."
+        
+        Calbitica.respondToQuest(accept: false, groupID: groupID, closure: handleQuestClosure)
+    }
+    
+    @IBAction func innDamage(_ sender: UIButton) {
+        // Toggle the Inn to database
+        func handleInnClosure(data: InnInfo) {
+            DispatchQueue.main.async {
+                if(data != nil) {
+                    if (self.sleepTrigger == true) {
+                        self.innStatus.setTitle("Pause Damage", for: .normal)
+                        self.innStatus.setTitleColor(UIColor.black, for: .normal)
+                        self.innStatus.layer.backgroundColor = UIColor(red: 68/255, green: 211/255, blue: 255/225, alpha: 1).cgColor
+                        
+                        self.present(OkAlert.getAlert(data.message), animated: true, completion: nil)
+                        self.sleepTrigger = data.sleep;
+                    } else {
+                        self.innStatus.setTitle("Resume Damage", for: .normal)
+                        self.innStatus.setTitleColor(UIColor.white, for: .normal)
+                        self.innStatus.layer.backgroundColor = UIColor(red: 240/255, green: 92/255, blue: 97/225, alpha: 1).cgColor
+                        
+                        self.present(OkAlert.getAlert(data.message), animated: true, completion: nil)
+                        self.sleepTrigger = data.sleep;
+                    }
+                } else {
+                    self.present(OkAlert.getAlert("Ops you are not connected to database"), animated: true, completion: nil)
+                }
+            }
+        }
+        
+        Calbitica.toggleSleep(closure: handleInnClosure)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

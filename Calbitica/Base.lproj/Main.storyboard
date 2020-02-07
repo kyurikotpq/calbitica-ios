@@ -9,17 +9,17 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tab BarTBC-->
+        <!--Tab Bar Controller-->
         <scene sceneID="xog-1o-WXw">
             <objects>
-                <tabBarController storyboardIdentifier="tabbarTBC" automaticallyAdjustsScrollViewInsets="NO" id="DKL-3T-62N" customClass="TabBarTBC" customModule="Calbitica" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabbarTBC" automaticallyAdjustsScrollViewInsets="NO" id="DKL-3T-62N" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="GA3-3P-6j3">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="tintColor" red="0.2666666667" green="0.82745098039999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="selectedImageTintColor" red="0.74117647060000003" green="0.74117647060000003" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" red="0.2666666667" green="0.82745098039999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="C06-WZ-qNc" kind="relationship" relationship="viewControllers" id="gPU-w8-NiB"/>
@@ -60,7 +60,7 @@
         <scene sceneID="Iud-5r-cLj">
             <objects>
                 <viewControllerPlaceholder storyboardName="Profile" id="wnX-7K-Ubi" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="lKu-ft-Vfa"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="profile_outline" selectedImage="profile" id="lKu-ft-Vfa"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K56-SD-wrj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -70,7 +70,7 @@
         <scene sceneID="IbA-BN-Orn">
             <objects>
                 <viewControllerPlaceholder storyboardName="Agenda" id="a9Q-Ls-g2m" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="3X5-Xc-9RF"/>
+                    <tabBarItem key="tabBarItem" title="Agenda" image="agenda_outline" selectedImage="agenda" id="3X5-Xc-9RF"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cCp-d0-Hlh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -78,6 +78,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="agenda" width="36" height="36"/>
+        <image name="agenda_outline" width="36" height="36"/>
+        <image name="profile" width="36" height="36"/>
+        <image name="profile_outline" width="36" height="36"/>
         <image name="settings" width="28" height="28"/>
         <image name="settings_outline" width="28" height="28"/>
         <image name="week" width="36" height="36"/>
