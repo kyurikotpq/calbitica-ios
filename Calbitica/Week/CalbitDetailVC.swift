@@ -11,13 +11,18 @@ import UIKit
 protocol ReturnCalbitProtocol {
     func removeDeletedCalbit(calbit: CalbitForJZ)
     func updateCalbitCompletion(calbit: CalbitForJZ)
+    func addCalbitFinished()
+}
+
+protocol UpdateCalbitDetailProtocol {
+    func updateCalbit(newCalbit: CalbitForJZ)
 }
 
 class CalbitDetailVC: UIViewController {
     var delegate: ReturnCalbitProtocol?
     
     static let today = Date()
-    var calbit = CalbitForJZ(id: "", isAllDay: false, googleID: "",
+    var calbit = CalbitForJZ(id: "", isAllDay: false, legitAllDay: false, googleID: "",
                              calendarID: "", summary: "",
                              startDate: today, endDate: today,
                              location: nil,
@@ -51,9 +56,8 @@ class CalbitDetailVC: UIViewController {
         completeBtn.title = calbit.completed.status ? "Incomplete" : "Complete"
         completeBtn.tintColor = calbit.completed.status ? .white : CalbiticaColors.blue(1.0)
     }
-
+    
     @IBAction func deleteBtnClicked(_ sender: UIBarButtonItem) {
-        print("DELTE BUTTON CLICKED")
         // show action sheet to confirm the deletion,
         // and only delete if clicked on action sheet's delete
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -62,12 +66,12 @@ class CalbitDetailVC: UIViewController {
         let deleteAction = UIAlertAction(title: "Delete Event", style: .destructive, handler: {
             (UIAlertAction) -> Void in
             
+            // Meanwhile, remove from MongoDB
+            Calbitica.deleteCalbit(self.calbit.id)
+            
             // Remove the local copy before popping
             self.delegate?.removeDeletedCalbit(calbit: self.calbit)
             self.navigationController?.popViewController(animated: true)
-            
-            // Meanwhile, remove from MongoDB
-            Calbitica.deleteCalbit(self.calbit.id)
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
@@ -92,7 +96,7 @@ class CalbitDetailVC: UIViewController {
     }
     
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "editCalbitSegue") {
@@ -100,12 +104,40 @@ class CalbitDetailVC: UIViewController {
             let navController = segue.destination as! UINavigationController
             let destinationController = navController.topViewController as! SaveCalbitVC
             
+            destinationController.updateDelegate = self
             destinationController.isNewCalbit = false
-            destinationController.calbit = calbit
+            destinationController.calbit = self.calbit
         }
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
     
+}
 
+extension CalbitDetailVC : UpdateCalbitDetailProtocol {
+    func updateCalbit(newCalbit: CalbitForJZ) {
+        // update the local copy's completion status
+        // and title - the various stuffs visible
+        // in the detail view
+        calbit.completed.status = newCalbit.completed.status
+        calbit.summary = newCalbit.summary
+        calbit.calbitDescription = newCalbit.calbitDescription
+        calbit.location = newCalbit.location
+        calbit.startDate = newCalbit.startDate
+        calbit.endDate = newCalbit.endDate
+        calbit.reminders = newCalbit.reminders
+        calbit.isAllDay = newCalbit.isAllDay
+        calbit.legitAllDay = newCalbit.legitAllDay
+        
+        // Populate the views
+        DispatchQueue.main.async {
+            self.setupViews()
+            self.setupCompleteBtn()
+        }
+        
+        // Also, force the table to refresh its data!
+        if let weekView = self.delegate as? WeekVC {
+            weekView.getCalbitsAndRefresh()
+        }
+    }
+    
+    
 }

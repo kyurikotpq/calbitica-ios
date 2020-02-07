@@ -9,7 +9,7 @@
 import UIKit
 import JZCalendarWeekView
 
-class WeekVC: UIViewController, ReturnCalbitProtocol {
+class WeekVC: UIViewController {
     // Our Custom week view
     @IBOutlet weak var calendarWeekView: CCView!
     
@@ -18,7 +18,9 @@ class WeekVC: UIViewController, ReturnCalbitProtocol {
     
     var calbits: [Calbit?] = []
     var pressedDates: (Date, Date) = (today, today)
-    var selectedEvent = CalbitForJZ(id: "", isAllDay: false, googleID: "",
+    var creatingAllDay = false
+    var selectedEvent = CalbitForJZ(id: "", isAllDay: false,
+                                    legitAllDay: false, googleID: "",
                                     calendarID: "", summary: "",
                                     startDate: today, endDate: today,
                                     location: nil,
@@ -49,7 +51,6 @@ class WeekVC: UIViewController, ReturnCalbitProtocol {
         
         // Request events from Calbitica API (async)
         getCalbitsAndRefresh()
-        print(calendarWeekView.numberOfSections)
     }
     
     override func didReceiveMemoryWarning() {
@@ -58,11 +59,6 @@ class WeekVC: UIViewController, ReturnCalbitProtocol {
     }
     
     func setupNavbar() {
-        // back button text
-        //        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Cancel", style: .done, target: nil, action: nil)
-        //        self.navigationItem.backBarButtonItem?.image = nil
-        //        self.navigationItem.backBarButtonItem?.tintColor = .white
-        
         // Set navigation bar title to this week's date
         updateNavbarTitle()
     }
@@ -87,95 +83,53 @@ class WeekVC: UIViewController, ReturnCalbitProtocol {
     }
     
     @objc func tapOnCCView(sender: UITapGestureRecognizer){
+        // Which element was tapped on exactly?
+        let view = sender.view
+        let loc = sender.location(in: view)
+        let subview = view?.hitTest(loc, with: nil)
+        
+        // disable time markings from triggering the segue
+        // day column chould create new all-day events
+        let forbidden = (subview?.isMember(of: DarkCCViewRowHeader.self))!
+        
         if let indexPath = calendarWeekView.collectionView?.indexPathForItem(at: sender.location(in: calendarWeekView.collectionView)) {
             if let selectedEvent = calendarWeekView.getCurrentEvent(with: indexPath) as? CalbitForJZ {
                 self.selectedEvent = selectedEvent
                 self.performSegue(withIdentifier: "detailCalbitSegue", sender: self)
-                print(indexPath)
-                print("you can do something with the cell or index path here")
             }
-        } else if(!sender.cancelsTouchesInView) {
+        } else if((subview?.isMember(of: DarkCCViewColHeader.self))!) {
+            var date = calendarWeekView.getDateForPoint(sender.location(in: calendarWeekView.collectionView))
+            
+            // Round of dates to the nearest 30mins
+            // and calculate 30mins from there
+            self.pressedDates = (date, date)
+            self.creatingAllDay = true
+            self.performSegue(withIdentifier: "addCalbitSegue", sender: self)
+        } else if(!forbidden) {
             var date = calendarWeekView.getDateForPoint(sender.location(in: calendarWeekView.collectionView))
             
             // Round of dates to the nearest 30mins
             // and calculate 30mins from there
             self.pressedDates = DateUtil.calculate30Mins(date: date, round: true)
+            self.creatingAllDay = false
             self.performSegue(withIdentifier: "addCalbitSegue", sender: self)
+            
         }
     }
     
-    // Makes the HTTP request if the JWT in UserData exists
     func getCalbitsAndRefresh() {
-        // Check if the JWT is ready
-        guard let jwt = UserDefaults.standard.string(forKey: "jwt"),
-            jwt != ""
-            else {
-                // If the jwt is not ready, don't make a request.
-                // wait for a while, then call this function
-                // and attempt to make the request again.
-                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-                    self.getCalbitsAndRefresh()
-                }
-                
-                // Exit the getCalbitsAndRefresh function
-                return
-        }
-        
-        // Handle response from calbits
-        // and render events as appropriate
-        func handleCalbits(_ calbitResponse: CalbiticaCalbits) -> Void {
-            calbits.removeAll()
-            calbits = calbitResponse.data // calbits is gobal var
-            refreshWeekView()
-        }
-        // JWT is ready - lets make the HTTP Request
-        Calbitica.getCalbits(closure: handleCalbits)
+        CalbiticaCalendarStore.selfPopulate()
+        CalbiticaCalbitStore.selfPopulate(closure: refreshWeekView)
     }
     
     // re-load the week view
-    func refreshWeekView() {
-        let calbitsForJZ = JZWeekViewHelper.getIntraEventsByDate(originalEvents: calbitToJZ())
+    func refreshWeekView(_ calbits: [Calbit?]) {
+        self.calbits = calbits
+        let calbitsForJZ = JZWeekViewHelper.getIntraEventsByDate(originalEvents: CalbiticaCalbitStore.calbitToJZ(calbits: calbits))
+        
         calendarWeekView.forceReload(reloadEvents: calbitsForJZ)
     }
     
-    // Helper function: convert calbit to calbit for JZ
-    func calbitToJZ() -> [CalbitForJZ] {
-        return calbits.map({ (Calbit) -> CalbitForJZ in
-            let start = Calbit!.allDay ? Calbit!.start["date"] : Calbit?.start["dateTime"]
-            let startDate = DateUtil.toDate(str: start!)
-            
-            let end = Calbit!.allDay ? Calbit!.end["date"] : Calbit!.end["dateTime"]
-            let endDate = DateUtil.toDate(str: end!)
-            
-            // Transform into a JZ-compliant calbit!
-            return CalbitForJZ(id: Calbit!._id, isAllDay: Calbit!.allDay, googleID: Calbit!.googleID,
-                               calendarID: Calbit!.calendarID, summary: Calbit!.summary,
-                               startDate: startDate!, endDate: endDate!,
-                               location: Calbit!.location ?? nil,
-                               description: Calbit!.description ?? nil,
-                               completed: Calbit!.completed, reminders: Calbit!.reminders)
-        })
-    }
-    
-    // Remove deleted calbit from local array
-    func removeDeletedCalbit(calbit: CalbitForJZ) {
-        calbits.removeAll { (c: Calbit?) -> Bool in
-            return c?._id == calbit.id
-        }
-        refreshWeekView()
-    }
-    
-    func updateCalbitCompletion(calbit: CalbitForJZ) {
-        if let index = calbits.firstIndex(where: { (c: Calbit?) -> Bool in
-            return c?._id == calbit.id
-        }) {
-            // update the local copy's completion status
-            calbits[index]!.completed.status = calbit.completed.status
-            
-            // Reload the view!
-            refreshWeekView()
-        }
-    }
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -188,8 +142,11 @@ class WeekVC: UIViewController, ReturnCalbitProtocol {
             
             // We only have one VC for this navigation controller, so this works I guess...
             let destinationController = navController.topViewController as! SaveCalbitVC
+            destinationController.addDelegate = self
             destinationController.isNewCalbit = true
             destinationController.pressedDates = self.pressedDates
+            destinationController.calbit.isAllDay = self.creatingAllDay
+            
         } else if(segue.identifier == "detailCalbitSegue") {
             // viewing details of event
             self.pressedDates = DateUtil.calculate30Mins(date: Date(), round: true)
@@ -201,16 +158,41 @@ class WeekVC: UIViewController, ReturnCalbitProtocol {
             
             // Setup navbar (custom back button) & tabbar (hide)
             let startDateComponents = DateUtil.components(calbit.startDate)
-            self.navigationItem.backBarButtonItem = UIBarButtonItem()
-            self.navigationItem.backBarButtonItem?.title =
-            "\(startDateComponents.day!) \(calbit.startDate.formatMMM())"
+            let title = "\(startDateComponents.day!) \(calbit.startDate.formatMMM())"
+            let backBarButton = BackButtonItem(title)
+            self.navigationItem.backBarButtonItem = backBarButton
             
             destinationController.hidesBottomBarWhenPushed = true
             
+            
         }
+        
+    }
+}
+
+extension WeekVC : ReturnCalbitProtocol {
+    // Remove deleted calbit from local array
+    func removeDeletedCalbit(calbit: CalbitForJZ) {
+        self.calbits.removeAll { (c: Calbit?) -> Bool in
+            return c?._id == calbit.id
+        }
+        refreshWeekView(self.calbits)
     }
     
-    
+    func updateCalbitCompletion(calbit: CalbitForJZ) {
+        if let index = calbits.firstIndex(where: { (c: Calbit?) -> Bool in
+            return c?._id == calbit.id
+        }) {
+            // update the local copy's completion status
+            self.calbits[index]!.completed.status = calbit.completed.status
+            
+            // Reload the view!
+            refreshWeekView(self.calbits)
+        }
+    }
+    func addCalbitFinished() {
+        getCalbitsAndRefresh()
+    }
 }
 
 extension WeekVC : JZBaseViewDelegate {

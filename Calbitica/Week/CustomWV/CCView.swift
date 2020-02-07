@@ -18,10 +18,16 @@ class CCView: JZBaseWeekView {
     override func registerViewClasses() {
         super.registerViewClasses()
         
-        // Register Row and Col header
+        // Register Row, Col, corner header
         self.collectionView.register(DarkCCViewRowHeader.self, forSupplementaryViewOfKind: JZSupplementaryViewKinds.rowHeader, withReuseIdentifier: DarkCCViewRowHeader.className)
-        
+
         self.collectionView.register(DarkCCViewColHeader.self, forSupplementaryViewOfKind: JZSupplementaryViewKinds.columnHeader, withReuseIdentifier: DarkCCViewColHeader.className)
+        
+        self.collectionView.register(DarkCCViewCornerCell.self, forSupplementaryViewOfKind: JZSupplementaryViewKinds.cornerHeader, withReuseIdentifier: DarkCCViewCornerCell.className)
+
+        // Register all-day headers (decorations)
+        self.flowLayout.register(DarkCCViewAllDayHeaderBackground.self, forDecorationViewOfKind: JZDecorationViewKinds.allDayHeaderBackground)
+        self.flowLayout.register(DarkCCViewAllDayCorner.self, forDecorationViewOfKind: JZDecorationViewKinds.allDayCorner)
         
         // Register our custom cell
         self.collectionView.register(UINib(nibName: "CalbitCell", bundle: nil), forCellWithReuseIdentifier: "CalbitCell")
@@ -32,18 +38,24 @@ class CCView: JZBaseWeekView {
         if kind == JZSupplementaryViewKinds.rowHeader {
             if let rowHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DarkCCViewRowHeader.className, for: indexPath) as? DarkCCViewRowHeader {
                 rowHeader.updateView(date: flowLayout.timeForRowHeader(at: indexPath))
-                // disable time markings from being touched and selected
-                return rowHeader
                 
+                return rowHeader
             }
             preconditionFailure("HourRowHeader should be casted")
         } else if kind == JZSupplementaryViewKinds.columnHeader {
             if let colHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DarkCCViewColHeader.className, for: indexPath) as? DarkCCViewColHeader {
                 colHeader.updateView(date: flowLayout.dateForColumnHeader(at: indexPath))
-                // day column chould create new all-day events
+                
                 return colHeader
             }
+        } else if kind == JZSupplementaryViewKinds.cornerHeader {
+            if let cornerHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DarkCCViewCornerCell.className, for: indexPath) as? DarkCCViewCornerCell {
+                return cornerHeader
+            }
+        } else if kind == JZSupplementaryViewKinds.allDayHeader {
+            
         }
+        
         
         return super.collectionView(collectionView, viewForSupplementaryElementOfKind: kind, at: indexPath)
     }

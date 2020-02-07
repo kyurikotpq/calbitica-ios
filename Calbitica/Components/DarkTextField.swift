@@ -22,8 +22,8 @@ class DarkTextField: UITextField {
         
         // change border and background color
         self.backgroundColor = UIColor.clear
-        self.layer.backgroundColor = UIColor.darkGray.cgColor
-        self.layer.borderColor = UIColor.darkGray.cgColor
+        self.layer.backgroundColor = CalbiticaColors.darkGray(0.5).cgColor
+        self.layer.borderColor = CalbiticaColors.darkGray(0.5).cgColor
         
         // Change text size
         self.font = self.font?.withSize(17.0)

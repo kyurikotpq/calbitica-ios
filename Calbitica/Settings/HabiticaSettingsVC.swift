@@ -38,7 +38,7 @@ class HabiticaSettingsVC: UIViewController {
         }
         
         if(data.count == 0) {
-            present(OkAlert.getAlert("No changes made."),
+            self.present(OkAlert.getAlert("No changes made."),
                     animated: true, completion: nil)
         } else {
             // Closure: What to do when there's a successful response?

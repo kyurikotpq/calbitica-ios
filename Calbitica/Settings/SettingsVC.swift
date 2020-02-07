@@ -36,10 +36,6 @@ class SettingsVC: UIViewController {
                 profileImg.image = image
             }
         }
-        
-        // Change Back button ("settings") color
-        //self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Settings", style: .done, target: nil, action: nil)
-        //self.navigationItem.backBarButtonItem?.tintColor = UIColor.darkGray
     }
     
     override func didReceiveMemoryWarning() {
@@ -96,9 +92,11 @@ class SettingsVC: UIViewController {
             let destinationController = segue.destination as! CalendarTVC
             
             // Get calendars from the server
-            func handleCalList(calendars: CalbiticaCalendars) {
-                destinationController.calendars = calendars
+            func handleCalList(calendars: [CalbiticaCalendar]) {
+                CalbiticaCalendarStore.setCalendars(calendars)
+                
                 DispatchQueue.main.async {
+                    destinationController.calendars = calendars
                     destinationController.calListTV.reloadData()
                 }
             }

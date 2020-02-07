@@ -13,18 +13,7 @@ class CalendarTVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     @IBOutlet weak var calListTV: UITableView!
     
     // Source of data
-    var calendars: CalbiticaCalendars = { () -> CalbiticaCalendars in
-        var placeholders: [CalbiticaCalendar] = []
-        
-        while (placeholders.count < 5) {
-            placeholders.append(CalbiticaCalendar(_id: "", userID: "",
-                                                  googleID: "", summary: "", description: "", sync: false, defaultReminders: [])
-            )
-        }
-        
-        return CalbiticaCalendars(jwt: "", data: placeholders)
-        
-    }()
+    var calendars: [CalbiticaCalendar] = CalbiticaCalendarStore.getCalendars()
     
     // number of sections
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -34,7 +23,7 @@ class CalendarTVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     // Number of rows in section
     // So far we only have one section, so return the number of calendars:
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return calendars.data.count
+        return calendars.count
     }
     
     // Every time a row is displayed, run this function
@@ -42,7 +31,7 @@ class CalendarTVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         let cellID = "Cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
         
-        let cal = calendars.data[indexPath.row]
+        let cal = calendars[indexPath.row]
         cell.textLabel?.text = cal.summary
         cell.textLabel?.textColor = cal.sync
             ? CalbiticaColors.blue(1.0) : .white
@@ -58,18 +47,17 @@ class CalendarTVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     }
     
     // Handle on row tap
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var newSyncState = false
         
-        var cal = calendars.data[indexPath.row]
+        var cal = calendars[indexPath.row]
         newSyncState = !cal.sync
         
         // Update the table
         func handleCalSyncClosure(responseData: Data) {
             // Update the table and local variable if
             // change of status by API was successful :)
-            calendars.data[indexPath.row].sync = newSyncState
+            calendars[indexPath.row].sync = newSyncState
             
             DispatchQueue.main.async {
                 self.calListTV.reloadData()

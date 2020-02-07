@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GPg-wv-gOs">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--SaveCalbitNC-->
+        <scene sceneID="S0L-bK-ToX">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Week" referencedIdentifier="SaveCalbitNC" id="hkF-xW-OI3" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="huG-5P-paK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1640" y="7"/>
+        </scene>
+        <!--Agenda-->
+        <scene sceneID="uD9-mh-zND">
+            <objects>
+                <viewController id="qZw-5f-BTq" customClass="AgendaTVC" customModule="Calbitica" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="OO0-vU-Puq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="sectionIndexColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="sectionIndexBackgroundColor" red="0.1529411765" green="0.1529411765" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AgendaCell" id="K6M-g2-DxV" customClass="AgendaTVCell" customModule="Calbitica" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="K6M-g2-DxV" id="Vk5-fI-9H9">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="49.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="pOX-ta-op4">
+                                            <rect key="frame" x="20" y="9" width="70" height="32"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="03:00" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOF-GX-4vT">
+                                                    <rect key="frame" x="0.0" y="0.0" width="70" height="14.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="03:00" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GFh-Qd-ACv">
+                                                    <rect key="frame" x="0.0" y="17.5" width="70" height="14.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F8E-Ub-79M" userLabel="Divider">
+                                            <rect key="frame" x="100" y="0.0" width="3" height="50"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="3" id="qDp-Qd-pJ9"/>
+                                            </constraints>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="titleLbl" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsJ-cm-0Z2">
+                                            <rect key="frame" x="113" y="10" width="201" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="F8E-Ub-79M" firstAttribute="leading" secondItem="pOX-ta-op4" secondAttribute="trailing" constant="10" id="7cO-yz-WXQ"/>
+                                        <constraint firstItem="gsJ-cm-0Z2" firstAttribute="leading" secondItem="F8E-Ub-79M" secondAttribute="trailing" constant="10" id="Tyi-C1-kTL"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.1529411765" green="0.1529411765" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="F8E-Ub-79M" firstAttribute="leading" secondItem="K6M-g2-DxV" secondAttribute="leading" constant="100" id="5Kk-YX-Oe4"/>
+                                    <constraint firstItem="gsJ-cm-0Z2" firstAttribute="top" secondItem="K6M-g2-DxV" secondAttribute="top" constant="10" id="JPp-6J-Bfk"/>
+                                    <constraint firstItem="F8E-Ub-79M" firstAttribute="top" secondItem="K6M-g2-DxV" secondAttribute="top" id="OZW-rU-R6K"/>
+                                    <constraint firstItem="pOX-ta-op4" firstAttribute="leading" secondItem="K6M-g2-DxV" secondAttribute="leading" constant="20" id="alS-AD-Kob"/>
+                                    <constraint firstAttribute="trailing" secondItem="gsJ-cm-0Z2" secondAttribute="trailing" constant="100" id="m1x-g7-un8"/>
+                                    <constraint firstItem="pOX-ta-op4" firstAttribute="centerY" secondItem="K6M-g2-DxV" secondAttribute="centerY" id="tjP-x4-8I2"/>
+                                    <constraint firstAttribute="bottom" secondItem="F8E-Ub-79M" secondAttribute="bottom" id="xsX-V4-cwS"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="divider" destination="F8E-Ub-79M" id="WwH-HT-f3S"/>
+                                    <outlet property="endTimeLbl" destination="GFh-Qd-ACv" id="bHI-rY-yBv"/>
+                                    <outlet property="startTimeLbl" destination="cOF-GX-4vT" id="gdC-IE-foK"/>
+                                    <outlet property="titleLbl" destination="gsJ-cm-0Z2" id="pdo-pu-eWU"/>
+                                    <segue destination="jzH-an-FMz" kind="show" identifier="detailCalbitSegue" id="e5k-g0-CxX"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="qZw-5f-BTq" id="d3F-Hl-hzN"/>
+                            <outlet property="delegate" destination="qZw-5f-BTq" id="ynH-0T-sXT"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Agenda" id="tY8-LY-mPs">
+                        <barButtonItem key="leftBarButtonItem" title="Today" id="Jta-9B-1CP">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="todayBtnClicked:" destination="qZw-5f-BTq" id="72S-Nm-WOG"/>
+                            </connections>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="psD-At-zki">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <segue destination="hkF-xW-OI3" kind="showDetail" identifier="addCalbitSegue" id="RYl-Ox-AhX"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="refresh" id="tzt-Gt-Zkp">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="refreshBtnClicked:" destination="qZw-5f-BTq" id="9Q8-Zd-8No"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="agendaTV" destination="OO0-vU-Puq" id="z7h-d7-SrG"/>
+                        <segue destination="hkF-xW-OI3" kind="showDetail" identifier="editCalbitSegue" id="CEn-ps-DKe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="19X-MZ-ZJr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1069.5652173913045" y="26.785714285714285"/>
+        </scene>
+        <!--Agenda Nav Controller-->
+        <scene sceneID="lbl-qb-exq">
+            <objects>
+                <navigationController title="Agenda Nav Controller" id="GPg-wv-gOs" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Agenda" image="agenda_outline" selectedImage="agenda" id="5vj-cq-NeF">
+                        <color key="badgeColor" red="0.2666666667" green="0.82745098039999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="LqT-cI-HgG">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="qZw-5f-BTq" kind="relationship" relationship="rootViewController" id="Rn0-QB-1yN"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UsD-QO-a3v" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="207" y="28"/>
+        </scene>
+        <!--CalbitDetailVC-->
+        <scene sceneID="UVp-5o-9WU">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Week" referencedIdentifier="CalbitDetailVC" id="jzH-an-FMz" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CoK-f2-dJi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1640" y="54"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="agenda" width="36" height="36"/>
+        <image name="agenda_outline" width="36" height="36"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="CEn-ps-DKe"/>
+    </inferredMetricsTieBreakers>
+</document>

@@ -1,17 +1,12 @@
 //
-//  CalbiticaCalendars.swift
+//  CalbiticaCalendar.swift
 //  Calbitica
 //
-//  Created by Student on 12/1/20.
+//  Created by Student on 7/2/20.
 //  Copyright © 2020 Calbitica. All rights reserved.
 //
 
 import Foundation
-
-struct CalbiticaCalendars : Codable {
-    var jwt: String?
-    var data: [CalbiticaCalendar]
-}
 
 struct CalbiticaCalendar : Codable {
     var _id: String // MongoDB ID

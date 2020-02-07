@@ -39,9 +39,7 @@ class DateUtil {
             dateComponents.hour = dateComponents.hour! + 1
         }
         dateComponents.minute = roundToHalfMark ? 30 : 0
-        
-        print(date)
-        print(dateComponents.minute!)
+
         return dateComponents
     }
     static func calculate30Mins(date: Date, round: Bool) -> (Date, Date) {
@@ -67,13 +65,13 @@ class DateUtil {
         if(startDateComponents.day != endDateComponents.day) {
             print(startDateComponents.day)
             startString = "from \(startDateComponents.hour!):\(startDateComponents.minute!) on "
-            + startDate.ddMMMYYYY()
+            + startDate.ddMMMYYYY(false)
             endString = "to \(endDateComponents.hour!):\(endDateComponents.minute!) on "
-            + endDate.ddMMMYYYY()
+            + endDate.ddMMMYYYY(false)
         } else {
             // else just make it "Saturday, 01 Jan 2020" / "from 01:00 to 02:00"
             print(startDateComponents.weekday)
-            startString = "\(startDate.getDayOfWeek()), " + startDate.ddMMMYYYY()
+            startString = "\(startDate.getDayOfWeek()), " + startDate.ddMMMYYYY(false)
             endString = "from \(startDateComponents.hour!):\(startDateComponents.minute!) "
             + "to \(endDateComponents.hour!):\(endDateComponents.minute!)"
         }
@@ -124,10 +122,31 @@ class DateUtil {
 // Extensions
 extension Date {
     // Build a "01 Jan 2020" kind of string
-    func ddMMMYYYY() -> String {
+    func ddMMMYYYY(_ withTime: Bool) -> String {
         let formatter = DateUtil.instance.dateFormatter
-        formatter.dateFormat = "dd LLL yyyy"
+        var formatString = "dd LLL yyyy"
+        
+        if(withTime) {
+            formatString += " HH:mm"
+        }
+        
+        formatter.dateFormat = formatString
         return formatter.string(from: self)
+    }
+    
+    func otherFormats(_ format: String) -> String {
+        let formatter = DateUtil.instance.dateFormatter
+        formatter.dateFormat = format
+        return formatter.string(from: self)
+    }
+    
+    // Return a date object from an ISO string
+    func toISOString() -> String {
+        let formatter = DateUtil.instance.dateFormatter
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        let dateStr = formatter.string(from: self)
+        
+        return dateStr
     }
     
     func formatMMM() -> String {
@@ -141,6 +160,7 @@ extension Date {
         let weekDay = DayOfWeek(rawValue: weekDayNum)!
         return weekDay
     }
+    
 }
 
 public enum DayOfWeek: Int {

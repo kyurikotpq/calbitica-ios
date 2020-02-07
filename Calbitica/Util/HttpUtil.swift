@@ -44,19 +44,28 @@ class HttpUtil {
                 return
             }
             
-<<<<<<< HEAD
-//            print(response)
-=======
-            print(response)
-            
->>>>>>> dev-0.1
-            guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
-                print("Server error!")
+            if let httpResponse = response as? HTTPURLResponse,
+                !(200...299).contains(httpResponse.statusCode) {
+//                do {
+//                    let json = try JSONSerialization.jsonObject(with: responseData!, options: [])
+//
+//                    print(json)
+//
+//                } catch {
+//                    print("JSON error: \(error.localizedDescription)")
+//                }
+                print("Server error! \(httpResponse.statusCode)")
+                print(httpResponse)
+                /*
+                if(httpResponse.statusCode == 401) {
+                    print(responseData)
+                }
+ */
                 // TODO: global handler
                 return
             }
             
-            guard let mime = response.mimeType, mime == "application/json" else {
+            guard let mime = response?.mimeType, mime == "application/json" else {
                 print("Wrong MIME type!")
                 // TODO: global handler
                 return
@@ -65,10 +74,8 @@ class HttpUtil {
             do {
                 let json = try JSONSerialization.jsonObject(with: responseData!, options: [])
 
+                print(json)
                 if(responseData != nil) {
-//                    let json = String(data: responseData!, encoding: String.Encoding.utf8)
-                    
-//                    print(json);
                     closure(responseData!) // return data to the callback (closure)
                 }
             } catch {
@@ -98,9 +105,8 @@ class HttpUtil {
                     // TODO: Global client handler
                     return
                 }
-                
                 if(responseData != nil) {
-                    let json = String(data: responseData!, encoding: String.Encoding.utf8)
+                    let json = String(data: jsonData!, encoding: String.Encoding.utf8)
                     
                     print(jsonData);
                     closure(responseData!) // return data to the callback (closure)
@@ -134,7 +140,7 @@ class HttpUtil {
                 }
                 
                 if(responseData != nil) {
-                    let json = String(data: responseData!, encoding: String.Encoding.utf8)
+                    let json = String(data: jsonData!, encoding: String.Encoding.utf8)
                     
                     print(jsonData);
                     closure(responseData!) // return data to the callback (closure)

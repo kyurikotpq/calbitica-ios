@@ -63,11 +63,6 @@
 
 import Foundation
 
-struct ProfileResponse: Codable {
-    var data: Profile
-    var jwt: String?
-}
-
 struct Profile : Codable {
     var profile: [String: String]
     
