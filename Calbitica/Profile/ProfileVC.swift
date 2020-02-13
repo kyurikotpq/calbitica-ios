@@ -34,10 +34,6 @@ class ProfileVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Setting the Damage border width and color
-        innStatus.layer.borderWidth = 3
-        innStatus.layer.borderColor = UIColor(red: 0/255, green: 0/255, blue: 139/225, alpha: 1).cgColor
-        
         // Set all the bar rounded, width and height
         healthBar.transform = CGAffineTransform(scaleX: 1.5, y: 10)
         healthBar.layer.cornerRadius = 15.0

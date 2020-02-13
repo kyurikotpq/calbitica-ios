@@ -137,6 +137,10 @@ extension CalbitDetailVC : UpdateCalbitDetailProtocol {
         if let weekView = self.delegate as? WeekVC {
             weekView.getCalbitsAndRefresh()
         }
+        
+        if let agendaTVC = self.delegate as? AgendaTVC {
+            agendaTVC.getCalbitsAndRefresh()
+        }
     }
     
     

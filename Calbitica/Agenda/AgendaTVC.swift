@@ -28,15 +28,11 @@ class AgendaTVC: UITableViewController {
     var calbitsForTV: [(Date, [CalbitForJZ])] = []
     
     let cellID = "AgendaCell"
-    let longPressGR = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getCalbitsAndRefresh()
         self.agendaTV.tableFooterView = UIView()
-        
-        // Long press to complete!
-        self.agendaTV.addGestureRecognizer(longPressGR)
     }
     
     override func didReceiveMemoryWarning() {
@@ -78,8 +74,23 @@ class AgendaTVC: UITableViewController {
     
     func reloadTable(_ calbits: [Calbit?]) {
         self.calbits = calbits
-        self.calbitsForJZ = JZWeekViewHelper.getIntraEventsByDate(originalEvents: CalbiticaCalbitStore.calbitToJZ(calbits: calbits))
-        self.calbitsForTV =  self.calbitsForJZ.map { ($0.key, $0.value) }
+        let tempCalbitsForJZ = JZWeekViewHelper.getIntraEventsByDate(originalEvents: CalbiticaCalbitStore.calbitToJZ(calbits: calbits))
+        
+        // Sort the rows
+        let sortedInnerCFJZ = tempCalbitsForJZ.mapValues { (calbits) -> [CalbitForJZ] in
+            let sortedCFJZ = calbits.sorted(by: { (firstCalbit, secondCalbit) -> Bool in
+                    return firstCalbit.startDate < secondCalbit.startDate
+            })
+            
+            return sortedCFJZ
+        }
+        
+        // sort the sections
+        let sortedOuterCFJZ = sortedInnerCFJZ.sorted { (firstDate, secondDate) -> Bool in
+            return (firstDate.key < secondDate.key)
+        }
+        self.calbitsForJZ = sortedInnerCFJZ
+        self.calbitsForTV =  sortedOuterCFJZ
         
         DispatchQueue.main.async {
             self.agendaTV.reloadData();
@@ -106,30 +117,25 @@ class AgendaTVC: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let calbit = calbitsForTV[indexPath.section].1[indexPath.row]
         self.selectedEvent = calbit
+        self.performSegue(withIdentifier: "detailCalbitSegue", sender: self)
     }
     
-    @objc func handleLongPress(sender: UILongPressGestureRecognizer){
-        if longPressGR.state == UIGestureRecognizer.State.began {
-            let touchPoint = longPressGR.location(in: agendaTV)
-            if let indexPath = agendaTV.indexPathForRow(at: touchPoint) {
-                
-                let calbit = calbitsForTV[indexPath.section].1[indexPath.row]
-                calbit.completed.status = !calbit.completed.status
-                
-                // can you do this? i don't think so
-                tableView.reloadRows(at: [indexPath], with: .none)
-            }
-        }
-    }
     
-    // Add actions for Edit and delete
+    // Add actions for Complete and delete
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexPath) -> Void in
-            let calbit = self.calbitsForTV[indexPath.section].1[indexPath.row]
-            self.selectedEvent = calbit
-            self.performSegue(withIdentifier: "editCalbitSegue", sender: self)
+        var calbit = self.calbitsForTV[indexPath.section].1[indexPath.row]
+        let isCompleted = calbit.completed.status
+        
+        let actionText = isCompleted ? "Incomplete" : "Complete"
+        let bgColor = isCompleted ? CalbiticaColors.darkGray(1.0) : CalbiticaColors.darkBlue(1.0)
+        
+        let completeAction = UITableViewRowAction(style: .normal, title: actionText) { (action, indexPath) -> Void in
+            calbit.completed.status = !isCompleted
+            self.updateCalbitCompletion(calbit: calbit)
+            
+            Calbitica.completeCalbit(calbit.id, status: !isCompleted)
         }
-        editAction.backgroundColor = CalbiticaColors.darkBlue(1.0)
+        completeAction.backgroundColor = bgColor
         
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) -> Void in
             let calbitInTV = self.calbitsForTV[indexPath.section]
@@ -139,17 +145,11 @@ class AgendaTVC: UITableViewController {
                 // remove from MongoDB
                 Calbitica.deleteCalbit(calbitForJZ.id)
                 
-                // remove from calbits too
-                self.calbits.removeAll { (c: Calbit?) -> Bool in
-                    return c?._id == calbitForJZ.id
-                }
-                
                 // update the table view
                 tableView.deleteRows(at: [indexPath], with: .top)
-                
             }
         }
-        return [deleteAction, editAction]
+        return [deleteAction, completeAction]
     }
     
     
@@ -186,14 +186,6 @@ class AgendaTVC: UITableViewController {
             print("my back button should be there??")
             // tabbar (hide)
             destinationController.hidesBottomBarWhenPushed = true
-        } else if(segue.identifier == "editCalbitSegue") {
-            // Editing event
-            let navController = segue.destination as! UINavigationController
-            let destinationController = navController.topViewController as! SaveCalbitVC
-            
-            destinationController.updateDelegate = self as! UpdateCalbitDetailProtocol
-            destinationController.isNewCalbit = false
-            destinationController.calbit = self.selectedEvent
         }
     }
 }
@@ -204,6 +196,10 @@ extension AgendaTVC : ReturnCalbitProtocol {
         self.calbits.removeAll { (c: Calbit?) -> Bool in
             return c?._id == calbit.id
         }
+        self.calbitsForJZ[calbit.startDate]?.removeAll(where: { (c: CalbitForJZ) -> Bool in
+            return c.id == calbit.id
+        })
+        self.calbitsForTV = 
         reloadTable(self.calbits)
     }
     
@@ -222,29 +218,5 @@ extension AgendaTVC : ReturnCalbitProtocol {
     func addCalbitFinished() {
         getCalbitsAndRefresh()
     }
-    
-}
-
-extension AgendaTVC : UpdateCalbitDetailProtocol {
-    func updateCalbit(newCalbit: CalbitForJZ) {
-        // update the local copy's completion status
-        // and title - the various stuffs visible
-        // in the detail view
-        
-        // Populate the views
-        if let index = calbits.firstIndex(where: { (c: Calbit?) -> Bool in
-            return c?._id == newCalbit.id
-        }) {
-            // update the local copy's completion status
-            self.calbits[index]!.completed.status = newCalbit.completed.status
-            
-            // Reload the view!
-            
-            DispatchQueue.main.async {
-                self.reloadTable(self.calbits)
-            }
-        }
-    }
-    
     
 }

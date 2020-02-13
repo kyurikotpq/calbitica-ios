@@ -15,7 +15,7 @@
                 <viewControllerPlaceholder storyboardName="Week" referencedIdentifier="SaveCalbitNC" id="hkF-xW-OI3" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="huG-5P-paK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1640" y="7"/>
+            <point key="canvasLocation" x="1688" y="-59"/>
         </scene>
         <!--Agenda-->
         <scene sceneID="uD9-mh-zND">
@@ -87,7 +87,6 @@
                                     <outlet property="endTimeLbl" destination="GFh-Qd-ACv" id="bHI-rY-yBv"/>
                                     <outlet property="startTimeLbl" destination="cOF-GX-4vT" id="gdC-IE-foK"/>
                                     <outlet property="titleLbl" destination="gsJ-cm-0Z2" id="pdo-pu-eWU"/>
-                                    <segue destination="jzH-an-FMz" kind="show" identifier="detailCalbitSegue" id="e5k-g0-CxX"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -120,7 +119,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="agendaTV" destination="OO0-vU-Puq" id="z7h-d7-SrG"/>
-                        <segue destination="hkF-xW-OI3" kind="showDetail" identifier="editCalbitSegue" id="CEn-ps-DKe"/>
+                        <segue destination="jzH-an-FMz" kind="show" identifier="detailCalbitSegue" id="xjp-kv-VXy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="19X-MZ-ZJr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -150,17 +149,16 @@
         <!--CalbitDetailVC-->
         <scene sceneID="UVp-5o-9WU">
             <objects>
-                <viewControllerPlaceholder storyboardName="Week" referencedIdentifier="CalbitDetailVC" id="jzH-an-FMz" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Week" referencedIdentifier="CalbitDetailVC" id="jzH-an-FMz" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="ykA-xN-rrc"/>
+                </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CoK-f2-dJi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1640" y="54"/>
+            <point key="canvasLocation" x="1714" y="111"/>
         </scene>
     </scenes>
     <resources>
         <image name="agenda" width="36" height="36"/>
         <image name="agenda_outline" width="36" height="36"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="CEn-ps-DKe"/>
-    </inferredMetricsTieBreakers>
 </document>
