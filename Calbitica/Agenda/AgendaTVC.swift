@@ -31,14 +31,20 @@ class AgendaTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Get events
         getCalbitsAndRefresh()
         self.agendaTV.tableFooterView = UIView()
+        
+        // Scroll to today
+        scrollToToday()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     // number of sections - return number of days in the store
     // to be honest, we can get the JZWeekViewHelper to help us
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -51,7 +57,7 @@ class AgendaTVC: UITableViewController {
         return calbitsForTV[section].1.count
     }
     
-    // Every time a section is displayed, run this function
+    // Every time a section title is displayed, run this function
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return calbitsForTV[section].0.ddMMMYYYY(false)
     }
@@ -126,10 +132,7 @@ class AgendaTVC: UITableViewController {
         self.calbitsForTV =  sortedOuterCFJZ
     }
     
-    
-    // Actions
-    @IBAction func todayBtnClicked(_ sender: UIBarButtonItem) {
-        // Scroll to today's date
+    func scrollToToday() {
         if let todayIndex = calbitsForTV.firstIndex(where: { (arg0) -> Bool in
             let (date, calbits) = arg0
             return date.ddMMMYYYY(false) == AgendaTVC.today.ddMMMYYYY(false)
@@ -137,8 +140,13 @@ class AgendaTVC: UITableViewController {
             let indexPath = IndexPath(row: 0, section: todayIndex)
             self.agendaTV.scrollToRow(at: indexPath, at: .top, animated: true)
         }
-        
-        
+    }
+    
+    
+    // Actions
+    @IBAction func todayBtnClicked(_ sender: UIBarButtonItem) {
+        // Scroll to today's date
+        scrollToToday()
     }
     
     // Refresh list of events
@@ -164,7 +172,7 @@ class AgendaTVC: UITableViewController {
         
         let completeAction = UITableViewRowAction(style: .normal, title: actionText) { (action, indexPath) -> Void in
             calbit.completed.status = !isCompleted
-            self.updateCalbitCompletion(calbit: calbit)
+            self.completeCalbitFromActions(calbit: calbit)
             
             Calbitica.completeCalbit(calbit.id, status: !isCompleted)
         }
@@ -187,6 +195,18 @@ class AgendaTVC: UITableViewController {
             Calbitica.deleteCalbit(calbitToDelete.id, closure: deleteFinishClosure)
         }
         return [deleteAction, completeAction]
+    }
+    
+    func completeCalbitFromActions(calbit: CalbitForJZ) {
+        if let index = calbits.firstIndex(where: { (c: Calbit?) -> Bool in
+            return c?._id == calbit.id
+        }) {
+            // update the local copy's completion status
+            self.calbits[index]!.completed.status = calbit.completed.status
+            
+            // Reload the view!
+            reloadTable(self.calbits)
+        }
     }
     
     // Reload the table
@@ -234,20 +254,24 @@ extension AgendaTVC : ReturnCalbitProtocol {
     // Post-segue things
     // If deleting from Detail view
     func removeDeletedCalbit(calbit: CalbitForJZ) {
-        removeOneDeletedCalbit(calbit)
-        reloadTable(self.calbits)
+        /**
+         * Don't do anything, as the viewWillDisappear()
+         * in CalbitDetailVC() will trigger saveCalbitFinished() >
+         * getCalbitsAndRefresh() > ... > reloadTable()
+         * and thus modifying the calbits data source
+         * at this stage will cause a mismatch + errors
+         */
     }
     
     func updateCalbitCompletion(calbit: CalbitForJZ) {
-        if let index = calbits.firstIndex(where: { (c: Calbit?) -> Bool in
-            return c?._id == calbit.id
-        }) {
-            // update the local copy's completion status
-            self.calbits[index]!.completed.status = calbit.completed.status
-            
-            // Reload the view!
-            reloadTable(self.calbits)
-        }
+        /**
+         * Don't do anything, as the viewWillDisappear()
+         * in CalbitDetailVC() will trigger saveCalbitFinished() >
+         * getCalbitsAndRefresh() > ... > reloadTable()
+         * and thus modifying the calbits data source
+         * at this stage will cause a mismatch + errors
+        */
+        
     }
     
     func saveCalbitFinished() {

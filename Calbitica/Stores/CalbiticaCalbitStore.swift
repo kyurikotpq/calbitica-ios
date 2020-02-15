@@ -69,8 +69,6 @@ class CalbiticaCalbitStore {
             self.clearCalbits()
             
             let calbits = calbitResponse.data
-            print("calbits from respones")
-            print(calbits)
             self.setCalbits(calbits)
             
             closure(calbits)

@@ -13,6 +13,8 @@ UIPickerViewDelegate, UIPickerViewDataSource {
     var updateDelegate: UpdateCalbitDetailProtocol?
     var addDelegate: ReturnCalbitProtocol?
     
+    var pressLiao = false
+    
     static let today = Date()
     var isNewCalbit = true
     var pressedDates = (today, today)
@@ -178,6 +180,8 @@ UIPickerViewDelegate, UIPickerViewDataSource {
     
     // Save the new/current calbit
     @IBAction func saveBtnPressed(_ sender: UIBarButtonItem) {
+        if (pressLiao) { return }
+        
         let isAllDay =  allDaySwitch.isOn
         let startDate = startDatePicker.date
         let endDate = endDatePicker.date
@@ -195,6 +199,8 @@ UIPickerViewDelegate, UIPickerViewDataSource {
                              animated: true)
                 return
         }
+        
+        pressLiao = true
         
         let row = calendarPicker.selectedRow(inComponent: 0)
         let cal = calendars[row]
@@ -229,7 +235,6 @@ UIPickerViewDelegate, UIPickerViewDataSource {
         if(reminderPresentSwitch.isOn) {
             data["reminders"] = reminderDatePicker.date.toISOString()
         }
-        
         
         if(isNewCalbit) {
             func httpClosure(data: Data) {
@@ -337,8 +342,7 @@ UIPickerViewDelegate, UIPickerViewDataSource {
         if(indexPath.row == 1 && indexPath.section == 2) {
             return (calendarPickerCell.isHidden) ? 0 : 100
         }
-        
-        
+                
         // Reminder DatePicker
         if(indexPath.row == 3 && indexPath.section == 2) {
             return (reminderDatePickerCell.isHidden) ? 0 : 150

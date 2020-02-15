@@ -49,7 +49,6 @@ class CalbitDetailVC: UIViewController {
         
         if self.isMovingFromParent,
            let delegate = self.delegate {
-            print("going back to the list")
             delegate.saveCalbitFinished()
         }
     }

@@ -60,20 +60,30 @@ class DateUtil {
         
         var startString = "", endString = ""
         
+        let startH = startDateComponents.hour!,
+            startHours = startH < 10 ? "0\(startH)" : "\(startH)",
+            endH = endDateComponents.hour!,
+            endHours = endH < 10 ? "0\(endH)" : "\(endH)",
+        
+            startMin = startDateComponents.minute!,
+            startMinutes = startMin < 10 ? "0\(startMin)" : "\(startMin)",
+            endMin = endDateComponents.minute!,
+            endMinutes = endMin < 10 ? "0\(endMin)" : "\(endMin)"
+        
         // check if it's happening across days
         // if so, format the string accordingly
         if(startDateComponents.day != endDateComponents.day) {
-            print(startDateComponents.day)
-            startString = "from \(startDateComponents.hour!):\(startDateComponents.minute!) on "
+            
+            startString = "from \(startHours):\(startMinutes) on "
             + startDate.ddMMMYYYY(false)
-            endString = "to \(endDateComponents.hour!):\(endDateComponents.minute!) on "
+            endString = "to \(endHours):\(endMinutes) on "
             + endDate.ddMMMYYYY(false)
         } else {
             // else just make it "Saturday, 01 Jan 2020" / "from 01:00 to 02:00"
-            print(startDateComponents.weekday)
+            
             startString = "\(startDate.getDayOfWeek()), " + startDate.ddMMMYYYY(false)
-            endString = "from \(startDateComponents.hour!):\(startDateComponents.minute!) "
-            + "to \(endDateComponents.hour!):\(endDateComponents.minute!)"
+            endString = "from \(startHours):\(startMinutes) "
+            + "to \(endHours):\(endMinutes)"
         }
         
         return (startString, endString)

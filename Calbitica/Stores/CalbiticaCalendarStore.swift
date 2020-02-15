@@ -18,8 +18,6 @@ class CalbiticaCalendarStore {
     static func getFromGoogleID(_ googleID: String)
         -> (CalbiticaCalendar, Int) {
             if(googleID != "") {
-                print(googleID)
-                print(instance.calendars)
                 let index = instance.calendars.firstIndex { (CalbiticaCalendar) -> Bool in
                     return CalbiticaCalendar.googleID == googleID
                 }

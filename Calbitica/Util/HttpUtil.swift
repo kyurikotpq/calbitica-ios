@@ -46,21 +46,6 @@ class HttpUtil {
             
             if let httpResponse = response as? HTTPURLResponse,
                 !(200...299).contains(httpResponse.statusCode) {
-//                do {
-//                    let json = try JSONSerialization.jsonObject(with: responseData!, options: [])
-//
-//                    print(json)
-//
-//                } catch {
-//                    print("JSON error: \(error.localizedDescription)")
-//                }
-                print("Server error! \(httpResponse.statusCode)")
-                print(httpResponse)
-                /*
-                if(httpResponse.statusCode == 401) {
-                    print(responseData)
-                }
- */
                 // TODO: global handler
                 return
             }
@@ -72,9 +57,9 @@ class HttpUtil {
             }
             
             do {
-                let json = try JSONSerialization.jsonObject(with: responseData!, options: [])
-
-                print(json)
+//                let json = try JSONSerialization.jsonObject(with: responseData!, options: [])
+//
+//                print(json)
                 if(responseData != nil) {
                     closure(responseData!) // return data to the callback (closure)
                 }
@@ -106,9 +91,9 @@ class HttpUtil {
                     return
                 }
                 if(responseData != nil) {
-                    let json = String(data: jsonData!, encoding: String.Encoding.utf8)
-                    
-                    print(json);
+//                    let json = String(data: jsonData!, encoding: String.Encoding.utf8)
+//                    
+//                    print(json);
                     closure(responseData!) // return data to the callback (closure)
                 } 
             }

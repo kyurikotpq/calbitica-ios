@@ -19,7 +19,7 @@ class TabBarTBC: UITabBarController, UITabBarControllerDelegate {
     
     // called whenever a tab button is tapped
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        print(viewController is UINavigationController)
+        
         // Request events from Calbitica API (async)
         if viewController is UINavigationController {
             let navVC = viewController as! UINavigationController

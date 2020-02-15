@@ -12,7 +12,6 @@ import GoogleSignIn
 class AuthController {
     // Store JWT inside user preferences
     static func handleJWTClosure(jwt: String) {
-        print(jwt)
         UserDefaults.standard.set(jwt, forKey: "jwt")
     }
     
