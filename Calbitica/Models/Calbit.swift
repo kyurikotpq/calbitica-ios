@@ -27,7 +27,7 @@ class Calbit : Codable {
     var end: [String: String]
     
     var completed: CalbitCompleted
-    var reminders: [String]?
+    var reminders: [String?]?
 }
 
 // Declare this outside the parent struct

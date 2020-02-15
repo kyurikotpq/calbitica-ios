@@ -12,6 +12,7 @@ class BackButtonItem: UIBarButtonItem {
     init(_ title: String) {
         super.init()
         self.title = title
+        self.tintColor = .white
     }
     
     required init?(coder aDecoder: NSCoder) {

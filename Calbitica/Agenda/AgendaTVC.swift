@@ -56,7 +56,26 @@ class AgendaTVC: UITableViewController {
         return calbitsForTV[section].0.ddMMMYYYY(false)
     }
     
+    // Custom section headers
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 25))
+        
+        let label = UILabel(frame: CGRect(x: 20, y: 5, width: tableView.frame.size.width, height: 18))
+        let sectionHeaderText = calbitsForTV[section].0.ddMMMYYYY(false)
+        label.text = sectionHeaderText
+        
+        let isToday = AgendaTVC.today.ddMMMYYYY(false) == sectionHeaderText
+        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        label.textColor = isToday ? CalbiticaColors.blue(1.0) : .lightGray
+        view.addSubview(label)
+        
+        view.backgroundColor = CalbiticaColors.darkGray(1.0)
+        
+        return view
+    }
     
+    // Populate each cell
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! AgendaTVCell
         
@@ -73,53 +92,67 @@ class AgendaTVC: UITableViewController {
     }
     
     func reloadTable(_ calbits: [Calbit?]) {
+        mapAndSortCalbitsForTV(calbits)
+        
+        DispatchQueue.main.async {
+            // update the table view
+            UIView.transition(with: self.agendaTV,
+                              duration: 0.35,
+                              options: .transitionCrossDissolve,
+                              animations: { () -> Void in
+                                self.agendaTV.reloadData();
+            }, completion: nil);
+        }
+    }
+    
+    func mapAndSortCalbitsForTV(_ calbits: [Calbit?]) {
         self.calbits = calbits
         let tempCalbitsForJZ = JZWeekViewHelper.getIntraEventsByDate(originalEvents: CalbiticaCalbitStore.calbitToJZ(calbits: calbits))
         
         // Sort the rows
         let sortedInnerCFJZ = tempCalbitsForJZ.mapValues { (calbits) -> [CalbitForJZ] in
             let sortedCFJZ = calbits.sorted(by: { (firstCalbit, secondCalbit) -> Bool in
-                    return firstCalbit.startDate < secondCalbit.startDate
+                return firstCalbit.startDate < secondCalbit.startDate
             })
             
             return sortedCFJZ
         }
         
         // sort the sections
-        let sortedOuterCFJZ = sortedInnerCFJZ.sorted { (firstDate, secondDate) -> Bool in
+        let sortedOuterCFJZ: [(Date, [CalbitForJZ])] = sortedInnerCFJZ.sorted { (firstDate, secondDate) -> Bool in
             return (firstDate.key < secondDate.key)
         }
         self.calbitsForJZ = sortedInnerCFJZ
         self.calbitsForTV =  sortedOuterCFJZ
-        
-        DispatchQueue.main.async {
-            self.agendaTV.reloadData();
-        }
     }
     
     
     // Actions
     @IBAction func todayBtnClicked(_ sender: UIBarButtonItem) {
-        // Scroll to today's datee
+        // Scroll to today's date
+        if let todayIndex = calbitsForTV.firstIndex(where: { (arg0) -> Bool in
+            let (date, calbits) = arg0
+            return date.ddMMMYYYY(false) == AgendaTVC.today.ddMMMYYYY(false)
+        }) {
+            let indexPath = IndexPath(row: 0, section: todayIndex)
+            self.agendaTV.scrollToRow(at: indexPath, at: .top, animated: true)
+        }
+        
+        
     }
     
+    // Refresh list of events
     @IBAction func refreshBtnClicked(_ sender: UIBarButtonItem) {
         getCalbitsAndRefresh()
-    }
-    
-    override func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt: IndexPath) -> String? {
-        let indexPath = titleForDeleteConfirmationButtonForRowAt
-        let calbit = calbitsForTV[indexPath.section].1[indexPath.row]
-        return "Are you sure you want to delete \(calbit.summary)?"
     }
     
     // Handle on row tap
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let calbit = calbitsForTV[indexPath.section].1[indexPath.row]
         self.selectedEvent = calbit
+        
         self.performSegue(withIdentifier: "detailCalbitSegue", sender: self)
     }
-    
     
     // Add actions for Complete and delete
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
@@ -138,26 +171,36 @@ class AgendaTVC: UITableViewController {
         completeAction.backgroundColor = bgColor
         
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) -> Void in
-            let calbitInTV = self.calbitsForTV[indexPath.section]
+            let calbitsInTVSameDay = self.calbitsForTV[indexPath.section]
+            let date = calbitsInTVSameDay.0
+            let calbitToDelete = calbitsInTVSameDay.1[indexPath.row]
             
-            // Remove and return the CalbitForJZ
-            if let calbitForJZ = self.calbitsForJZ[calbitInTV.0]?.remove(at: indexPath.row) {
-                // remove from MongoDB
-                Calbitica.deleteCalbit(calbitForJZ.id)
-                
-                // update the table view
-                tableView.deleteRows(at: [indexPath], with: .top)
+            self.removeOneDeletedCalbit(calbitToDelete)
+            
+            func deleteFinishClosure() {
+                DispatchQueue.main.async {
+                    self.getCalbitsAndRefresh()
+                }
             }
+            
+            // remove from MongoDB
+            Calbitica.deleteCalbit(calbitToDelete.id, closure: deleteFinishClosure)
         }
         return [deleteAction, completeAction]
     }
     
-    
+    // Reload the table
     func getCalbitsAndRefresh() {
         CalbiticaCalendarStore.selfPopulate()
         CalbiticaCalbitStore.selfPopulate(closure: reloadTable)
     }
     
+    func removeOneDeletedCalbit(_ calbit: CalbitForJZ) {
+        self.calbits.removeAll { (c: Calbit?) -> Bool in
+            return c?._id == calbit.id
+        }
+        mapAndSortCalbitsForTV(self.calbits)
+    }
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -169,21 +212,19 @@ class AgendaTVC: UITableViewController {
             // We only have one VC for this navigation controller, so this works I guess...
             let destinationController = navController.topViewController as! SaveCalbitVC
             destinationController.isNewCalbit = true
+            destinationController.addDelegate = self as! ReturnCalbitProtocol
             //            destinationController.pressedDates = self.pressedDates
         } else if(segue.identifier == "detailCalbitSegue") {
             // viewing details of event
             let destinationController = segue.destination as! CalbitDetailVC
-            destinationController.calbit = self.selectedEvent
             
-            print("selected event:")
-            print(self.selectedEvent.summary)
+            destinationController.calbit = self.selectedEvent
             destinationController.delegate = self as! ReturnCalbitProtocol
             
             // Setup navbar (custom back button)
             let backBarButton = BackButtonItem("Agenda")
             self.navigationItem.backBarButtonItem = backBarButton
             
-            print("my back button should be there??")
             // tabbar (hide)
             destinationController.hidesBottomBarWhenPushed = true
         }
@@ -193,13 +234,7 @@ extension AgendaTVC : ReturnCalbitProtocol {
     // Post-segue things
     // If deleting from Detail view
     func removeDeletedCalbit(calbit: CalbitForJZ) {
-        self.calbits.removeAll { (c: Calbit?) -> Bool in
-            return c?._id == calbit.id
-        }
-        self.calbitsForJZ[calbit.startDate]?.removeAll(where: { (c: CalbitForJZ) -> Bool in
-            return c.id == calbit.id
-        })
-        self.calbitsForTV = 
+        removeOneDeletedCalbit(calbit)
         reloadTable(self.calbits)
     }
     
@@ -215,7 +250,7 @@ extension AgendaTVC : ReturnCalbitProtocol {
         }
     }
     
-    func addCalbitFinished() {
+    func saveCalbitFinished() {
         getCalbitsAndRefresh()
     }
     

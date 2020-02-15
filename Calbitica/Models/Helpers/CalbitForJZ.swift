@@ -20,13 +20,13 @@ class CalbitForJZ : JZAllDayEvent {
     var location: String?
     
     var completed: CalbitCompleted
-    var reminders: [String]?
+    var reminders: [String?]?
     
     // id will be the mongoDB ID!
     init(id: String, isAllDay: Bool, legitAllDay: Bool, googleID: String, calendarID: String,
          summary: String, startDate: Date, endDate: Date, location: String?,
          description: String?, completed: CalbitCompleted,
-         reminders: [String]?) {
+         reminders: [String?]?) {
         
         // Initialise own variables first!
         self.legitAllDay = legitAllDay

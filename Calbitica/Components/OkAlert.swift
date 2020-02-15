@@ -26,7 +26,7 @@ class OkAlert {
         
         }))
     }
-    
+        
     public static func getAlert(_ title: String) -> UIAlertController {
         instance.alert.title = title
         return instance.alert

@@ -15,12 +15,12 @@
                 <viewControllerPlaceholder storyboardName="Week" referencedIdentifier="SaveCalbitNC" id="hkF-xW-OI3" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="huG-5P-paK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1688" y="-59"/>
+            <point key="canvasLocation" x="1625" y="-461"/>
         </scene>
         <!--Agenda-->
         <scene sceneID="uD9-mh-zND">
             <objects>
-                <viewController id="qZw-5f-BTq" customClass="AgendaTVC" customModule="Calbitica" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AgendaVC" id="qZw-5f-BTq" customClass="AgendaTVC" customModule="Calbitica" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="OO0-vU-Puq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -119,12 +119,20 @@
                     </navigationItem>
                     <connections>
                         <outlet property="agendaTV" destination="OO0-vU-Puq" id="z7h-d7-SrG"/>
-                        <segue destination="jzH-an-FMz" kind="show" identifier="detailCalbitSegue" id="xjp-kv-VXy"/>
+                        <segue destination="zk2-aZ-203" kind="show" identifier="detailCalbitSegue" id="iiH-Dr-dak"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="19X-MZ-ZJr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1069.5652173913045" y="26.785714285714285"/>
+        </scene>
+        <!--CalbitDetailVC-->
+        <scene sceneID="FNa-5j-JQe">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Week" referencedIdentifier="CalbitDetailVC" id="zk2-aZ-203" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O93-Ck-hTf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1678" y="64"/>
         </scene>
         <!--Agenda Nav Controller-->
         <scene sceneID="lbl-qb-exq">
@@ -145,16 +153,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UsD-QO-a3v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="207" y="28"/>
-        </scene>
-        <!--CalbitDetailVC-->
-        <scene sceneID="UVp-5o-9WU">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Week" referencedIdentifier="CalbitDetailVC" id="jzH-an-FMz" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="ykA-xN-rrc"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CoK-f2-dJi" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1714" y="111"/>
         </scene>
     </scenes>
     <resources>

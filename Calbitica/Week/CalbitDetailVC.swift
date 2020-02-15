@@ -11,7 +11,7 @@ import UIKit
 protocol ReturnCalbitProtocol {
     func removeDeletedCalbit(calbit: CalbitForJZ)
     func updateCalbitCompletion(calbit: CalbitForJZ)
-    func addCalbitFinished()
+    func saveCalbitFinished()
 }
 
 protocol UpdateCalbitDetailProtocol {
@@ -44,6 +44,16 @@ class CalbitDetailVC: UIViewController {
         setupCompleteBtn()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if self.isMovingFromParent,
+           let delegate = self.delegate {
+            print("going back to the list")
+            delegate.saveCalbitFinished()
+        }
+    }
+    
     func setupViews() {
         titleLbl.text = calbit.summary
         let strings = DateUtil.buildToFromString(startDate: calbit.startDate, endDate: calbit.endDate)
@@ -65,13 +75,16 @@ class CalbitDetailVC: UIViewController {
         // add actions to the menu
         let deleteAction = UIAlertAction(title: "Delete Event", style: .destructive, handler: {
             (UIAlertAction) -> Void in
+            func httpFinishClosure() {
+                // Remove the local copy before popping
+                DispatchQueue.main.async {
+                    self.delegate?.removeDeletedCalbit(calbit: self.calbit)
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
             
             // Meanwhile, remove from MongoDB
-            Calbitica.deleteCalbit(self.calbit.id)
-            
-            // Remove the local copy before popping
-            self.delegate?.removeDeletedCalbit(calbit: self.calbit)
-            self.navigationController?.popViewController(animated: true)
+            Calbitica.deleteCalbit(self.calbit.id, closure: httpFinishClosure)
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
@@ -131,17 +144,7 @@ extension CalbitDetailVC : UpdateCalbitDetailProtocol {
         DispatchQueue.main.async {
             self.setupViews()
             self.setupCompleteBtn()
-        }
-        
-        // Also, force the table to refresh its data!
-        if let weekView = self.delegate as? WeekVC {
-            weekView.getCalbitsAndRefresh()
-        }
-        
-        if let agendaTVC = self.delegate as? AgendaTVC {
-            agendaTVC.getCalbitsAndRefresh()
+            
         }
     }
-    
-    
 }

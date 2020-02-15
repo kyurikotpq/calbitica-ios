@@ -14,6 +14,7 @@ import JZCalendarWeekView
 // Contains the configurations for the custom week view
 // All actions are handled by the delegate, aka WeekVC!
 class CCView: JZBaseWeekView {
+    
     // Registration of components' classes
     override func registerViewClasses() {
         super.registerViewClasses()
@@ -24,7 +25,7 @@ class CCView: JZBaseWeekView {
         self.collectionView.register(DarkCCViewColHeader.self, forSupplementaryViewOfKind: JZSupplementaryViewKinds.columnHeader, withReuseIdentifier: DarkCCViewColHeader.className)
         
         self.collectionView.register(DarkCCViewCornerCell.self, forSupplementaryViewOfKind: JZSupplementaryViewKinds.cornerHeader, withReuseIdentifier: DarkCCViewCornerCell.className)
-
+        
         // Register all-day headers (decorations)
         self.flowLayout.register(DarkCCViewAllDayHeaderBackground.self, forDecorationViewOfKind: JZDecorationViewKinds.allDayHeaderBackground)
         self.flowLayout.register(DarkCCViewAllDayCorner.self, forDecorationViewOfKind: JZDecorationViewKinds.allDayCorner)
@@ -53,11 +54,30 @@ class CCView: JZBaseWeekView {
                 return cornerHeader
             }
         } else if kind == JZSupplementaryViewKinds.allDayHeader {
-            
+            guard let alldayHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: kind, for: indexPath) as? JZAllDayHeader else {
+                preconditionFailure("SupplementaryView should be JZAllDayHeader")
+            }
+            let date = flowLayout.dateForColumnHeader(at: indexPath)
+            let events = allDayEventsBySection[date]
+            let views = getAllDayHeaderViews(allDayEvents: events as? [CalbitForJZ] ?? [])
+            alldayHeader.updateView(views: views)
+            return alldayHeader
         }
         
         
         return super.collectionView(collectionView, viewForSupplementaryElementOfKind: kind, at: indexPath)
+    }
+    
+    // Configuring an all-day cell
+    private func getAllDayHeaderViews(allDayEvents: [CalbitForJZ]) -> [UIView] {
+        var allDayViews = [UIView]()
+        for event in allDayEvents {
+            if let view = UINib(nibName: CalbitCell.className, bundle: nil).instantiate(withOwner: nil, options: nil)[0] as? CalbitCell {
+                view.configureCell(event: event)
+                allDayViews.append(view)
+            }
+        }
+        return allDayViews
     }
     
     // Configuring a single cell
@@ -72,22 +92,5 @@ class CCView: JZBaseWeekView {
         }
         preconditionFailure("EventCell and DefaultEvent should be casted")
     }
-    
-    // MARK: - Interactions
-    // When the event is tapped, show the detailed view...
-    
-    /*
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("WE selected something")
-        if let selectedEvent = getCurrentEvent(with: indexPath) as? CalbitForJZ {
-            self.selectedEvent = selectedEvent
-            
-            let weekVC = self.baseDelegate as! WeekVC
-            weekVC.performSegue(withIdentifier: "detailCalbitSegue", sender: self)
-        }
-    }
- */
-    
-    
     
 }

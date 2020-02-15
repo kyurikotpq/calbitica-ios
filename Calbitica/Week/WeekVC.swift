@@ -46,8 +46,8 @@ class WeekVC: UIViewController {
         
         calendarWeekView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapOnCCView)))
         
-        // setup navbar
-        setupNavbar()
+        // Set navigation bar title to this week's date
+        updateNavbarTitle()
         
         // Request events from Calbitica API (async)
         getCalbitsAndRefresh()
@@ -58,10 +58,6 @@ class WeekVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func setupNavbar() {
-        // Set navigation bar title to this week's date
-        updateNavbarTitle()
-    }
     
     func updateNavbarTitle() {
         var datesInWeek: [Date] = calendarWeekView.getDatesInCurrentPage(isScrolling: false)
@@ -84,34 +80,34 @@ class WeekVC: UIViewController {
     
     @objc func tapOnCCView(sender: UITapGestureRecognizer){
         // Which element was tapped on exactly?
-        let view = sender.view
+        let view = sender.view // the one attached to the gestures
         let loc = sender.location(in: view)
         let subview = view?.hitTest(loc, with: nil)
+        let parentview = subview?.superview
         
         // disable time markings from triggering the segue
         // day column chould create new all-day events
+        print(subview?.superview)
+        print(subview)
         let forbidden = (subview?.isMember(of: DarkCCViewRowHeader.self))!
+            || (subview?.isMember(of: DarkCCViewAllDayCorner.self))!
+            || (subview?.isMember(of: DarkCCViewCornerCell.self))!
+            || (subview?.isMember(of: DarkCCViewColHeader.self))!
+        
+        let newAllDay = subview?.isMember(of: JZAllDayHeader.self)
         
         if let indexPath = calendarWeekView.collectionView?.indexPathForItem(at: sender.location(in: calendarWeekView.collectionView)) {
             if let selectedEvent = calendarWeekView.getCurrentEvent(with: indexPath) as? CalbitForJZ {
                 self.selectedEvent = selectedEvent
                 self.performSegue(withIdentifier: "detailCalbitSegue", sender: self)
             }
-        } else if((subview?.isMember(of: DarkCCViewColHeader.self))!) {
-            var date = calendarWeekView.getDateForPoint(sender.location(in: calendarWeekView.collectionView))
-            
-            // Round of dates to the nearest 30mins
-            // and calculate 30mins from there
-            self.pressedDates = (date, date)
-            self.creatingAllDay = true
-            self.performSegue(withIdentifier: "addCalbitSegue", sender: self)
-        } else if(!forbidden) {
-            var date = calendarWeekView.getDateForPoint(sender.location(in: calendarWeekView.collectionView))
+        } else if (!forbidden) {
+            let date = calendarWeekView.getDateForPoint(sender.location(in: calendarWeekView.collectionView))
             
             // Round of dates to the nearest 30mins
             // and calculate 30mins from there
             self.pressedDates = DateUtil.calculate30Mins(date: date, round: true)
-            self.creatingAllDay = false
+            self.creatingAllDay = newAllDay!
             self.performSegue(withIdentifier: "addCalbitSegue", sender: self)
             
         }
@@ -164,7 +160,6 @@ class WeekVC: UIViewController {
             
             destinationController.hidesBottomBarWhenPushed = true
             
-            
         }
         
     }
@@ -190,7 +185,7 @@ extension WeekVC : ReturnCalbitProtocol {
             refreshWeekView(self.calbits)
         }
     }
-    func addCalbitFinished() {
+    func saveCalbitFinished() {
         getCalbitsAndRefresh()
     }
 }

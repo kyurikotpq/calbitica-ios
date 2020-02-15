@@ -15,7 +15,6 @@
 		3F5B389F23E56F3500B407EC /* CalbitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5B389D23E56F3500B407EC /* CalbitCell.swift */; };
 		3F5B38A023E56F3500B407EC /* CalbitCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F5B389E23E56F3500B407EC /* CalbitCell.xib */; };
 		3F5ED37923E2A867004FC6C0 /* CalbitDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5ED37823E2A867004FC6C0 /* CalbitDetailVC.swift */; };
-		3F610CBA23E7BF5F0009EF24 /* DarkCCViewAllDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F610CB923E7BF5F0009EF24 /* DarkCCViewAllDayCell.swift */; };
 		3F86478A23CF3DD900F262CD /* WeekVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F86478923CF3DD900F262CD /* WeekVC.swift */; };
 		3F86478C23CF452B00F262CD /* Switcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F86478B23CF452B00F262CD /* Switcher.swift */; };
 		3F86478F23CF47C700F262CD /* TabBarTBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F86478E23CF47C700F262CD /* TabBarTBC.swift */; };
@@ -32,7 +31,7 @@
 		3FA1F08B23CAD3A400450777 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA1F08A23CAD3A400450777 /* SignInVC.swift */; };
 		3FA1F09023CADA4300450777 /* Calbitica.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA1F08F23CADA4300450777 /* Calbitica.swift */; };
 		3FA1F09223CADCC400450777 /* HttpUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA1F09123CADCC400450777 /* HttpUtil.swift */; };
-		3FA594F823E6D26200EF1CCF /* DarkCCViewAllDayHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA594F723E6D26200EF1CCF /* DarkCCViewAllDayHeader.swift */; };
+		3FA594F823E6D26200EF1CCF /* DarkCCViewAllDayHeaderConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA594F723E6D26200EF1CCF /* DarkCCViewAllDayHeaderConfig.swift */; };
 		3FA594FA23E6D28300EF1CCF /* DarkCCViewCornerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA594F923E6D28300EF1CCF /* DarkCCViewCornerCell.swift */; };
 		3FB1B36C23DC9F4000E96A54 /* CCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB1B36B23DC9F4000E96A54 /* CCView.swift */; };
 		3FB1B37A23DCAE9200E96A54 /* DarkCCViewColHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB1B37923DCAE9200E96A54 /* DarkCCViewColHeader.swift */; };
@@ -71,7 +70,6 @@
 		3F5B389D23E56F3500B407EC /* CalbitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalbitCell.swift; sourceTree = "<group>"; };
 		3F5B389E23E56F3500B407EC /* CalbitCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalbitCell.xib; sourceTree = "<group>"; };
 		3F5ED37823E2A867004FC6C0 /* CalbitDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalbitDetailVC.swift; sourceTree = "<group>"; };
-		3F610CB923E7BF5F0009EF24 /* DarkCCViewAllDayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkCCViewAllDayCell.swift; sourceTree = "<group>"; };
 		3F86478923CF3DD900F262CD /* WeekVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekVC.swift; sourceTree = "<group>"; };
 		3F86478B23CF452B00F262CD /* Switcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Switcher.swift; sourceTree = "<group>"; };
 		3F86478E23CF47C700F262CD /* TabBarTBC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarTBC.swift; sourceTree = "<group>"; };
@@ -90,7 +88,7 @@
 		3FA1F08A23CAD3A400450777 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		3FA1F08F23CADA4300450777 /* Calbitica.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calbitica.swift; sourceTree = "<group>"; };
 		3FA1F09123CADCC400450777 /* HttpUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpUtil.swift; sourceTree = "<group>"; };
-		3FA594F723E6D26200EF1CCF /* DarkCCViewAllDayHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkCCViewAllDayHeader.swift; sourceTree = "<group>"; };
+		3FA594F723E6D26200EF1CCF /* DarkCCViewAllDayHeaderConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkCCViewAllDayHeaderConfig.swift; sourceTree = "<group>"; };
 		3FA594F923E6D28300EF1CCF /* DarkCCViewCornerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkCCViewCornerCell.swift; sourceTree = "<group>"; };
 		3FB1B36B23DC9F4000E96A54 /* CCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCView.swift; sourceTree = "<group>"; };
 		3FB1B37023DCAD2100E96A54 /* AppAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AppAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -247,9 +245,8 @@
 				3FB1B37B23DCAEBB00E96A54 /* DarkCCViewRowHeader.swift */,
 				3F5B389D23E56F3500B407EC /* CalbitCell.swift */,
 				3F5B389E23E56F3500B407EC /* CalbitCell.xib */,
-				3FA594F723E6D26200EF1CCF /* DarkCCViewAllDayHeader.swift */,
+				3FA594F723E6D26200EF1CCF /* DarkCCViewAllDayHeaderConfig.swift */,
 				3FA594F923E6D28300EF1CCF /* DarkCCViewCornerCell.swift */,
-				3F610CB923E7BF5F0009EF24 /* DarkCCViewAllDayCell.swift */,
 			);
 			path = CustomWV;
 			sourceTree = "<group>";
@@ -377,11 +374,16 @@
 					3FA1F06923CACE4100450777 = {
 						CreatedOnToolsVersion = 9.4.1;
 						LastSwiftMigration = 1020;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
 			buildConfigurationList = 3FA1F06523CACE4100450777 /* Build configuration list for PBXProject "Calbitica" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -511,7 +513,7 @@
 				3F057FB923EB1D3B00301CA2 /* AgendaTVCell.swift in Sources */,
 				3FB1B37A23DCAE9200E96A54 /* DarkCCViewColHeader.swift in Sources */,
 				3FB3935823EDB70F00F25C44 /* BackButtonItem.swift in Sources */,
-				3FA594F823E6D26200EF1CCF /* DarkCCViewAllDayHeader.swift in Sources */,
+				3FA594F823E6D26200EF1CCF /* DarkCCViewAllDayHeaderConfig.swift in Sources */,
 				3F5ED37923E2A867004FC6C0 /* CalbitDetailVC.swift in Sources */,
 				3FA594FA23E6D28300EF1CCF /* DarkCCViewCornerCell.swift in Sources */,
 				3FD9270B23CF505A00046C7D /* ProfileVC.swift in Sources */,
@@ -519,7 +521,6 @@
 				3F5B389F23E56F3500B407EC /* CalbitCell.swift in Sources */,
 				3F14091B23DC0C0F00651B35 /* SaveCalbitVC.swift in Sources */,
 				3FA1F09223CADCC400450777 /* HttpUtil.swift in Sources */,
-				3F610CBA23E7BF5F0009EF24 /* DarkCCViewAllDayCell.swift in Sources */,
 				CE3C52CB23E661EE007E3E9E /* AboutVC.swift in Sources */,
 				3FF4042C23ECF5FB0041BED7 /* Responses.swift in Sources */,
 				3FA1F07623CACE4100450777 /* Calbitica.xcdatamodeld in Sources */,

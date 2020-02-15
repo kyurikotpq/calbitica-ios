@@ -68,10 +68,10 @@ class Calbitica {
         let url = calbitBaseURL + id
         HttpUtil.put(url: url, data: data, closure: closure)
     }
-    static func deleteCalbit(_ id: String) {
+    static func deleteCalbit(_ id: String, closure: @escaping () -> Void) {
         let url = calbitBaseURL + id
         
-        HttpUtil.delete(url: url, closure: { })
+        HttpUtil.delete(url: url, closure: closure)
     }
 
     static let calendarBaseURL = baseURL + "cal/"

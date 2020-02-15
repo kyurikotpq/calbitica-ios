@@ -377,15 +377,28 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="GHd-ok-Sc1">
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="GHd-ok-Sc1">
                                                     <rect key="frame" x="20" y="0.0" width="374" height="50"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remind me on" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1F7-QK-GcO">
-                                                            <rect key="frame" x="0.0" y="15" width="179" height="20.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="yPi-ZZ-wp6">
+                                                            <rect key="frame" x="0.0" y="9.5" width="145" height="31"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remind me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1F7-QK-GcO">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="86" height="31"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="z8C-wP-01h">
+                                                                    <rect key="frame" x="96" y="0.0" width="51" height="31"/>
+                                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <color key="onTintColor" red="0.2666666667" green="0.82745098039999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <connections>
+                                                                        <action selector="onReminderPresentSwitchChanged:" destination="AkI-Ge-aWT" eventType="valueChanged" id="tyg-dX-utT"/>
+                                                                    </connections>
+                                                                </switch>
+                                                            </subviews>
+                                                        </stackView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sep 21, 2020 01:90" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JdJ-C3-XvK">
                                                             <rect key="frame" x="187" y="15" width="187" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -494,6 +507,7 @@
                         <outlet property="reminderDateLbl" destination="JdJ-C3-XvK" id="iqo-aL-ul2"/>
                         <outlet property="reminderDatePicker" destination="BJa-77-Zq8" id="zLv-DF-rjN"/>
                         <outlet property="reminderDatePickerCell" destination="7zv-MH-dLF" id="H9z-0g-ceF"/>
+                        <outlet property="reminderPresentSwitch" destination="z8C-wP-01h" id="4Gy-Ss-cMy"/>
                         <outlet property="rightNavbarBtn" destination="ebb-gQ-Goi" id="a5M-yx-dZb"/>
                         <outlet property="startDateLbl" destination="D2y-YF-IFY" id="Xmd-oV-0Gm"/>
                         <outlet property="startDatePicker" destination="GJE-WH-7b9" id="7RG-WB-gIu"/>

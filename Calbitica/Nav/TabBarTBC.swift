@@ -8,28 +8,32 @@
 
 import UIKit
 
-class TabBarTBC: UITabBarController {
-
+class TabBarTBC: UITabBarController, UITabBarControllerDelegate {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        // tell our UITabBarController subclass to handle its own delegate methods
+        self.delegate = self
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // called whenever a tab button is tapped
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        print(viewController is UINavigationController)
+        // Request events from Calbitica API (async)
+        if viewController is UINavigationController {
+            let navVC = viewController as! UINavigationController
+            let rootVC = navVC.topViewController
+            
+            if rootVC is WeekVC {
+                let vc = rootVC as! WeekVC
+                vc.getCalbitsAndRefresh()
+                
+            } else if rootVC is AgendaTVC {
+                let vc = rootVC as! AgendaTVC
+                vc.getCalbitsAndRefresh()
+            }
+        }
+        
     }
-    */
-
 }

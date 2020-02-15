@@ -38,6 +38,9 @@ class HabiticaSettingsVC: UIViewController {
         }
         
         if(data.count == 0) {
+            guard self.presentedViewController == nil else {
+                return;
+            }
             self.present(OkAlert.getAlert("No changes made."),
                     animated: true, completion: nil)
         } else {
@@ -48,6 +51,9 @@ class HabiticaSettingsVC: UIViewController {
                 // TODO: Add check mark to the non-empty TF(s)
                 // Temp: Alert
                 DispatchQueue.main.async {
+                    guard self.presentedViewController == nil else {
+                        return;
+                    }
                     self.present(OkAlert.getAlert("Settings saved successfully."),
                             animated: true, completion: nil)
                 }

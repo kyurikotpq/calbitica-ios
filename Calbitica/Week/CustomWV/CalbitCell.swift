@@ -15,6 +15,7 @@ class CalbitCell: UICollectionViewCell {
     @IBOutlet weak var borderView: UIView!
     
     var event: CalbitForJZ!
+    static let className = "CalbitCell"
     
     override func awakeFromNib() {
         super.awakeFromNib()
