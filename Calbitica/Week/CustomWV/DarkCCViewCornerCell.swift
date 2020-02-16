@@ -8,6 +8,8 @@
 
 import JZCalendarWeekView
 
+// This is the cell between time labels (row header)
+// & day labels (col header)
 class DarkCCViewCornerCell : JZCornerHeader {
     static let className = "DarkCCViewCornerCell"
     

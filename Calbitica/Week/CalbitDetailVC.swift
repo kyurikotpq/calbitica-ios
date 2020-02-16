@@ -47,12 +47,19 @@ class CalbitDetailVC: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
+        // if we are moving back to WeekVC/AgendaTVC,
+        // (via the back button)
+        // get them to refresh themselves
+        // this is for edits to take effect
         if self.isMovingFromParent,
            let delegate = self.delegate {
             delegate.saveCalbitFinished()
         }
     }
     
+    // Populate the views accordingly
+    // the other fields are currently not supported by our API
+    // so we won't display them
     func setupViews() {
         titleLbl.text = calbit.summary
         let strings = DateUtil.buildToFromString(startDate: calbit.startDate, endDate: calbit.endDate)
@@ -61,11 +68,13 @@ class CalbitDetailVC: UIViewController {
         timeOrToLbl.text = strings.1
     }
     
+    // Reflect the current completion state of the event
     func setupCompleteBtn() {
         completeBtn.title = calbit.completed.status ? "Incomplete" : "Complete"
         completeBtn.tintColor = calbit.completed.status ? .white : CalbiticaColors.blue(1.0)
     }
     
+    // Delete the event
     @IBAction func deleteBtnClicked(_ sender: UIBarButtonItem) {
         // show action sheet to confirm the deletion,
         // and only delete if clicked on action sheet's delete
@@ -75,7 +84,7 @@ class CalbitDetailVC: UIViewController {
         let deleteAction = UIAlertAction(title: "Delete Event", style: .destructive, handler: {
             (UIAlertAction) -> Void in
             func httpFinishClosure() {
-                // Remove the local copy before popping
+                // Remove the local copy before popping the VC
                 DispatchQueue.main.async {
                     self.delegate?.removeDeletedCalbit(calbit: self.calbit)
                     self.navigationController?.popViewController(animated: true)
@@ -93,6 +102,7 @@ class CalbitDetailVC: UIViewController {
         self.present(optionMenu, animated: true, completion: nil)
     }
     
+    // Complete the event
     @IBAction func completeBtnClicked(_ sender: UIBarButtonItem) {
         // change the text from complete to "incomplete"
         // and the color to white :)
@@ -108,8 +118,6 @@ class CalbitDetailVC: UIViewController {
     }
     
     // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "editCalbitSegue") {
             // Editing event
@@ -124,6 +132,7 @@ class CalbitDetailVC: UIViewController {
     
 }
 
+// We'll only return to here from an edit segue
 extension CalbitDetailVC : UpdateCalbitDetailProtocol {
     func updateCalbit(newCalbit: CalbitForJZ) {
         // update the local copy's completion status

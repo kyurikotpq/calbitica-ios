@@ -9,6 +9,7 @@
 import UIKit
 import JZCalendarWeekView
 
+// Custom column header (dates)
 class DarkCCViewColHeader : JZColumnHeader {
     static let className = "DarkCCViewColHeader"
     override init(frame: CGRect) {

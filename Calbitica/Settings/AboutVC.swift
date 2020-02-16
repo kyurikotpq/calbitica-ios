@@ -16,6 +16,7 @@ class AboutVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    // Make actual phone call
     @IBAction func hotlineInfo(_ sender: UIButton) {
         if let phoneCallURL:URL = URL(string: "tel:\(61157894)") {
             let application:UIApplication = UIApplication.shared
@@ -34,6 +35,7 @@ class AboutVC: UIViewController {
         }
     }
     
+    // Open email app
     @IBAction func siteInfo(_ sender: Any) {
         let email = "calbitica@support.com"
         if let url = URL(string: "mailto:\(email)") {
@@ -44,15 +46,5 @@ class AboutVC: UIViewController {
             }
         }
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

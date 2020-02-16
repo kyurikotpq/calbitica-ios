@@ -59,7 +59,8 @@ class WeekVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
+    // Update the navbar title according to where we are
+    // in the calendar week view
     func updateNavbarTitle() {
         var datesInWeek: [Date] = calendarWeekView.getDatesInCurrentPage(isScrolling: false)
         let firstDate = datesInWeek[0]
@@ -72,6 +73,7 @@ class WeekVC: UIViewController {
         getCalbitsAndRefresh()
     }
     
+    // Jump to today!
     @IBAction func todayBtnPressed(_ sender: UIBarButtonItem) {
         // You need both of these functions if you want to jump
         // to today, but prevent today from being the first day of the week
@@ -79,6 +81,7 @@ class WeekVC: UIViewController {
         calendarWeekView.updateFirstDayOfWeek(setDate: WeekVC.today, firstDayOfWeek: .Sunday)
     }
     
+    // Handles taps on the calendar view
     @objc func tapOnCCView(sender: UITapGestureRecognizer){
         // Which element was tapped on exactly?
         let view = sender.view // the one attached to the gestures
@@ -96,12 +99,15 @@ class WeekVC: UIViewController {
             || (subview?.isMember(of: DarkCCViewColHeader.self))!
             || (parentview?.isMember(of: DarkCCViewColHeader.self))!
         
+        // Have we tapped on an existing event?
         let isExistingEvent = (parentview?.isMember(of: CalbitCell.self))!
             || (subview?.isMember(of: CalbitCell.self))!
         
+        // Which date did we tap on? (includes time)
         let selectedDate = calendarWeekView.getDateForPoint(sender.location(in: calendarWeekView.collectionView))
         
         if isExistingEvent {
+            // show event details
             let cell = (parentview?.isMember(of: CalbitCell.self))!
                 ? parentview : subview
             
@@ -122,6 +128,7 @@ class WeekVC: UIViewController {
         
     }
     
+    // Get events from API and reload the view
     func getCalbitsAndRefresh() {
         CalbiticaCalendarStore.selfPopulate()
         CalbiticaCalbitStore.selfPopulate(closure: refreshWeekView)
@@ -170,6 +177,7 @@ class WeekVC: UIViewController {
     }
 }
 
+// When returning from CalbitDetailVC
 extension WeekVC : ReturnCalbitProtocol {
     // Remove deleted calbit from local array
     func removeDeletedCalbit(calbit: CalbitForJZ) {
@@ -179,6 +187,7 @@ extension WeekVC : ReturnCalbitProtocol {
         refreshWeekView(self.calbits)
     }
     
+    // When calbit is completed
     func updateCalbitCompletion(calbit: CalbitForJZ) {
         if let index = calbits.firstIndex(where: { (c: Calbit?) -> Bool in
             return c?._id == calbit.id
@@ -195,6 +204,7 @@ extension WeekVC : ReturnCalbitProtocol {
     }
 }
 
+// Update the navbar title as we scroll
 extension WeekVC : JZBaseViewDelegate {
     func initDateDidChange(_ weekView: JZBaseWeekView, initDate: Date) {
         updateNavbarTitle()

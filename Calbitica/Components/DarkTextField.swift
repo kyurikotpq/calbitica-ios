@@ -8,15 +8,9 @@
 
 import UIKit
 
+// Dark BG text field with white text
+// & gray placeholder text
 class DarkTextField: UITextField {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         

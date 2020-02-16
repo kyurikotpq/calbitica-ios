@@ -8,6 +8,7 @@
 
 import UIKit
 
+// Custom back button for navbar
 class BackButtonItem: UIBarButtonItem {
     init(_ title: String) {
         super.init()

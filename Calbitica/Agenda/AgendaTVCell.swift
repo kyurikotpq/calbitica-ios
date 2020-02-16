@@ -8,6 +8,7 @@
 
 import UIKit
 
+// Custom Table View Cell
 class AgendaTVCell: UITableViewCell {
     @IBOutlet weak var startTimeLbl: UILabel!
     @IBOutlet weak var titleLbl: UILabel!

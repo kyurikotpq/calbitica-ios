@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Date-related helper functions
 class DateUtil {
     static let calendar = Calendar(identifier: .gregorian)
     static let currentYear = calendar.dateComponents(in: .current, from: Date()).year!
@@ -131,7 +132,7 @@ class DateUtil {
     }
 }
 
-// Extensions
+// Extensions for Date objects
 extension Date {
     // Build a "01 Jan 2020" kind of string
     func ddMMMYYYY(_ withTime: Bool) -> String {
@@ -146,6 +147,8 @@ extension Date {
         return formatter.string(from: self)
     }
     
+    // format date to other string formats
+    // other than the ones provided
     func otherFormats(_ format: String) -> String {
         let formatter = DateUtil.dateFormatter
         formatter.dateFormat = format

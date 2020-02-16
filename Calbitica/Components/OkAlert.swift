@@ -8,6 +8,7 @@
 
 import UIKit
 
+// Show a message alert with an OK button for dismissal
 class OkAlert {
     private static var instance = OkAlert()
     
@@ -23,7 +24,6 @@ class OkAlert {
         alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: {
             (action: UIAlertAction!) in
             // do nothing :)
-        
         }))
     }
         

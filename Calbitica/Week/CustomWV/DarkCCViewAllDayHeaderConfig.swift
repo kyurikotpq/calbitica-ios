@@ -1,5 +1,5 @@
 //
-//  DarkCCViewAllDayHeader.swift
+//  DarkCCViewAllDayHeaderConfig.swift
 //  Calbitica
 //
 //  Created by Student on 2/2/20.
@@ -8,6 +8,7 @@
 
 import JZCalendarWeekView
 
+// This is the cell containing the words "all-day"
 class DarkCCViewAllDayCorner : JZAllDayCorner {
     static let className = "DarkCCViewAllDayCorner"
     
@@ -19,6 +20,7 @@ class DarkCCViewAllDayCorner : JZAllDayCorner {
     }
 }
 
+// Controls the BG of all-day events "container view"
 class DarkCCViewAllDayHeaderBackground : JZAllDayHeaderBackground {
     static let className = "DarkCCViewAllDayHeaderBackground"
     

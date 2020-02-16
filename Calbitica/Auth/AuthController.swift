@@ -15,6 +15,7 @@ class AuthController {
         UserDefaults.standard.set(jwt, forKey: "jwt")
     }
     
+    // Handle the Google Sign In
     static func handleSignIn(code: String, user: GIDGoogleUser) {
         Calbitica.tokensFromAuthCode(code, closure: handleJWTClosure)
         

@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Helps us make our HttpRequests - GET, POST, PUT, DELETE
 class HttpUtil {
     static func makeRequest(url: String, method: String) -> URLRequest {
         // Create URL object
@@ -22,7 +23,6 @@ class HttpUtil {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let jwt = UserDefaults.standard.string(forKey: "jwt")
-//        print(jwt)
         if(jwt != nil) {
             request.setValue("Bearer \(jwt!)", forHTTPHeaderField: "Authorization")
         }
@@ -57,14 +57,11 @@ class HttpUtil {
             }
             
             do {
-//                let json = try JSONSerialization.jsonObject(with: responseData!, options: [])
-//
-//                print(json)
                 if(responseData != nil) {
                     closure(responseData!) // return data to the callback (closure)
                 }
             } catch {
-                print("JSON error: \(error.localizedDescription)")
+//                print("JSON error: \(error.localizedDescription)")
             }
         }
         
@@ -91,16 +88,13 @@ class HttpUtil {
                     return
                 }
                 if(responseData != nil) {
-//                    let json = String(data: jsonData!, encoding: String.Encoding.utf8)
-//                    
-//                    print(json);
                     closure(responseData!) // return data to the callback (closure)
                 } 
             }
             // send the request
             task.resume()
         } catch {
-            print("JSON error: \(error.localizedDescription)")
+//            print("JSON error: \(error.localizedDescription)")
         }
     }
 
@@ -125,16 +119,13 @@ class HttpUtil {
                 }
                 
                 if(responseData != nil) {
-//                    let json = String(data: jsonData!, encoding: String.Encoding.utf8)
-//
-//                    print(jsonData);
                     closure(responseData!) // return data to the callback (closure)
                 }
             }
             // send the request
             task.resume()
         } catch {
-            print("JSON error: \(error.localizedDescription)")
+//            print("JSON error: \(error.localizedDescription)")
         }
     }
 

@@ -9,6 +9,7 @@
 import UIKit
 
 class ProfileVC: UIViewController {
+    // Outlets
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var profileLevelType: UILabel!
     
@@ -59,7 +60,7 @@ class ProfileVC: UIViewController {
         // Get Profile Data from database
         Calbitica.getHProfile(closure: handleProfileClosure)
     }
-    
+    // Handle the result of the get profile Http Request
     func handleProfileClosure(data: Profile) {
         DispatchQueue.main.async {
             self.profileName.text = data.profile["name"]
@@ -116,8 +117,11 @@ class ProfileVC: UIViewController {
             }
         }
     }
+    // Handle success of quest/reject response
+    // Our getProfile should be indicative enough actually
     func handleQuestClosure(data: QuestInfo) { }
     
+    // Accept the quest
     @IBAction func acceptBtn(_ sender: UIButton) {
         self.questAccept.isHidden = true
         self.questReject.isHidden = true
@@ -126,6 +130,7 @@ class ProfileVC: UIViewController {
         Calbitica.respondToQuest(accept: true, groupID: groupID, closure: handleQuestClosure)
     }
     
+    // Reject the quest
     @IBAction func rejectBtn(_ sender: UIButton) {
         self.questAccept.isHidden = true
         self.questReject.isHidden = true
@@ -133,7 +138,7 @@ class ProfileVC: UIViewController {
         
         Calbitica.respondToQuest(accept: false, groupID: groupID, closure: handleQuestClosure)
     }
-    
+    // Sleep/leave the Inn (pauses/resumes damage)
     @IBAction func innDamage(_ sender: UIButton) {
         // Toggle the Inn to database
         func handleInnClosure(data: InnInfo) {
@@ -175,16 +180,5 @@ class ProfileVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }

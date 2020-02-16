@@ -8,7 +8,7 @@
 
 import UIKit
 
-//#44D3FF
+// Our colors :)
 class CalbiticaColors {
     static let blue = { (alpha: CGFloat) -> UIColor in
         return UIColor(displayP3Red: 68.0/255.0, green: 211.0/255.0, blue: 255.0/255.0, alpha: alpha)

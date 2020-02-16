@@ -64,7 +64,6 @@ class CCView: JZBaseWeekView {
             return alldayHeader
         }
         
-        
         return super.collectionView(collectionView, viewForSupplementaryElementOfKind: kind, at: indexPath)
     }
     

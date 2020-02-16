@@ -36,6 +36,11 @@ class AgendaTVC: UITableViewController {
         getCalbitsAndRefresh()
         self.agendaTV.tableFooterView = UIView()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         // Scroll to today
         scrollToToday()
     }
@@ -97,6 +102,7 @@ class AgendaTVC: UITableViewController {
         return cell
     }
     
+    // Reload the table in an animated manner
     func reloadTable(_ calbits: [Calbit?]) {
         mapAndSortCalbitsForTV(calbits)
         
@@ -111,6 +117,7 @@ class AgendaTVC: UITableViewController {
         }
     }
     
+    // Convert calbits to suit the table requirements
     func mapAndSortCalbitsForTV(_ calbits: [Calbit?]) {
         self.calbits = calbits
         let tempCalbitsForJZ = JZWeekViewHelper.getIntraEventsByDate(originalEvents: CalbiticaCalbitStore.calbitToJZ(calbits: calbits))
@@ -132,6 +139,7 @@ class AgendaTVC: UITableViewController {
         self.calbitsForTV =  sortedOuterCFJZ
     }
     
+    // Scroll to today's events
     func scrollToToday() {
         if let todayIndex = calbitsForTV.firstIndex(where: { (arg0) -> Bool in
             let (date, calbits) = arg0
@@ -141,7 +149,6 @@ class AgendaTVC: UITableViewController {
             self.agendaTV.scrollToRow(at: indexPath, at: .top, animated: true)
         }
     }
-    
     
     // Actions
     @IBAction func todayBtnClicked(_ sender: UIBarButtonItem) {
@@ -170,6 +177,7 @@ class AgendaTVC: UITableViewController {
         let actionText = isCompleted ? "Incomplete" : "Complete"
         let bgColor = isCompleted ? CalbiticaColors.darkGray(1.0) : CalbiticaColors.darkBlue(1.0)
         
+        // Mark event as complete/incomplete
         let completeAction = UITableViewRowAction(style: .normal, title: actionText) { (action, indexPath) -> Void in
             calbit.completed.status = !isCompleted
             self.completeCalbitFromActions(calbit: calbit)
@@ -178,6 +186,7 @@ class AgendaTVC: UITableViewController {
         }
         completeAction.backgroundColor = bgColor
         
+        // Delete the event
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) -> Void in
             let calbitsInTVSameDay = self.calbitsForTV[indexPath.section]
             let date = calbitsInTVSameDay.0
@@ -197,6 +206,8 @@ class AgendaTVC: UITableViewController {
         return [deleteAction, completeAction]
     }
     
+    // Update local variables upon calbit completion
+    // that is triggered by row actions (NOT CalbitDetailVC)
     func completeCalbitFromActions(calbit: CalbitForJZ) {
         if let index = calbits.firstIndex(where: { (c: Calbit?) -> Bool in
             return c?._id == calbit.id
@@ -215,6 +226,8 @@ class AgendaTVC: UITableViewController {
         CalbiticaCalbitStore.selfPopulate(closure: reloadTable)
     }
     
+    // Remove one event from local variable
+    // and re-map everything
     func removeOneDeletedCalbit(_ calbit: CalbitForJZ) {
         self.calbits.removeAll { (c: Calbit?) -> Bool in
             return c?._id == calbit.id
@@ -223,7 +236,6 @@ class AgendaTVC: UITableViewController {
     }
     // MARK: - Navigation
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "addCalbitSegue") {
             // Adding new event
@@ -250,6 +262,8 @@ class AgendaTVC: UITableViewController {
         }
     }
 }
+
+// When returning from CalbitDetailVC
 extension AgendaTVC : ReturnCalbitProtocol {
     // Post-segue things
     // If deleting from Detail view

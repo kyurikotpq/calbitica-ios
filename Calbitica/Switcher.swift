@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class Switcher {
-    // Is the user signed in?
+    // Is the user signed in? Switch to the appropriate VC
     static func isSignedIn(_ forceSignIn: Bool) -> Bool {
         // Get the JWT from UserDefaults
         let jwt = UserDefaults.standard.string(forKey: "jwt")

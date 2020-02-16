@@ -8,6 +8,9 @@
 
 import Foundation
 
+// Where all API requests are made
+// Serves as an middleman between the HttpUtil and the VCs
+// so that VCs won't be so populated
 class Calbitica {
     static let baseURL = "https://app.kyurikotpq.com/calbitica/api/"
     
@@ -25,7 +28,7 @@ class Calbitica {
                 let decodedUser = try JSONDecoder().decode(User.self, from: response)
                 closure(decodedUser.jwt)
             } catch {
-                print("JSON error: \(error.localizedDescription)")
+//                print("JSON error: \(error.localizedDescription)")
             }
         }
         
@@ -49,7 +52,7 @@ class Calbitica {
                 }
                 closure(calbits)
             } catch {
-                print("JSON error: \(error.localizedDescription)")
+//                print("JSON error: \(error.localizedDescription)")
             }
         }
         // Make the HTTP Request
@@ -87,15 +90,10 @@ class Calbitica {
                 }
                 closure(calendars.data)
             } catch {
-                // JSONSerialization.dec
-                print("JSON error: \(error.localizedDescription)")
+//                print("JSON error: \(error.localizedDescription)")
             }
         }
         HttpUtil.get(url: url, closure: httpFinishClosure)
-    }
-    static func importEvents() {
-        let url = calendarBaseURL + "import"
-        // HttpUtil.get(url)
     }
     static func changeCalSync(id: String, sync: Bool, closure: @escaping (Data) -> Void) {
         let syncStr = (sync) ? "true" : "false"
@@ -122,8 +120,7 @@ class Calbitica {
                 
                 closure(decodedProfile.data)
             } catch {
-                //                JSONSerialization.dec
-                print("JSON error: \(error.localizedDescription)")
+//                print("JSON error: \(error.localizedDescription)")
             }
         }
         
@@ -142,7 +139,6 @@ class Calbitica {
                 let decodedQuest = try JSONDecoder().decode(QuestResponse.self, from: response)
                 closure(decodedQuest.data)
             } catch {
-                //                JSONSerialization.dec
 //                 print("JSON error: \(error.localizedDescription)")
             }
         }
@@ -162,8 +158,7 @@ class Calbitica {
                 let decodedInn = try JSONDecoder().decode(InnResponse.self, from: response)
                 closure(decodedInn.data)
             } catch {
-                //                JSONSerialization.dec
-                print("JSON error: \(error.localizedDescription)")
+//                print("JSON error: \(error.localizedDescription)")
             }
         }
 
@@ -181,7 +176,7 @@ class Calbitica {
                 let decodedUser = try JSONDecoder().decode(User.self, from: response)
                 closure(decodedUser.jwt)
             } catch {
-                print("JSON error: \(error.localizedDescription)")
+//                print("JSON error: \(error.localizedDescription)")
             }
         }
         

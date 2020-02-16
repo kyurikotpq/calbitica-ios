@@ -8,6 +8,7 @@
 
 import UIKit
 
+// A "Please wait..." alert with spinner animation
 class SpinnerAlert {
     static let instance = SpinnerAlert()
     

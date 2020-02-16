@@ -83,8 +83,8 @@ UIPickerViewDelegate, UIPickerViewDataSource {
         setupCalendarPicker()
     }
     
+    // nice UI: show datepicker only on lbl tap
     func hidePickers() {
-        // nice UI: show datepicker only on lbl tap
         startDatePickerCell.isHidden = true
         endDatePickerCell.isHidden = true
         reminderDatePickerCell.isHidden = true
@@ -263,13 +263,13 @@ UIPickerViewDelegate, UIPickerViewDataSource {
         tableView.reloadData()
     }
     
+    // Show/hide times based on whether it's all-day
     @IBAction func onAllDaySwitchChanged(_ sender: Any) {
         let startDate = startDatePicker.date.ddMMMYYYY(!allDaySwitch.isOn),
             endDate = endDatePicker.date.ddMMMYYYY(!allDaySwitch.isOn)
         startDateLbl.text = startDate
         endDateLbl.text = endDate
     }
-    
     
     // Update the text labels if there are changes in the values
     // of the datepickers
