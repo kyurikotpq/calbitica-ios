@@ -97,7 +97,7 @@ struct Preferences: Codable {
     var hair: Hair
     var tasks: [String: Bool]
     var size: String
-    var skin: Float
+    var skin: String
     var shirt: String
     var chair: String
     var sleep: Bool
@@ -113,14 +113,8 @@ struct Party: Codable {
 }
 
 struct Quest: Codable {
-    struct QuestProgress : Codable {
-        var collectedItems: Float
-        var down: String
-        var up: String
-    }
-    
-    var progress: QuestProgress
+    var progress: [String: Float]
     var RSVPNeeded: Bool
     var key: String?
-    var completed: Bool?
+    var completed: String?
 }

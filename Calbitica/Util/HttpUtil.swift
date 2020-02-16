@@ -22,7 +22,7 @@ class HttpUtil {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let jwt = UserDefaults.standard.string(forKey: "jwt")
-        print(jwt)
+//        print(jwt)
         if(jwt != nil) {
             request.setValue("Bearer \(jwt!)", forHTTPHeaderField: "Authorization")
         }
@@ -125,9 +125,9 @@ class HttpUtil {
                 }
                 
                 if(responseData != nil) {
-                    let json = String(data: jsonData!, encoding: String.Encoding.utf8)
-                    
-                    print(jsonData);
+//                    let json = String(data: jsonData!, encoding: String.Encoding.utf8)
+//
+//                    print(jsonData);
                     closure(responseData!) // return data to the callback (closure)
                 }
             }

@@ -138,7 +138,7 @@ class ProfileVC: UIViewController {
         // Toggle the Inn to database
         func handleInnClosure(data: InnInfo) {
             DispatchQueue.main.async {
-                if(data != nil) {
+                if(data != nil && self.sleepTrigger != nil) {
                     if (self.sleepTrigger) {
                         guard self.presentedViewController == nil else {
                             return;

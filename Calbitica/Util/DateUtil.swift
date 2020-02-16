@@ -9,24 +9,26 @@
 import Foundation
 
 class DateUtil {
-    static let instance = DateUtil()
-    static let currentYear = instance.calendar.dateComponents(in: .current, from: Date()).year!
-    let dateFormatter = DateFormatter()
-    let calendar = Calendar(identifier: .gregorian)
+    static let calendar = Calendar(identifier: .gregorian)
+    static let currentYear = calendar.dateComponents(in: .current, from: Date()).year!
+    static let dateFormatter = DateFormatter()
     
     private init() {
-        dateFormatter.dateStyle = .medium
+        DateUtil.dateFormatter.dateStyle = .medium
     }
     
     static func components(_ date: Date) -> DateComponents {
-        return instance.calendar.dateComponents(in: .current, from: date)
+        return calendar.dateComponents(in: .current, from: date)
     }
     
     // Return a date object from an ISO string
+    // Since this needs to be called frequently and in a loop,
+    // it is best to use a new DF instance so
+    // that clashes won't happen with dateFormat "LLL"
     static func toDate(str: String) -> Date? {
-        let formatter = DateUtil.instance.dateFormatter
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:sss.sssZ"
-        let date = formatter.date(from: str)
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        let date = df.date(from: str)
         
         return date
     }
@@ -92,7 +94,7 @@ class DateUtil {
     // format a string for the navigation bar (month only)
     static func buildNavbarTitle(firstDate: Date, lastDate: Date) -> String {
         var title = ""
-        instance.dateFormatter.dateFormat = "LLL"
+        dateFormatter.dateFormat = "LLL"
         
         let firstDateComponents = components(firstDate)
         let lastDateComponents = components(lastDate)
@@ -102,15 +104,15 @@ class DateUtil {
         // If week is in the same month and year, just do a MMM YYYY
         if((firstDateComponents.month == lastDateComponents.month)
             && isSameYear) {
-            let yearString = instance.calendar.dateComponents(in: .current, from: firstDate).year!
+            let yearString = calendar.dateComponents(in: .current, from: firstDate).year!
            
-            title = "\(instance.dateFormatter.string(for: lastDate)!)"
+            title = "\(dateFormatter.string(for: lastDate)!)"
             title += " \(yearString)"
             
         } else if((firstDateComponents.month != lastDateComponents.month)) {
             // If week is different months but same year, just do a MMM - MMM YYY
-            var firstMMM = "\(instance.dateFormatter.string(for: firstDate)!)"
-            var lastMMM = "\(instance.dateFormatter.string(for: lastDate)!)"
+            var firstMMM = "\(dateFormatter.string(for: firstDate)!)"
+            var lastMMM = "\(dateFormatter.string(for: lastDate)!)"
             
             if(!isSameYear) {
                 firstMMM += " \(firstDateComponents.year!)"
@@ -120,7 +122,7 @@ class DateUtil {
             } else {
                 // add the year at the back if it's NOT the current year
                 title = "\(firstMMM) - \(lastMMM)"
-                let yearString = instance.calendar.dateComponents(in: .current, from: firstDate).year!
+                let yearString = calendar.dateComponents(in: .current, from: firstDate).year!
                 title += " \(yearString)"
             }
         }
@@ -133,7 +135,7 @@ class DateUtil {
 extension Date {
     // Build a "01 Jan 2020" kind of string
     func ddMMMYYYY(_ withTime: Bool) -> String {
-        let formatter = DateUtil.instance.dateFormatter
+        let formatter = DateUtil.dateFormatter
         var formatString = "dd LLL yyyy"
         
         if(withTime) {
@@ -145,14 +147,14 @@ extension Date {
     }
     
     func otherFormats(_ format: String) -> String {
-        let formatter = DateUtil.instance.dateFormatter
+        let formatter = DateUtil.dateFormatter
         formatter.dateFormat = format
         return formatter.string(from: self)
     }
     
     // Return a date object from an ISO string
     func toISOString() -> String {
-        let formatter = DateUtil.instance.dateFormatter
+        let formatter = DateUtil.dateFormatter
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         let dateStr = formatter.string(from: self)
         
@@ -160,7 +162,7 @@ extension Date {
     }
     
     func formatMMM() -> String {
-        let formatter = DateUtil.instance.dateFormatter
+        let formatter = DateUtil.dateFormatter
         formatter.dateFormat = "LLL"
         return formatter.string(from: self)
     }

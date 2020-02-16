@@ -91,39 +91,32 @@ class WeekVC: UIViewController {
             || (subview?.isMember(of: DarkCCViewAllDayCorner.self))!
             || (subview?.isMember(of: DarkCCViewCornerCell.self))!
         
+        // day column chould create new all-day events
+        let newAllDay = (subview?.isMember(of: JZAllDayHeader.self))!
+            || (subview?.isMember(of: DarkCCViewColHeader.self))!
+            || (parentview?.isMember(of: DarkCCViewColHeader.self))!
+        
         let isExistingEvent = (parentview?.isMember(of: CalbitCell.self))!
             || (subview?.isMember(of: CalbitCell.self))!
         
-        print(subview?.superview)
-        print(subview)
+        let selectedDate = calendarWeekView.getDateForPoint(sender.location(in: calendarWeekView.collectionView))
         
-        
-        do {
-            // day column chould create new all-day events
-            let newAllDay = (subview?.isMember(of: JZAllDayHeader.self))!
-                || (subview?.isMember(of: DarkCCViewColHeader.self))!
-                || (parentview?.isMember(of: DarkCCViewColHeader.self))!
+        if isExistingEvent {
+            let cell = (parentview?.isMember(of: CalbitCell.self))!
+                ? parentview : subview
             
-            if let indexPath = calendarWeekView.collectionView?.indexPathForItem(at: sender.location(in: calendarWeekView.collectionView)) {
-                if let selectedEvent = calendarWeekView.getCurrentEvent(with: indexPath) as? CalbitForJZ {
-                    self.selectedEvent = selectedEvent
-                    self.performSegue(withIdentifier: "detailCalbitSegue", sender: self)
-                }
-            } else if isExistingEvent {
-                // Most likely an all-day event
-                
-                
-            } else if (!forbidden) {
-                let date = calendarWeekView.getDateForPoint(sender.location(in: calendarWeekView.collectionView))
-                
-                // Round of dates to the nearest 30mins
-                // and calculate 30mins from there
-                self.pressedDates = DateUtil.calculate30Mins(date: date, round: true)
-                self.creatingAllDay = newAllDay
-                self.performSegue(withIdentifier: "addCalbitSegue", sender: self)
-                
+            let calbitCell = cell as! CalbitCell
+            if let selectedEvent = calbitCell.event {
+                self.selectedEvent = selectedEvent
+                self.performSegue(withIdentifier: "detailCalbitSegue", sender: self)
             }
-        } catch {
+            
+        } else if (!forbidden) {
+            // Round of dates to the nearest 30mins
+            // and calculate 30mins from there
+            self.pressedDates = DateUtil.calculate30Mins(date: selectedDate, round: true)
+            self.creatingAllDay = newAllDay
+            self.performSegue(withIdentifier: "addCalbitSegue", sender: self)
             
         }
         
