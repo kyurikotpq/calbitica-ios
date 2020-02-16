@@ -263,6 +263,13 @@ UIPickerViewDelegate, UIPickerViewDataSource {
         tableView.reloadData()
     }
     
+    @IBAction func onAllDaySwitchChanged(_ sender: Any) {
+        let startDate = startDatePicker.date.ddMMMYYYY(!allDaySwitch.isOn),
+            endDate = endDatePicker.date.ddMMMYYYY(!allDaySwitch.isOn)
+        startDateLbl.text = startDate
+        endDateLbl.text = endDate
+    }
+    
     
     // Update the text labels if there are changes in the values
     // of the datepickers

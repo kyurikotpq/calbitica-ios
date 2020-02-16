@@ -179,6 +179,9 @@
                                                             <rect key="frame" x="325" y="9.5" width="51" height="31"/>
                                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <color key="onTintColor" red="0.2666666667" green="0.82745098039999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <connections>
+                                                                <action selector="onAllDaySwitchChanged:" destination="AkI-Ge-aWT" eventType="valueChanged" id="aRo-hB-tgP"/>
+                                                            </connections>
                                                         </switch>
                                                     </subviews>
                                                 </stackView>
